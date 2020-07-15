@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.UI.Popups;
 using System.Collections.Concurrent;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -17,6 +18,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private ConcurrentQueue<ImageInfo> likeV2 = new ConcurrentQueue<ImageInfo>();
         private Pixiv pixiv = new Pixiv();
         private Conf c = new Conf();
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
         /// <summary>
         /// 列表更新1
@@ -75,7 +77,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     MessageDialog dialog = new MessageDialog("更新推荐列表失败");
                     await dialog.ShowAsync();
                 });*/
-                string title = "获取pixiv推荐队列失败";
+                string title = loader.GetString("FailToGetQueue");
                 string content = "请检查你的网络连接，检查登录状态或尝试再次登录以更新过期的cookie";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
@@ -115,8 +117,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     MessageDialog dialog = new MessageDialog("更新推荐列表失败");
                     await dialog.ShowAsync();
                 });*/
-                string title = "获取pixiv推荐队列失败";
-                string content = "请检查你的网络连接以及账号和密码的正确性";
+                string title = loader.GetString("FailToGetQueue");
+                string content = loader.GetString("FailToGetQueueExplanation");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
             }

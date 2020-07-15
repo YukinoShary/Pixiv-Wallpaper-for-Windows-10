@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -43,6 +44,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 
         private string url;
         private Contype dataType;
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
         /// <summary>
         /// 设置或获取Cookie
@@ -135,11 +137,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     }  
                     await dialog.ShowAsync();
                 });*/
-                string title = "数据获取失败";
+                string title = loader.GetString("DataRequestFail");
                 string content = "";
                 if ("The remote server returned an error: (403) .".Equals(e.Message))
                 {
-                    content = "请确认是否已登录或尝试清除Cookie与token后再次登录";
+                    content = loader.GetString("DataRequestFailExplanation");
                 }
                 else
                 {
@@ -259,8 +261,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     }
                     else
                     {
-                        string title = "获取插画时连接失败";
-                        string content = "尝试从pixiv下载插画时连接超时，请检查网络连接";
+                        string title = loader.GetString("ConnectionFail") ;
+                        string content = loader.GetString("ConnectionFailExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(60);
                         return "ERROR";
@@ -269,8 +271,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }    
             catch(Exception)
             {
-                string title = "获取插画时连接中断";
-                string content = "在从pixiv服务器下载插画时连接中断，请检查网络连接";
+                string title = loader.GetString("ConnectionLost");
+                string content = loader.GetString("ConnectionLostExplanation");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
                 return "ERROR";

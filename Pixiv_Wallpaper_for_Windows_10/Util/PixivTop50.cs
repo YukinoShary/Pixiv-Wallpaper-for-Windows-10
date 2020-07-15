@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Concurrent;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -14,6 +15,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     {
         public ConcurrentQueue<string> results = new ConcurrentQueue<string>();
         private Pixiv p = new Pixiv();
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
 
         /// <summary>
@@ -64,8 +66,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             else
             {
-                string title = "获取pixiv每日Top50失败";
-                string content = "请检查你的网络连接";
+                string title = loader.GetString("FailToGetTop50Queue");
+                string content = loader.GetString("PleaseCheckNetwork");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
             }           

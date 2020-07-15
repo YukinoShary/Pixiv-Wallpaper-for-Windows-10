@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="120Mins" xml:space="preserve">
+    <value>120 Minutes</value>
+  </data>
+  <data name="15Mins" xml:space="preserve">
+    <value>15 Minutes</value>
+  </data>
+  <data name="180Mins" xml:space="preserve">
+    <value>180 Minutes</value>
+  </data>
+  <data name="30Mins" xml:space="preserve">
+    <value>30 Minutes</value>
+  </data>
+  <data name="60Mins" xml:space="preserve">
+    <value>60 Minutes</value>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>Account:</value>
+  </data>
+  <data name="BackgroundMode.Text" xml:space="preserve">
+    <value>Background Mode</value>
+  </data>
+  <data name="BackgroundModeExplanation.Text" xml:space="preserve">
+    <value>The Backgound Task Mode can maximize power save if your network speed is fast enough to download an illustration within 30s, or the application will be closed.</value>
+  </data>
+  <data name="BackgroundTask" xml:space="preserve">
+    <value>BackgroundTask</value>
+  </data>
+  <data name="BackgroundTaskDenied" xml:space="preserve">
+    <value>Application cannot register background task</value>
+  </data>
+  <data name="BackgroundTaskDeniedExplanation" xml:space="preserve">
+    <value>If you want to make this app active in the background with backgroud task, try to change the power settings and plugging in wall power</value>
+  </data>
+  <data name="BatterySetting" xml:space="preserve">
+    <value>BatterySetting</value>
+  </data>
+  <data name="ClearCookies.Content" xml:space="preserve">
+    <value>Clear cookies</value>
+  </data>
+  <data name="ClearIllustrations.Content" xml:space="preserve">
+    <value>Clear illustrations</value>
+  </data>
+  <data name="ConnectionFail" xml:space="preserve">
+    <value>Connection failed while downloading illustration</value>
+  </data>
+  <data name="ConnectionFailExplanation" xml:space="preserve">
+    <value>The connection timed out when trying to download illustrations from pixiv. Please check the network connection</value>
+  </data>
+  <data name="ConnectionLost" xml:space="preserve">
+    <value>Connection lost while downloading illustration</value>
+  </data>
+  <data name="ConnectionLostExplanation" xml:space="preserve">
+    <value>The connection was interrupted while downloading illustrations from pixiv. Please check the network connection</value>
+  </data>
+  <data name="DataRequestFail" xml:space="preserve">
+    <value>Data request failed</value>
+  </data>
+  <data name="DataRequestFailExplanation" xml:space="preserve">
+    <value>Please confirm you have logged or clear the cookies and login again</value>
+  </data>
+  <data name="ExtendedExecutionDenied" xml:space="preserve">
+    <value>Application extended execution has been denied</value>
+  </data>
+  <data name="ExtendedExecutionDeniedExplanation" xml:space="preserve">
+    <value>Due to system limitations, the application cannot continue activities in the background. Please try to change the power settings so that the app can work in background</value>
+  </data>
+  <data name="ExtendedSession" xml:space="preserve">
+    <value>ExtendedSession</value>
+  </data>
+  <data name="FailToChangeLock" xml:space="preserve">
+    <value>Failed to change lock screen</value>
+  </data>
+  <data name="FailToChangeWallpaper" xml:space="preserve">
+    <value>Failed to change wallpaper</value>
+  </data>
+  <data name="FailToGetQueue" xml:space="preserve">
+    <value>Failed to get pixiv recommendation queue</value>
+  </data>
+  <data name="FailToGetQueueExplanation" xml:space="preserve">
+    <value>Please check your network connection and enter the correct account and password</value>
+  </data>
+  <data name="FailToGetQueueExplanationV1" xml:space="preserve">
+    <value>Please check your internet connection and the login status or try to login again to update expired cookies</value>
+  </data>
+  <data name="FailToGetTop50Queue" xml:space="preserve">
+    <value>Fail to get pixiv daily top50 queue</value>
+  </data>
+  <data name="Illustrator" xml:space="preserve">
+    <value>Illustrator: </value>
+  </data>
+  <data name="LocalData.Text" xml:space="preserve">
+    <value>Local data</value>
+  </data>
+  <data name="LocalDataSize.Text" xml:space="preserve">
+    <value>Local illustrations total size:</value>
+  </data>
+  <data name="Next.Text" xml:space="preserve">
+    <value>Next illustration</value>
+  </data>
+  <data name="NotSupport" xml:space="preserve">
+    <value>Your device does not support automatic wallpaper replacement</value>
+  </data>
+  <data name="Other.Text" xml:space="preserve">
+    <value>Other options</value>
+  </data>
+  <data name="OtherOptionsExplanation.Text" xml:space="preserve">
+    <value>Change lock screen at the same time</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="PixivLoginV1.Text" xml:space="preserve">
+    <value>Pixiv Login ver1(WebView)</value>
+  </data>
+  <data name="PixivLoginV1Explanation.Text" xml:space="preserve">
+    <value>Click the button to login</value>
+  </data>
+  <data name="PixivLoginV1Logged" xml:space="preserve">
+    <value>Logged</value>
+  </data>
+  <data name="PixivLoginV1Not" xml:space="preserve">
+    <value>Please login</value>
+  </data>
+  <data name="PixivLoginV2.Text" xml:space="preserve">
+    <value>Pixiv Login ver2(PixivCS)</value>
+  </data>
+  <data name="PixivLoginV2Explanation.Text" xml:space="preserve">
+    <value>The app will automatically store your account and password locally.</value>
+  </data>
+  <data name="PleaseCheckNetwork" xml:space="preserve">
+    <value>Please check your network connection</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="RecommendedV1Refresh" xml:space="preserve">
+    <value>Recommended ver 1 illustration queue has been updated</value>
+  </data>
+  <data name="RecommendedV2Refresh" xml:space="preserve">
+    <value>Recommended ver 2 illustration queue has been updated</value>
+  </data>
+  <data name="RecommendV1.Content" xml:space="preserve">
+    <value>Recommendation ver1 with WebAPI</value>
+  </data>
+  <data name="RecommendV2.Content" xml:space="preserve">
+    <value>Recommendation ver2 with PixivCS API</value>
+  </data>
+  <data name="Refresh.Text" xml:space="preserve">
+    <value>Refresh illustrations list</value>
+  </data>
+  <data name="RefreshExplanation" xml:space="preserve">
+    <value>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</value>
+  </data>
+  <data name="ReviewTimes" xml:space="preserve">
+    <value>times review</value>
+  </data>
+  <data name="Setting.Text" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="SetWallpaper.Text" xml:space="preserve">
+    <value>Set as wallpaper</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Change wallpaper successfully</value>
+  </data>
+  <data name="Top50.Content" xml:space="preserve">
+    <value>Daily Top50</value>
+  </data>
+  <data name="Top50Refresh" xml:space="preserve">
+    <value>Top50 illustration queue has been updated</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>An unknown error occurred while downloading the illustration</value>
+  </data>
+  <data name="UpdateInterval.Text" xml:space="preserve">
+    <value>Update interval</value>
+  </data>
+  <data name="UpdateIntervalExplanation.Text" xml:space="preserve">
+    <value>Set the time interval for updating Wallpapers</value>
+  </data>
+  <data name="UpdateMode.Text" xml:space="preserve">
+    <value>Update Mode</value>
+  </data>
+  <data name="UpdateModeExplanation.Text" xml:space="preserve">
+    <value>Select the illustrations update mode."Recommendation" mode will select the illustrations with appropriate aspect ratio</value>
+  </data>
+  <data name="Visit.Text" xml:space="preserve">
+    <value>Visit illustration page</value>
+  </data>
+  <data name="VisitLocalFolder.Content" xml:space="preserve">
+    <value>Visit local folder</value>
+  </data>
+</root>

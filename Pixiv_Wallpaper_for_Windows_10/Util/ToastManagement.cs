@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.QueryStringDotNET;
 using Windows.UI.Notifications;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -22,6 +23,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public const int BatterySetting = 1;
         public const int WallpaperUpdate = 2;
         public const int OtherMessage = 3;
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
         public ToastManagement(string title,string content,int toastMode,string image = null)
         {
@@ -95,13 +97,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             switch (toastMode)
             {
                 case BatterySetting:
-                    actions.Buttons.Add(new ToastButton("电源设置", new QueryString() { "action", "BatterySetting" }.ToString())
+                    actions.Buttons.Add(new ToastButton(loader.GetString("BatterySetting"), new QueryString() { "action", "BatterySetting" }.ToString())
                     {
                         ActivationType = ToastActivationType.Protocol
                     });
                     break;
                 case WallpaperUpdate:
-                    actions.Buttons.Add(new ToastButton("下一张", new QueryString() { "action", "NextIllust" }.ToString())
+                    actions.Buttons.Add(new ToastButton(loader.GetString("Next"), new QueryString() { "action", "NextIllust" }.ToString())
                     {
                         ActivationType = ToastActivationType.Foreground
                     });

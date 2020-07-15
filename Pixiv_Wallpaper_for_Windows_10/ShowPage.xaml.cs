@@ -18,6 +18,7 @@ using System.Diagnostics;
 using Pixiv_Wallpaper_for_Windows_10.Util;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10
 {
@@ -31,6 +32,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private Conf c;
         private ImageInfo img;
         private StorageFile file;
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+
         public ShowPage()
         {
             this.InitializeComponent();
@@ -51,7 +54,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 
                 textBlock1.Text = img.title;
                 textBlock2.Text = img.userName;
-                textBlock3.Text = (img.viewCount + "次浏览");
+                textBlock3.Text = (img.viewCount + loader.GetString("ReviewTimes"));
             }
             using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
             {

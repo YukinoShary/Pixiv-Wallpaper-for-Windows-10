@@ -14,6 +14,7 @@ using PixivCS;
 using System.Collections.Concurrent;
 using System.Web;
 using System.IO;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -28,6 +29,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public string token { get; set; }
         private string nexturl = "begin";
         private PixivBaseAPI baseAPI;
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+
         public Pixiv()
         {
             baseAPI = new PixivBaseAPI();
@@ -58,7 +61,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             else
             {
-                string title = "获取插画队列时发生错误";
+                string title = loader.GetString("UnknownError");
                 string content = " ";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
@@ -284,7 +287,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     dialog.Content = "获取插画时发生未知错误";
                     await dialog.ShowAsync();
                 });*/
-                string title = "下载插画时发生未知错误";
+                string title = loader.GetString("UnknownError");
                 string content = " ";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);

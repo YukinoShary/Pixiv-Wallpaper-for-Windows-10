@@ -19,6 +19,7 @@ using Windows.System;
 using System.Threading.Tasks;
 using Windows.Storage.Search;
 using Windows.Storage.FileProperties;
+using Windows.ApplicationModel.Resources;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -29,36 +30,36 @@ namespace Pixiv_Wallpaper_for_Windows_10
     /// </summary>
     public sealed partial class SettingPage : Page
     {
-        StorageFolder folder = ApplicationData.Current.LocalFolder;
-        Conf c = new Conf();
+        private StorageFolder folder = ApplicationData.Current.LocalFolder;
+        private Conf c = new Conf();
+        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+
 
         public SettingPage()
         {
             this.InitializeComponent();
-            
-            //下拉框初始化
-            combox1.Items.Add(new KeyValuePair<string, int>("15 分钟", 15));
-            combox1.Items.Add(new KeyValuePair<string, int>("30 分钟", 30));
-            combox1.Items.Add(new KeyValuePair<string, int>("60 分钟", 60));
-            combox1.Items.Add(new KeyValuePair<string, int>("120 分钟", 120));
-            combox1.Items.Add(new KeyValuePair<string, int>("180 分钟", 180));
 
-            combox2.Items.Add(new KeyValuePair<string, string>("拓展执行", "ExtendedSession"));
-            combox2.Items.Add(new KeyValuePair<string, string>("后台任务", "BackgroundTask"));
+            //下拉框初始化   多语言适配
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("60Mins"), 60));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("120Mins"), 120));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("180Mins"), 180));
 
-            //值填充
-            cacheSize.Text = "计算中...";
+            combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("ExtendedSession"), "ExtendedSession"));
+            combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("BackgroundTask"), "BackgroundTask"));
+
             CalcutateCacheSize();
             combox1.SelectedValue = c.time;
             combox2.SelectedValue = c.backgroundMode;
 
             if(c.cookie!=null&&!"".Equals(c.cookie))
             {
-                loginV1.Content = "已登录";
+                loginV1.Content = loader.GetString("PixivLoginV1Logged");
             }
             else
             {
-                loginV1.Content = "请登录";
+                loginV1.Content = loader.GetString("PixivLoginV1Not");
             }
 
             lock_switch.IsOn = c.lockscr;
@@ -85,7 +86,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void SetCookie(string str)
         {
             c.cookie = str;
-            loginV1.Content = "已登录";
+            loginV1.Content = loader.GetString("PixivLoginV1Logged");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)
@@ -103,13 +104,14 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     await f.DeleteAsync();
                 }     
             }
+            CalcutateCacheSize();
         }
 
         private void cleanToken_Click(object sender, RoutedEventArgs e)
         {
             c.token = null;
             c.cookie = null;
-            loginV1.Content = "未登录";
+            loginV1.Content = loader.GetString("PixivLoginV1Not"); 
         }
 
         private async void loginV1_Click(object sender, RoutedEventArgs e)

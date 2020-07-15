@@ -25,6 +25,7 @@ using Windows.ApplicationModel.ExtendedExecution;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10
 {
@@ -42,6 +43,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private PixivTop50 top50;
         private PixivLike like;
         private string backgroundMode;
+        private ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
         public MainPage()
         {
@@ -148,7 +150,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 var dialog = new MessageDialog("");
                 if (!UserProfilePersonalizationSettings.IsSupported())
                 {
-                    string title = "您的设备不支持自动更换壁纸";
+                    string title = loader.GetString("NotSupport");
                     string content = " ";
                     ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                     tm.ToastPush(60);
@@ -172,7 +174,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     bool lockscr = await settings.TrySetLockScreenImageAsync(file);
                     if (!lockscr)
                     {
-                        string title = "更换锁屏操作失败";
+                        string title = loader.GetString("FailToChangeLock");
                         string content = " ";
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(60);
@@ -183,7 +185,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
                 if (!deskscr)
                 {
-                    string title = "更换壁纸操作失败";
+                    string title = loader.GetString("FailToChangeWallpaper");
                     string content = " ";
                     ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                     tm.ToastPush(60);
@@ -191,10 +193,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 else
                 {
                     //推送Toast通知
-                    string title = "成功更换壁纸";
+                    string title = loader.GetString("Success");
                     string content = img.title + "\r\n"
                         + "id: " + img.imgId + "\r\n" 
-                        + "作者: " + img.userName;
+                        + loader.GetString("Illustrator") + img.userName;
                     string image = file.Path;
                     ToastManagement tm = new ToastManagement(title, content, ToastManagement.WallpaperUpdate, image);
                     tm.ToastPush(10);
@@ -231,8 +233,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case ExtendedExecutionResult.Denied:
                     newSession.Dispose();
                     //建立Toast通知
-                    string title = "Pixiv Wallpaper for Windows 10被禁止扩展会话执行";
-                    string content = "由于系统限制，应用程序无法在后台继续活动。请尝试更改电源设置允许应用后台";
+                    string title = loader.GetString("ExtendedExecutionDenied");
+                    string content = loader.GetString("ExtendedExcutionDeniedExplanation");
                     ToastManagement tm = new ToastManagement(title, content, ToastManagement.BatterySetting);
                     tm.ToastPush(120);
                     break;
@@ -262,9 +264,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
             var status = await BackgroundExecutionManager.RequestAccessAsync();
             if(status == BackgroundAccessStatus.DeniedBySystemPolicy||status == BackgroundAccessStatus.Unspecified)
             {
-                string title = "应用后台活动被禁止";
-                string content = "由于系统限制，应用程序无法在后台活动。" +
-                        "若希望使此应用在后台活动，请尝试更改电源设置以及插入外部电源";
+                string title = loader.GetString("BackgroundTaskDenied");
+                string content = loader.GetString("BackgroundTaskDeniedExplanation");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.BatterySetting);
                 tm.ToastPush(120);
             }
@@ -332,8 +333,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     if(await top50.listUpdate(true))
                     {
-                        string title = "Top50插画队列已更新";
-                        string content = "插画队列的更新只是更新应用内存中的插画ID队列，你需要点击“下一张”按钮在预览页中查看更新的插画";
+                        string title = loader.GetString("Top50Refresh");
+                        string content = loader.GetString("RefreshExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(120);
                     }
@@ -345,8 +346,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     if(await like.ListUpdateV1(true))
                     {
-                        string title = "“猜你喜欢”插画队列已更新";
-                        string content = "插画队列的更新只是更新应用内存中的插画ID队列，你需要点击“下一张”按钮在预览页中查看更新的插画";
+                        string title = loader.GetString("RecommendedV1Refresh");
+                        string content = loader.GetString("RefreshExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(120);
                     }
@@ -358,8 +359,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     if(await like.ListUpdateV2(true))
                     {
-                        string title = "“猜你喜欢”插画队列已更新";
-                        string content = "插画队列的更新只是更新应用内存中的插画ID队列，你需要点击“下一张”按钮在预览页中查看更新的插画";
+                        string title = loader.GetString("RecommendedV2Refresh");
+                        string content = loader.GetString("RefreshExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(120);
                     }
@@ -373,7 +374,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     if(await top50.listUpdate(true))
                     {
                         string title = "Top50插画队列已更新";
-                        string content = "插画队列的更新只是更新应用内存中的插画ID队列，你需要点击“下一张”按钮在预览页中查看更新的插画";
+                        string content = loader.GetString("RefreshExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(120);
                     }
