@@ -148,7 +148,7 @@
     <value>Application cannot register background task</value>
   </data>
   <data name="BackgroundTaskDeniedExplanation" xml:space="preserve">
-    <value>If you want to make this app active in the background with backgroud task, try to change the power settings and plugging in wall power</value>
+    <value>If you want to make this app active in the background with background task, try to change the power settings or plugging in wall power</value>
   </data>
   <data name="BatterySetting" xml:space="preserve">
     <value>BatterySetting</value>
@@ -160,7 +160,7 @@
     <value>Clear illustrations</value>
   </data>
   <data name="ConnectionFail" xml:space="preserve">
-    <value>Connection failed while downloading illustration</value>
+    <value>Could not connect to the illustration download server</value>
   </data>
   <data name="ConnectionFailExplanation" xml:space="preserve">
     <value>The connection timed out when trying to download illustrations from pixiv. Please check the network connection</value>
@@ -199,7 +199,7 @@
     <value>Please check your network connection and enter the correct account and password</value>
   </data>
   <data name="FailToGetQueueExplanationV1" xml:space="preserve">
-    <value>Please check your internet connection and the login status or try to login again to update expired cookies</value>
+    <value>Please check your network connection and the login status or try to login again to update expired cookies</value>
   </data>
   <data name="FailToGetTop50Queue" xml:space="preserve">
     <value>Fail to get pixiv daily top50 queue</value>
@@ -234,8 +234,8 @@
   <data name="PixivLoginV1Explanation.Text" xml:space="preserve">
     <value>Click the button to login</value>
   </data>
-  <data name="PixivLoginV1Logged" xml:space="preserve">
-    <value>Logged</value>
+  <data name="PixivLoginV1LoggedIn" xml:space="preserve">
+    <value>Logged in</value>
   </data>
   <data name="PixivLoginV1Not" xml:space="preserve">
     <value>Please login</value>
@@ -244,7 +244,7 @@
     <value>Pixiv Login ver2(PixivCS)</value>
   </data>
   <data name="PixivLoginV2Explanation.Text" xml:space="preserve">
-    <value>The app will automatically store your account and password locally.</value>
+    <value>The app will automatically store your account and password locally</value>
   </data>
   <data name="PleaseCheckNetwork" xml:space="preserve">
     <value>Please check your network connection</value>

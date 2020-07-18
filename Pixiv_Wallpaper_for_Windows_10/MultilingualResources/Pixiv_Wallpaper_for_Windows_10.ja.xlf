@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="ja" original="PIXIV_WALLPAPER_FOR_WINDOWS_10/STRING/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6916.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="PIXIV_WALLPAPER_FOR_WINDOWS_10/STRING/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="120Mins" translate="yes" xml:space="preserve">
+          <source>120 Minutes</source>
+          <target state="final">120 分</target>
+        </trans-unit>
+        <trans-unit id="15Mins" translate="yes" xml:space="preserve">
+          <source>15 Minutes</source>
+          <target state="final">15 分</target>
+        </trans-unit>
+        <trans-unit id="180Mins" translate="yes" xml:space="preserve">
+          <source>180 Minutes</source>
+          <target state="final">180 分</target>
+        </trans-unit>
+        <trans-unit id="30Mins" translate="yes" xml:space="preserve">
+          <source>30 Minutes</source>
+          <target state="final">30 分</target>
+        </trans-unit>
+        <trans-unit id="60Mins" translate="yes" xml:space="preserve">
+          <source>60 Minutes</source>
+          <target state="final">60 分</target>
+        </trans-unit>
+        <trans-unit id="Account.Text" translate="yes" xml:space="preserve">
+          <source>Account:</source>
+          <target state="final">アカウント:</target>
+        </trans-unit>
+        <trans-unit id="BackgroundMode.Text" translate="yes" xml:space="preserve">
+          <source>Background Mode</source>
+          <target state="final">バックグラウンドモード</target>
+        </trans-unit>
+        <trans-unit id="BackgroundModeExplanation.Text" translate="yes" xml:space="preserve">
+          <source>The Backgound Task Mode can maximize power save if your network speed is fast enough to download an illustration within 30s, or the application will be closed.</source>
+          <target state="final">バックグラウンドタスクモードは、ネットワーク速度が30秒以内にイラストをダウンロードできれば、省電力を最大化できます。30秒を超える場合、アプリが閉じられます</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTask" translate="yes" xml:space="preserve">
+          <source>BackgroundTask</source>
+          <target state="final">バックグラウンドタスク</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTaskDenied" translate="yes" xml:space="preserve">
+          <source>Application cannot register background task</source>
+          <target state="new">アプリのバックグラウンドタスクが拒否されました</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTaskDeniedExplanation" translate="yes" xml:space="preserve">
+          <source>If you want to make this app active in the background with background task, try to change the power settings or plugging in wall power</source>
+          <target state="final">このアプリをバックグラウンドで動きたい場合は電源の設定変更、又は外部電源を使用してください</target>
+        </trans-unit>
+        <trans-unit id="BatterySetting" translate="yes" xml:space="preserve">
+          <source>BatterySetting</source>
+          <target state="final">バッテリー設定</target>
+        </trans-unit>
+        <trans-unit id="ClearCookies.Content" translate="yes" xml:space="preserve">
+          <source>Clear cookies</source>
+          <target state="final">クッキーを消す</target>
+        </trans-unit>
+        <trans-unit id="ClearIllustrations.Content" translate="yes" xml:space="preserve">
+          <source>Clear illustrations</source>
+          <target state="final">イラストを消す</target>
+        </trans-unit>
+        <trans-unit id="ConnectionFail" translate="yes" xml:space="preserve">
+          <source>Could not connect to the illustration download server</source>
+          <target state="final">イラストのダウンロードサーバを接続できませんでした</target>
+        </trans-unit>
+        <trans-unit id="ConnectionFailExplanation" translate="yes" xml:space="preserve">
+          <source>The connection timed out when trying to download illustrations from pixiv. Please check the network connection</source>
+          <target state="final">イラストをダウンロードしようとしたとき接続がタイムアウトしました。 ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="ConnectionLost" translate="yes" xml:space="preserve">
+          <source>Connection lost while downloading illustration</source>
+          <target state="final">イラストのダウンロード中に接続が失われました</target>
+        </trans-unit>
+        <trans-unit id="ConnectionLostExplanation" translate="yes" xml:space="preserve">
+          <source>The connection was interrupted while downloading illustrations from pixiv. Please check the network connection</source>
+          <target state="final">イラストをダウンロード中に接続が切断されました。 ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="DataRequestFail" translate="yes" xml:space="preserve">
+          <source>Data request failed</source>
+          <target state="final">データを取得できませんでした</target>
+        </trans-unit>
+        <trans-unit id="DataRequestFailExplanation" translate="yes" xml:space="preserve">
+          <source>Please confirm you have logged or clear the cookies and login again</source>
+          <target state="final">ログインしたことを確認するか、Cookieをクリアして、再度ログインしてください</target>
+        </trans-unit>
+        <trans-unit id="ExtendedExecutionDenied" translate="yes" xml:space="preserve">
+          <source>Application extended execution has been denied</source>
+          <target state="final">アプリ延長実行が拒否されました</target>
+        </trans-unit>
+        <trans-unit id="ExtendedExecutionDeniedExplanation" translate="yes" xml:space="preserve">
+          <source>Due to system limitations, the application cannot continue activities in the background. Please try to change the power settings so that the app can work in background</source>
+          <target state="final">システムの制限により、アプリはバックグラウンドで動きません。 アプリがバックグラウンドで動くように電源の設定を変更してみてください</target>
+        </trans-unit>
+        <trans-unit id="ExtendedSession" translate="yes" xml:space="preserve">
+          <source>ExtendedSession</source>
+          <target state="final">延長実行</target>
+        </trans-unit>
+        <trans-unit id="FailToChangeLock" translate="yes" xml:space="preserve">
+          <source>Failed to change lock screen</source>
+          <target state="final">ロック画面は変更できません</target>
+        </trans-unit>
+        <trans-unit id="FailToChangeWallpaper" translate="yes" xml:space="preserve">
+          <source>Failed to change wallpaper</source>
+          <target state="final">壁紙は変更できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetQueue" translate="yes" xml:space="preserve">
+          <source>Failed to get pixiv recommendation queue</source>
+          <target state="final">pixivおすすめキューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
+          <source>Please check your network connection and enter the correct account and password</source>
+          <target state="final">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
+        </trans-unit>
+        <trans-unit id="FailToGetQueueExplanationV1" translate="yes" xml:space="preserve">
+          <source>Please check your network connection and the login status or try to login again to update expired cookies</source>
+          <target state="final">ネットワーク接続とログインステータスを確認するか、期限切れのCookieを更新するために再度ログインしてみてください</target>
+        </trans-unit>
+        <trans-unit id="FailToGetTop50Queue" translate="yes" xml:space="preserve">
+          <source>Fail to get pixiv daily top50 queue</source>
+          <target state="final">pixivランキングキューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
+          <source>Illustrator: </source>
+          <target state="final">ユーザー: </target>
+        </trans-unit>
+        <trans-unit id="LocalData.Text" translate="yes" xml:space="preserve">
+          <source>Local data</source>
+          <target state="final">ローカルデータ</target>
+        </trans-unit>
+        <trans-unit id="LocalDataSize.Text" translate="yes" xml:space="preserve">
+          <source>Local illustrations total size:</source>
+          <target state="final">イラストファイルサイズ:</target>
+        </trans-unit>
+        <trans-unit id="Next.Text" translate="yes" xml:space="preserve">
+          <source>Next illustration</source>
+          <target state="final">次のイラスト</target>
+        </trans-unit>
+        <trans-unit id="NotSupport" translate="yes" xml:space="preserve">
+          <source>Your device does not support automatic wallpaper replacement</source>
+          <target state="final">お使いのデバイスは自動壁紙交換をサポートしていません</target>
+        </trans-unit>
+        <trans-unit id="Other.Text" translate="yes" xml:space="preserve">
+          <source>Other options</source>
+          <target state="final">他のオプション</target>
+        </trans-unit>
+        <trans-unit id="OtherOptionsExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Change lock screen at the same time</source>
+          <target state="final">同時にロック画面を変更する</target>
+        </trans-unit>
+        <trans-unit id="Password.Text" translate="yes" xml:space="preserve">
+          <source>Password:</source>
+          <target state="final">パスワード:</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV1.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv Login ver1(WebView)</source>
+          <target state="final">pixivログインバージョン1(WebView)</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV1Explanation.Text" translate="yes" xml:space="preserve">
+          <source>Click the button to login</source>
+          <target state="final">ログインするにはボタンをクリックしてください</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV1LoggedIn" translate="yes" xml:space="preserve">
+          <source>Logged in</source>
+          <target state="final">ログインしました</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV1Not" translate="yes" xml:space="preserve">
+          <source>Please login</source>
+          <target state="final">ログイン</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV2.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv Login ver2(PixivCS)</source>
+          <target state="final">pixivログインバージョン2(PixivCS)</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginV2Explanation.Text" translate="yes" xml:space="preserve">
+          <source>The app will automatically store your account and password locally</source>
+          <target state="final">アプリは自動的にアカウントとパスワードをローカルに保存します</target>
+        </trans-unit>
+        <trans-unit id="PleaseCheckNetwork" translate="yes" xml:space="preserve">
+          <source>Please check your network connection</source>
+          <target state="final">ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="Preview.Text" translate="yes" xml:space="preserve">
+          <source>Preview</source>
+          <target state="final">プレビュー</target>
+        </trans-unit>
+        <trans-unit id="RecommendedV1Refresh" translate="yes" xml:space="preserve">
+          <source>Recommended ver 1 illustration queue has been updated</source>
+          <target state="final">イラストキューを更新しました</target>
+        </trans-unit>
+        <trans-unit id="RecommendedV2Refresh" translate="yes" xml:space="preserve">
+          <source>Recommended ver 2 illustration queue has been updated</source>
+          <target state="final">イラストキューを更新しました</target>
+        </trans-unit>
+        <trans-unit id="RecommendV1.Content" translate="yes" xml:space="preserve">
+          <source>Recommendation ver1 with WebAPI</source>
+          <target state="final">pixivおすすめバージョン1 WebAPI</target>
+        </trans-unit>
+        <trans-unit id="RecommendV2.Content" translate="yes" xml:space="preserve">
+          <source>Recommendation ver2 with PixivCS API</source>
+          <target state="final">pixivおすすめバージョン1 PixivCS</target>
+        </trans-unit>
+        <trans-unit id="Refresh.Text" translate="yes" xml:space="preserve">
+          <source>Refresh illustrations list</source>
+          <target state="final">イラストリストを更新する</target>
+        </trans-unit>
+        <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
+          <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
+          <target state="final">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
+        </trans-unit>
+        <trans-unit id="ReviewTimes" translate="yes" xml:space="preserve">
+          <source>times review</source>
+          <target state="final">回レビュー</target>
+        </trans-unit>
+        <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
+          <source>Setting</source>
+          <target state="final">設定</target>
+        </trans-unit>
+        <trans-unit id="SetWallpaper.Text" translate="yes" xml:space="preserve">
+          <source>Set as wallpaper</source>
+          <target state="final">壁紙にする</target>
+        </trans-unit>
+        <trans-unit id="Success" translate="yes" xml:space="preserve">
+          <source>Change wallpaper successfully</source>
+          <target state="final">壁紙を変更しました</target>
+        </trans-unit>
+        <trans-unit id="Top50.Content" translate="yes" xml:space="preserve">
+          <source>Daily Top50</source>
+          <target state="final">ランキング</target>
+        </trans-unit>
+        <trans-unit id="Top50Refresh" translate="yes" xml:space="preserve">
+          <source>Top50 illustration queue has been updated</source>
+          <target state="final">イラストキューを更新しました</target>
+        </trans-unit>
+        <trans-unit id="UnknownError" translate="yes" xml:space="preserve">
+          <source>An unknown error occurred while downloading the illustration</source>
+          <target state="final">イラストのダウンロード中に不明なエラーが発生しました</target>
+        </trans-unit>
+        <trans-unit id="UpdateInterval.Text" translate="yes" xml:space="preserve">
+          <source>Update interval</source>
+          <target state="final">更新間隔</target>
+        </trans-unit>
+        <trans-unit id="UpdateIntervalExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Set the time interval for updating Wallpapers</source>
+          <target state="final">壁紙を更新する時間間隔を設定する</target>
+        </trans-unit>
+        <trans-unit id="UpdateMode.Text" translate="yes" xml:space="preserve">
+          <source>Update Mode</source>
+          <target state="final">更新モード</target>
+        </trans-unit>
+        <trans-unit id="UpdateModeExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Select the illustrations update mode."Recommendation" mode will select the illustrations with appropriate aspect ratio</source>
+          <target state="final">イラスト更新モードを選択してください。「おすすめ」モードでは、適切なアスペクト比のイラストを選択します</target>
+        </trans-unit>
+        <trans-unit id="Visit.Text" translate="yes" xml:space="preserve">
+          <source>Visit illustration page</source>
+          <target state="final">pixivでイラストページをアクセスする</target>
+        </trans-unit>
+        <trans-unit id="VisitLocalFolder.Content" translate="yes" xml:space="preserve">
+          <source>Visit local folder</source>
+          <target state="final">ローカルフォルダにアクセスする</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
