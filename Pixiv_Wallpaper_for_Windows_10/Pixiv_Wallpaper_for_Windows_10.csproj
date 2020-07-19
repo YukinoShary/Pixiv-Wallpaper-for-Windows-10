@@ -30,7 +30,6 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateKeyFile>Pixiv_Wallpaper_for_Windows_10_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -157,7 +156,6 @@
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Pixiv_Wallpaper_for_Windows_10_TemporaryKey.pfx" />
     <PRIResource Include="String\zh-Hans\Resources.resw" />
     <PRIResource Include="String\ja\Resources.resw" />
     <PRIResource Include="String\en-US\Resources.resw" />
