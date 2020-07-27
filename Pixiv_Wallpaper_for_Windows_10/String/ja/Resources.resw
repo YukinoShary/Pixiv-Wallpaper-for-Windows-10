@@ -39,6 +39,9 @@
   <data name="BackgroundTask" xml:space="preserve">
     <value>バックグラウンドタスク</value>
   </data>
+  <data name="BackgroundTaskDenied" xml:space="preserve">
+    <value>アプリのバックグラウンドタスクが拒否されました</value>
+  </data>
   <data name="BackgroundTaskDeniedExplanation" xml:space="preserve">
     <value>このアプリをバックグラウンドで動きたい場合は電源の設定変更、又は外部電源を使用してください</value>
   </data>

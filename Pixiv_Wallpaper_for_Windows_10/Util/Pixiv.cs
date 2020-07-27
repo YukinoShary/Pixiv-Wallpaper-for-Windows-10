@@ -34,6 +34,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public Pixiv()
         {
             baseAPI = new PixivBaseAPI();
+            baseAPI.ExperimentalConnection = true;   //直连模式打开
         }
 
 

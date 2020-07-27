@@ -162,6 +162,9 @@
   <data name="Refresh.Text" xml:space="preserve">
     <value>更新插画队列</value>
   </data>
+  <data name="RefreshExplanation" xml:space="preserve">
+    <value>此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</value>
+  </data>
   <data name="ReviewTimes" xml:space="preserve">
     <value>次浏览</value>
   </data>
