@@ -55,7 +55,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
             if(c.cookie!=null&&!"".Equals(c.cookie))
             {
-                loginV1.Content = loader.GetString("PixivLoginV1Logged");
+                loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
             }
             else
             {
@@ -86,7 +86,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void SetCookie(string str)
         {
             c.cookie = str;
-            loginV1.Content = loader.GetString("PixivLoginV1Logged");
+            loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)

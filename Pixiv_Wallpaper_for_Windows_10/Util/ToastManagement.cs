@@ -103,7 +103,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     });
                     break;
                 case WallpaperUpdate:
-                    actions.Buttons.Add(new ToastButton(loader.GetString("Next"), new QueryString() { "action", "NextIllust" }.ToString())
+                    actions.Buttons.Add(new ToastButton(loader.GetString("Next/Text"), new QueryString() { "action", "NextIllust" }.ToString())
                     {
                         ActivationType = ToastActivationType.Foreground
                     });

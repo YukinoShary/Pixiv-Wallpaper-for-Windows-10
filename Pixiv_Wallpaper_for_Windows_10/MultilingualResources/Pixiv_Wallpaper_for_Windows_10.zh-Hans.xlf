@@ -208,7 +208,7 @@
         </trans-unit>
         <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
           <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
-          <target state="new">此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</target>   
+          <target state="new">此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</target>
         </trans-unit>
         <trans-unit id="ReviewTimes" translate="yes" xml:space="preserve">
           <source>times review</source>
