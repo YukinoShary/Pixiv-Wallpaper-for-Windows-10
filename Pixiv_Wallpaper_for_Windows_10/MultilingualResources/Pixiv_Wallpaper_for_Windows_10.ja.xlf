@@ -44,7 +44,7 @@
         </trans-unit>
         <trans-unit id="BackgroundTaskDenied" translate="yes" xml:space="preserve">
           <source>Application cannot register background task</source>
-          <target state="new">アプリのバックグラウンドタスクが拒否されました</target>
+          <target state="final">アプリのバックグラウンドタスクが拒否されました</target>
         </trans-unit>
         <trans-unit id="BackgroundTaskDeniedExplanation" translate="yes" xml:space="preserve">
           <source>If you want to make this app active in the background with background task, try to change the power settings or plugging in wall power</source>
