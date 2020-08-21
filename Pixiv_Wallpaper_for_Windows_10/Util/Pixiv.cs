@@ -21,7 +21,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     public class Pixiv
     {
         private readonly string INDEX_URL = "https://www.pixiv.net";
-        private readonly string RECOMM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=auto&num_recommendations=1000&page=discovery&mode=all";
+        private readonly string RECOMM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=auto&num_recommendations=3000&page=discovery&mode=all";
+        private readonly string RECOMMSAM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=";
         private readonly string DETA_URL = "https://api.imjad.cn/pixiv/v1/?type=illust&id=";
         private readonly string RALL_URL = "https://www.pixiv.net/ranking.php?mode=daily&content=illust&p=1&format=json";
 
@@ -70,39 +71,26 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             return queue;
         }
 
-        /// <summary>
-        /// 获取Token方法，已弃用
-        /// </summary>
-        /// <returns></returns>
-        public async Task<bool> getToken(string cookie)
-        {
-            bool f = false;
-            HttpUtil tokurl = new HttpUtil(INDEX_URL, HttpUtil.Contype.HTML);
-            this.cookie = cookie;
-            tokurl.cookie = cookie;
-            string data = await tokurl.GetDataAsync();
-            if (!data.Equals("ERROR"))
-            {
-                Regex r = new Regex("pixiv.context.token\\s=\\s\"([a-z0-9]{32})\"");
-                if (r.IsMatch(data))
-                {
-                    token = r.Match(data).Groups[1].ToString();
-                    f = true;
-                }
-            }
-            return f;
-        }
 
         /// <summary>
         /// 获取"猜你喜欢"推荐列表(Web模拟)
         /// </summary>
         /// <returns>插画id队列</returns>
 
-        public async Task<ConcurrentQueue<string>> getRecommlistV1()
+        public async Task<ConcurrentQueue<string>> getRecommlistV1(string imgId)
         {
-            string like;
+            string like, finalUrl;
+            HttpUtil recomm;
             ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
-            HttpUtil recomm = new HttpUtil(RECOMM_URL + token, HttpUtil.Contype.JSON);
+            if(imgId == null)
+            {
+                finalUrl = RECOMM_URL;
+            }
+            else
+            {
+                finalUrl = RECOMMSAM_URL + imgId + "&num_recommendations=52";//根据sample插画进行关联推荐
+            }
+            recomm = new HttpUtil(finalUrl, HttpUtil.Contype.JSON);
             recomm.cookie = cookie;
             recomm.referrer = "https://www.pixiv.net/discovery";
 
@@ -235,7 +223,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// </summary>
         /// <param name="img">要下载的插画信息</param>
         /// <returns>是否成功下载插画</returns>
-        public async Task<bool> downloadImg(ImageInfo img)
+        public async Task<string> downloadImgV1(ImageInfo img)
         {
             Regex reg = new Regex("/c/[0-9]+x[0-9]+/img-master");
             img.imgUrl = reg.Replace(img.imgUrl, "/img-master", 1);
@@ -243,11 +231,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             HttpUtil download = new HttpUtil(img.imgUrl, HttpUtil.Contype.IMG);
             download.referrer = "https://www.pixiv.net/artworks/" + img.imgId;
             download.cookie = cookie;
-            string check = await download.ImageDownloadAsync(img);
-            if (!"ERROR".Equals(check))
-                return true;
-            else
-                return false;
+            return await download.ImageDownloadAsync(img);   
         }
 
         /// <summary>
@@ -255,13 +239,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// </summary>
         /// <param name="img"></param>
         /// <returns>是否成功下载插画</returns>
-        public async Task<bool> downloadImgV2(ImageInfo img)
+        public async Task<string> downloadImgV2(ImageInfo img)
         {
             try
             {
                 if (await ApplicationData.Current.LocalFolder.TryGetItemAsync(img.imgId + '.' + img.format) != null)
                 {
-                    return true;
+                    return "EXIST";
                 }
                 else
                 {
@@ -273,26 +257,18 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                         using (Stream writer = await file.OpenStreamForWriteAsync())
                         {
                             await resStream.CopyToAsync(writer);
-                            return true;
+                            return img.imgId;
                         }
                     }
                 }   
             }
             catch(Exception)
             {
-                //使UI线程调用lambda表达式内的方法
-                /*await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                {
-                    //UI code here
-                    MessageDialog dialog = new MessageDialog("");
-                    dialog.Content = "获取插画时发生未知错误";
-                    await dialog.ShowAsync();
-                });*/
                 string title = loader.GetString("UnknownError");
                 string content = " ";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
-                return false;
+                return "ERROR";
             }
         }
     }

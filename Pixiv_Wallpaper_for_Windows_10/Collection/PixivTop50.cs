@@ -8,8 +8,9 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Concurrent;
 using Windows.ApplicationModel.Resources;
+using Pixiv_Wallpaper_for_Windows_10.Util;
 
-namespace Pixiv_Wallpaper_for_Windows_10.Util
+namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivTop50
     {
@@ -57,12 +58,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     }
                     break;
                 }
-
-                if(!await p.downloadImg(img))
+                string result = await p.downloadImgV1(img);
+                if ("ERROR".Equals(result))
                 {
                     img = null;
                 }
-
             }
             else
             {

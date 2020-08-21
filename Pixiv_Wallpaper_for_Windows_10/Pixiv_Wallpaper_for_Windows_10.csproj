@@ -129,8 +129,8 @@
     <Compile Include="Util\HttpUtil.cs" />
     <Compile Include="Util\ImageInfo.cs" />
     <Compile Include="Util\Pixiv.cs" />
-    <Compile Include="Util\PixivLike.cs" />
-    <Compile Include="Util\PixivTop50.cs" />
+    <Compile Include="Collection\PixivLike.cs" />
+    <Compile Include="Collection\PixivTop50.cs" />
     <Compile Include="Util\ToastManagement.cs" />
     <Compile Include="Util\WebViewLogin.cs" />
   </ItemGroup>
@@ -152,7 +152,6 @@
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>

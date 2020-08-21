@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 using Windows.Storage;
+using Pixiv_Wallpaper_for_Windows_10.Collection;
 using Pixiv_Wallpaper_for_Windows_10.Util;
 using System.Collections;
 using System.Threading;
@@ -112,7 +113,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         like = new PixivLike();
                     }
-                    img = await like.SelectArtWorkV2(); //该API在UI线程被建立，不支持从子线程调用
+                    img = await like.SelectArtWorkV2(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
                     if (top50 == null)
@@ -308,12 +309,19 @@ namespace Pixiv_Wallpaper_for_Windows_10
             update();
         }
 
-        private void visiturl_btn_Click(object sender, RoutedEventArgs e)       //访问p站
+        private async void visiturl_btn_Click(object sender, RoutedEventArgs e)       //访问p站
         {
-            if(img!=null)
+            if(img != null)
             {
                 var uriPixiv = new Uri(@"https://www.pixiv.net/artworks/" + img.imgId);
                 var visit = Windows.System.Launcher.LaunchUriAsync(uriPixiv);
+
+                if(c.mode == "You_Like_V1")
+                {
+                    if (like == null)
+                        like = new PixivLike();
+                    await like.ListUpdateV1(true, img.imgId);
+                }     
             }
         }
 

@@ -240,7 +240,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 //判断文件夹中是否已存在该插画，若存在则直接返回该插画
                 if(await ApplicationData.Current.LocalFolder.TryGetItemAsync(img.imgId + img.format)!=null)
                 {
-                    return img.imgId;
+                    return "EXIST";
                 }
                 else
                 {

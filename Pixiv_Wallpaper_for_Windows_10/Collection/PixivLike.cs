@@ -9,8 +9,9 @@ using Newtonsoft.Json.Linq;
 using Windows.UI.Popups;
 using System.Collections.Concurrent;
 using Windows.ApplicationModel.Resources;
+using Pixiv_Wallpaper_for_Windows_10.Util;
 
-namespace Pixiv_Wallpaper_for_Windows_10.Util
+namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivLike
     {
@@ -25,11 +26,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// </summary>
         /// <param name="flag">是否强制更新</param>
         /// <returns>返回值用于判断是否成功更新队列</returns>
-        public async Task<bool> ListUpdateV1(bool flag = false)
+        public async Task<bool> ListUpdateV1(bool flag = false, string imgId = null)
         {
             if (like == null || like.Count == 0 || flag)
             {
-                like = await pixiv.getRecommlistV1();
+                like = await pixiv.getRecommlistV1(imgId);
                 if (like != null)
                     return true;
                 else
@@ -49,34 +50,33 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 
             await ListUpdateV1();
             ImageInfo img = null;
-            if(like!=null&&like.Count!=0)
+            if(like != null&&like.Count != 0)
             {
                 while (true)
                 {
                     string id = "";
-                    if(like.TryDequeue(out id))
+                    if (like.TryDequeue(out id))
                     {
                         img = await pixiv.getImageInfo(id);
                     }
-                    if (img!=null&&img.WHratio>=1.33&&!img.isR18)
+                    if (img != null && img.WHratio >= 1.33 && !img.isR18)
                     {
-                        if(!await pixiv.downloadImg(img))         //当获取插画失败时返回null
+                        string result = await pixiv.downloadImgV1(img);
+                        if (img.imgId.Equals(result))//返回结果为imgId则跳出循环
+                        {
+                            break;
+                        }
+                        else if ("ERROR".Equals(await pixiv.downloadImgV1(img)))//返回结果为"ERROR"则使img为null并跳出循环
                         {
                             img = null;
+                            break;
                         }
-                        break;
+                        //若返回结果为"EXIST"则继续循环
                     }
                 }
             }
             else
             {
-                //使UI线程调用lambda表达式内的方法
-                /*await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                {
-                    //UI code here
-                    MessageDialog dialog = new MessageDialog("更新推荐列表失败");
-                    await dialog.ShowAsync();
-                });*/
                 string title = loader.GetString("FailToGetQueue");
                 string content = "请检查你的网络连接，检查登录状态或尝试再次登录以更新过期的cookie";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
@@ -97,26 +97,29 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             {
                 while (true)
                 {
-                    likeV2.TryDequeue(out img);
+                    string id = "";
+                    if (like.TryDequeue(out id))
+                    {
+                        img = await pixiv.getImageInfo(id);
+                    }
                     if (img != null && img.WHratio >= 1.33 && !img.isR18)
                     {
-                        if(!await pixiv.downloadImgV2(img))              //当获取插画失败时返回null
+                        string result = await pixiv.downloadImgV2(img);
+                        if (img.imgId.Equals(result))
+                        {
+                            break;
+                        }    
+                        else if ("ERROR".Equals(await pixiv.downloadImgV2(img)))
                         {
                             img = null;
+                            break;
                         }
-                        break;
+                        //若返回结果为"EXIST"则继续循环
                     }
                 }
             }
             else 
             {
-                //使UI线程调用lambda表达式内的方法
-                /*await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                {
-                    //UI code here
-                    MessageDialog dialog = new MessageDialog("更新推荐列表失败");
-                    await dialog.ShowAsync();
-                });*/
                 string title = loader.GetString("FailToGetQueue");
                 string content = loader.GetString("FailToGetQueueExplanation");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
