@@ -20,7 +20,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     public class Pixiv
     {
-        private readonly string INDEX_URL = "https://www.pixiv.net";
         private readonly string RECOMM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=auto&num_recommendations=3000&page=discovery&mode=all";
         private readonly string RECOMMSAM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=";
         private readonly string DETA_URL = "https://api.imjad.cn/pixiv/v1/?type=illust&id=";
@@ -126,7 +125,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     PixivCS.Objects.AuthResult res = null;
                     res = await baseAPI.AuthAsync(account, password);
                 }
-                catch
+                catch (Exception e)
                 {
                     return null;
                 }

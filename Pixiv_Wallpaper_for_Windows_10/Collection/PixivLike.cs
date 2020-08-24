@@ -66,7 +66,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                         {
                             break;
                         }
-                        else if ("ERROR".Equals(await pixiv.downloadImgV1(img)))//返回结果为"ERROR"则使img为null并跳出循环
+                        else if ("ERROR".Equals(result))//返回结果为"ERROR"则使img为null并跳出循环
                         {
                             img = null;
                             break;
@@ -78,7 +78,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             else
             {
                 string title = loader.GetString("FailToGetQueue");
-                string content = "请检查你的网络连接，检查登录状态或尝试再次登录以更新过期的cookie";
+                string content = loader.GetString("FailToGetQueueExplanation");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
             }
@@ -109,7 +109,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                         {
                             break;
                         }    
-                        else if ("ERROR".Equals(await pixiv.downloadImgV2(img)))
+                        else if ("ERROR".Equals(result))
                         {
                             img = null;
                             break;
