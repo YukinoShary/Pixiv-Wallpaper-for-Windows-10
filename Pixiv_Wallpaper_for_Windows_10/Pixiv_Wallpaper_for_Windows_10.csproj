@@ -22,7 +22,7 @@
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>
     </PackageCertificateThumbprint>
-    <AppxPackageDir>E:\Visual Studio Works\</AppxPackageDir>
+    <AppxPackageDir>D:\</AppxPackageDir>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
@@ -152,6 +152,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>
