@@ -15,7 +15,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivLike
     {
-        private ConcurrentQueue<string> like = new ConcurrentQueue<string>();
+        private ConcurrentQueue<string> likeV1 = new ConcurrentQueue<string>();
         private ConcurrentQueue<ImageInfo> likeV2 = new ConcurrentQueue<ImageInfo>();
         private Pixiv pixiv = new Pixiv();
         private Conf c = new Conf();
@@ -28,10 +28,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns>返回值用于判断是否成功更新队列</returns>
         public async Task<bool> ListUpdateV1(bool flag = false, string imgId = null)
         {
-            if (like == null || like.Count == 0 || flag)
+            if (likeV1 == null || likeV1.Count == 0 || flag)
             {
-                like = await pixiv.getRecommlistV1(imgId);
-                if (like != null)
+                likeV1 = await pixiv.getRecommlistV1(imgId);
+                if (likeV1 != null)
                     return true;
                 else
                     return false;
@@ -50,12 +50,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 
             await ListUpdateV1();
             ImageInfo img = null;
-            if(like != null&&like.Count != 0)
+            if(likeV1 != null&&likeV1.Count != 0)
             {
                 while (true)
                 {
                     string id = "";
-                    if (like.TryDequeue(out id))
+                    if (likeV1.TryDequeue(out id))
                     {
                         img = await pixiv.getImageInfo(id);
                     }
@@ -97,25 +97,23 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 while (true)
                 {
-                    string id = "";
-                    if (like.TryDequeue(out id))
+                    if (likeV2.TryDequeue(out img))
                     {
-                        img = await pixiv.getImageInfo(id);
-                    }
-                    if (img != null && img.WHratio >= 1.33 && !img.isR18)
-                    {
-                        string result = await pixiv.downloadImgV2(img);
-                        if (img.imgId.Equals(result))
+                        if (img != null && img.WHratio >= 1.33 && !img.isR18)
                         {
-                            break;
-                        }    
-                        else if ("ERROR".Equals(result))
-                        {
-                            img = null;
-                            break;
+                            string result = await pixiv.downloadImgV2(img);
+                            if (img.imgId.Equals(result))
+                            {
+                                break;
+                            }
+                            else if ("ERROR".Equals(result))
+                            {
+                                img = null;
+                                break;
+                            }
+                            //若返回结果为"EXIST"则继续循环
                         }
-                        //若返回结果为"EXIST"则继续循环
-                    }
+                    }   
                 }
             }
             else 
@@ -135,7 +133,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns></returns>
         public async Task<bool> ListUpdateV2(bool flag = false)
         {
-            if(flag || likeV2.Count==0 || like == null)
+            if(flag || likeV2.Count==0 || likeV1 == null)
             {
                 likeV2 = await pixiv.getRecommenlistV2(c.account,c.password);
                 if (likeV2 != null)
