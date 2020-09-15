@@ -126,7 +126,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     PixivCS.Objects.AuthResult res = null;
                     res = await GlobalBaseAPI.AuthAsync(account, password);
                 }
-                catch (Exception e)
+                catch
                 {
                     return null;
                 }
