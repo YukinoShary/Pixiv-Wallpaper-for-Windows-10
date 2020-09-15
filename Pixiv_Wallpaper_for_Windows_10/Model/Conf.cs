@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace Pixiv_Wallpaper_for_Windows_10.Util
+namespace Pixiv_Wallpaper_for_Windows_10.Model
 {
     /// <summary>
     /// 设置管理类

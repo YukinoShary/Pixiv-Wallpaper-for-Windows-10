@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using Windows.ApplicationModel.Resources;
 using Pixiv_Wallpaper_for_Windows_10.Util;
+using Pixiv_Wallpaper_for_Windows_10.Model;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
@@ -16,7 +17,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
     {
         public ConcurrentQueue<string> results = new ConcurrentQueue<string>();
         private Pixiv p = new Pixiv();
-        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
 
         /// <summary>
@@ -50,28 +50,20 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             if (results != null && results.Count > 0)
             {
                 string id = "";
-                while (true)
+                if (results.TryDequeue(out id))
                 {
-                    if (results.TryDequeue(out id))
-                    {
-                        img = await p.getImageInfo(id);                      
-                    }
-                    break;
+                    img = await p.getImageInfo(id);
                 }
-                string result = await p.downloadImgV1(img);
-                if ("ERROR".Equals(result))
-                {
-                    img = null;
-                }
+                return img;
             }
             else
             {
-                string title = loader.GetString("FailToGetTop50Queue");
-                string content = loader.GetString("PleaseCheckNetwork");
+                string title = MainPage.loader.GetString("FailToGetTop50Queue");
+                string content = MainPage.loader.GetString("PleaseCheckNetwork");
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
+                return null;
             }           
-            return img;
         }
 
     }

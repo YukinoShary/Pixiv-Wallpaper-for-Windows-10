@@ -15,6 +15,7 @@ using System.Collections.Concurrent;
 using System.Web;
 using System.IO;
 using Windows.ApplicationModel.Resources;
+using Pixiv_Wallpaper_for_Windows_10.Model;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -26,15 +27,15 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private readonly string RALL_URL = "https://www.pixiv.net/ranking.php?mode=daily&content=illust&p=1&format=json";
 
         public string cookie { get; set; }
-        public string token { get; set; }
         private string nexturl = "begin";
-        private PixivBaseAPI baseAPI;
-        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+        public static PixivBaseAPI GlobalBaseAPI;
+        private DownloadManager download;
 
         public Pixiv()
         {
-            baseAPI = new PixivBaseAPI();
-            baseAPI.ExperimentalConnection = true;   //直连模式打开
+            GlobalBaseAPI = new PixivBaseAPI();  
+            GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
+            download = new DownloadManager();
         }
 
 
@@ -62,7 +63,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             else
             {
-                string title = loader.GetString("UnknownError");
+                string title = MainPage.loader.GetString("UnknownError");
                 string content = " ";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);
@@ -118,12 +119,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.IllustRecommended recommendres = null;
-            if (baseAPI.AccessToken == null)
+            if (GlobalBaseAPI.AccessToken == null)
             {
                 try
                 {
                     PixivCS.Objects.AuthResult res = null;
-                    res = await baseAPI.AuthAsync(account, password);
+                    res = await GlobalBaseAPI.AuthAsync(account, password);
                 }
                 catch (Exception e)
                 {
@@ -133,13 +134,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             //是否使用nexturl更新list
             if ("begin".Equals(nexturl))
             {
-                recommendres = await new PixivAppAPI(baseAPI).GetIllustRecommendedAsync();
+                recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync();
             }
             else
             {
                 Uri next = new Uri(nexturl);
                 string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                recommendres = await new PixivAppAPI(baseAPI).GetIllustRecommendedAsync
+                recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync
                     (ContentType: getparam("content_type"),
                      IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
                      Filter: getparam("filter"),
@@ -182,12 +183,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <summary>
         /// 查询插画信息
         /// </summary>
-        /// <param name="id">要查找的作品ID</param>
+        /// <param name="imgId">要查找的作品ID</param>
         /// <returns></returns>
-        public async Task<ImageInfo> getImageInfo(string id)
+        public async Task<ImageInfo> getImageInfo(string imgId)
         {
             ImageInfo imginfo = null;
-            HttpUtil info = new HttpUtil(DETA_URL + id, HttpUtil.Contype.JSON);
+            HttpUtil info = new HttpUtil(DETA_URL + imgId, HttpUtil.Contype.JSON);
             string data = await info.GetDataAsync();
             if (!data.Equals("ERROR"))
             {
@@ -226,7 +227,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             Regex reg = new Regex("/c/[0-9]+x[0-9]+/img-master");
             img.imgUrl = reg.Replace(img.imgUrl, "/img-master", 1);
-
             HttpUtil download = new HttpUtil(img.imgUrl, HttpUtil.Contype.IMG);
             download.referrer = "https://www.pixiv.net/artworks/" + img.imgId;
             download.cookie = cookie;
@@ -248,7 +248,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 else
                 {
-                    using (Stream resStream = await (await new PixivAppAPI(baseAPI).RequestCall("GET",
+                    using (Stream resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
                       img.imgUrl, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
                       Content.ReadAsStreamAsync())
                     {
@@ -263,7 +263,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch(Exception)
             {
-                string title = loader.GetString("UnknownError");
+                string title = MainPage.loader.GetString("UnknownError");
                 string content = " ";
                 ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                 tm.ToastPush(60);

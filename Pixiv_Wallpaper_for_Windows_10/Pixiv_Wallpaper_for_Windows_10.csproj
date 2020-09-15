@@ -125,9 +125,11 @@
     <Compile Include="ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Util\Conf.cs" />
+    <Compile Include="Model\Conf.cs" />
+    <Compile Include="Util\DownloadManager.cs" />
     <Compile Include="Util\HttpUtil.cs" />
-    <Compile Include="Util\ImageInfo.cs" />
+    <Compile Include="Model\ImageInfo.cs" />
+    <Compile Include="ViewModel\ImageShowViewModel.cs" />
     <Compile Include="Util\Pixiv.cs" />
     <Compile Include="Collection\PixivLike.cs" />
     <Compile Include="Collection\PixivTop50.cs" />
@@ -152,6 +154,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>

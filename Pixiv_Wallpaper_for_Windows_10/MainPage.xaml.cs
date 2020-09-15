@@ -16,6 +16,8 @@ using System.Diagnostics;
 using Windows.Storage;
 using Pixiv_Wallpaper_for_Windows_10.Collection;
 using Pixiv_Wallpaper_for_Windows_10.Util;
+using Pixiv_Wallpaper_for_Windows_10.Model;
+using Pixiv_Wallpaper_for_Windows_10.ViewModel;
 using System.Collections;
 using System.Threading;
 using Windows.System.UserProfile;
@@ -38,20 +40,20 @@ namespace Pixiv_Wallpaper_for_Windows_10
     {
         private DispatcherTimer timer;  //图片推送定时器
         private Conf c;
-        private ImageInfo img;
         public static MainPage mp;
         private ExtendedExecutionSession session;
         private PixivTop50 top50;
         private PixivLike like;
         private string backgroundMode;
-        private ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+        private ImageShowViewModel viewModel;
+        public static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
         public MainPage()
         {
             this.InitializeComponent();
             mp = this;
             c = new Conf();
-            img = c.lastImg;
+            //img = c.lastImg;
             session = null;
             backgroundMode = c.backgroundMode;
 
@@ -76,10 +78,16 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                 }
             }
-
-            main.Navigate(typeof(ShowPage));
+            ShowPageInitialize();
+            
         }
 
+        private async Task ShowPageInitialize()
+        {
+            //TODO:处理初次启动应用时，lastImg为空的情况
+            await viewModel.SetItems(c.lastImg);
+            main.Navigate(typeof(ShowPage), viewModel);
+        }
 
         private async void Timer_Tick(object sender, object e)
         {
@@ -90,8 +98,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         /// </summary>
         public async Task<bool> update()
         {
-            //timer.Stop();
-
+            ImageInfo img = new ImageInfo();
             switch (c.mode)
             {
                 case "Top_50":
@@ -124,11 +131,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     break;
             }
 
+
             if (img != null)
             {
-                c.lastImg = img;
-                main.Navigate(typeof(ShowPage));//图片展示页面更新
-
+                await viewModel.LoadImageAsync(img, c);
                 if(backgroundMode.Equals("BackgroundTask"))
                 {
                     RegistTask(); //重新申请后台计时触发器
@@ -161,7 +167,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 StorageFile file = null;
                 try
                 {
-                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + img.imgId + '.' + img.format));
+                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + c.lastImg.format));
                 }
                 catch (Exception)
                 {
@@ -195,11 +201,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 {
                     //推送Toast通知
                     string title = loader.GetString("Success");
-                    string content = img.title + "\r\n"
-                        + "id: " + img.imgId + "\r\n" 
-                        + loader.GetString("Illustrator") + img.userName;
-                    string image = file.Path;
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.WallpaperUpdate, image);
+                    string content = c.lastImg.title + "\r\n"
+                        + "id: " + c.lastImg.imgId + "\r\n" 
+                        + loader.GetString("Illustrator") + c.lastImg.userName;
+                    string imagePath = file.Path;
+                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.WallpaperUpdate, imagePath);
                     tm.ToastPush(10);
                 }
             }
@@ -311,16 +317,16 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private async void visiturl_btn_Click(object sender, RoutedEventArgs e)       //访问p站
         {
-            if(img != null)
+            if(c.lastImg != null)
             {
-                var uriPixiv = new Uri(@"https://www.pixiv.net/artworks/" + img.imgId);
+                var uriPixiv = new Uri(@"https://www.pixiv.net/artworks/" + c.lastImg.imgId);
                 var visit = Windows.System.Launcher.LaunchUriAsync(uriPixiv);
 
                 if(c.mode == "You_Like_V1")
                 {
                     if (like == null)
                         like = new PixivLike();
-                    await like.ListUpdateV1(true, img.imgId);
+                    await like.ListUpdateV1(true, c.lastImg.imgId);
                 }     
             }
         }
@@ -381,7 +387,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     if(await top50.listUpdate(true))
                     {
-                        string title = "Top50插画队列已更新";
+                        string title = loader.GetString("Top50Refresh");
                         string content = loader.GetString("RefreshExplanation");
                         ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
                         tm.ToastPush(120);

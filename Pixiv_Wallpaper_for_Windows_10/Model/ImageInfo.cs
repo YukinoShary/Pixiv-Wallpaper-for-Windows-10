@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pixiv_Wallpaper_for_Windows_10.Util
+namespace Pixiv_Wallpaper_for_Windows_10.Model
 {
     /// <summary>
     /// 图片信息实体类

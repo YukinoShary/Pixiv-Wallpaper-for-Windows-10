@@ -16,9 +16,11 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 using Pixiv_Wallpaper_for_Windows_10.Util;
+using Pixiv_Wallpaper_for_Windows_10.Model;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Pixiv_Wallpaper_for_Windows_10.ViewModel;
 
 namespace Pixiv_Wallpaper_for_Windows_10
 {
@@ -28,16 +30,26 @@ namespace Pixiv_Wallpaper_for_Windows_10
     /// </summary>
     public sealed partial class ShowPage : Page
     {
-
+        private DownloadManager download = new DownloadManager();
         private Conf c;
         private ImageInfo img;
         private StorageFile file;
-        private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+        private ImageShowViewModel viewModel;
+        //TODO:设计新的ShowPage UI
 
         public ShowPage()
         {
             this.InitializeComponent();
+            downloadProgress.Visibility = Visibility.Collapsed;
             SetImage();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        { 
+            if(e.Parameter != null)
+            {
+                viewModel = e.Parameter as ImageShowViewModel;
+            }
         }
 
         private async Task SetImage()
@@ -50,11 +62,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
             else
             {
                 img = c.lastImg;
-                file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + img.format));
-                
-                textBlock1.Text = img.title;
-                textBlock2.Text = img.userName;
-                textBlock3.Text = (img.viewCount + loader.GetString("ReviewTimes"));
+                file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + img.format));                
+                title.Text = img.title;
+                userName.Text = img.userName;
+                viewCount.Text = (img.viewCount + MainPage.loader.GetString("ReviewTimes"));
             }
             using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
             {
