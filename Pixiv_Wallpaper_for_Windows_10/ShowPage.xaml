@@ -15,20 +15,38 @@
               TintOpacity="0.3"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
-        <Image x:Name="show_img"></Image>
-        <StackPanel Canvas.ZIndex="1" VerticalAlignment="Bottom" >
-            <StackPanel.Background>
+        <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource}"></Image>
+        <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom">
+            <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Offset="0"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
-            </StackPanel.Background>
-            <TextBlock x:Name="title" FontSize="36" Foreground="White" Margin="40,0,0,0"/>
-            <TextBlock x:Name="userName" FontSize="24" Foreground="White" Margin="40,0,0,0"/>
-            <TextBlock x:Name="viewCount" HorizontalAlignment="Right" 
-                   Foreground="White" VerticalAlignment="Center" FontSize="22" Margin="0,0,30,0"/>
-            <TextBlock x:Name="downloadProgress" FontSize="18" Foreground="White" 
-                       HorizontalAlignment="Center" Visibility="Collapsed"/>
-        </StackPanel>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock x:Name="title" FontSize="28" Foreground="White" Margin="40,0,0,0"/>
+                <TextBlock x:Name="userName" FontSize="24" Foreground="White" Margin="40,0,0,10"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,30,0">
+                    <TextBlock x:Name="width" Text="{x:Bind viewModel.Width}" Foreground="White" FontSize="26"/>
+                    <TextBlock Text="*" Foreground="White" FontSize="26"/>
+                    <TextBlock x:Name="height" Text="{x:Bind viewModel.Height}" Foreground="White" FontSize="26"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,30,0" HorizontalAlignment="Right">
+                    <TextBlock x:Name="viewCount" Foreground="White" FontSize="26" Text="{x:Bind viewModel.ViewCount}"/>
+                    <TextBlock Foreground="White" FontSize="26" x:Uid="ReviewTimes" Margin="0,0,0,10"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" x:Name="loadingStatusPanel" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{x:Bind }">
+                <TextBlock FontSize="18" x:Uid="LoadingStatus" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="loadingProgress" Text="{x:Bind viewModel.Progress}" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
+                <TextBlock FontSize="16" Text="%" Foreground="White"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

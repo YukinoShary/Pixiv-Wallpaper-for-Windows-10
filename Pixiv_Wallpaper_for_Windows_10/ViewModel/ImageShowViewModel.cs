@@ -10,17 +10,78 @@ using Windows.UI.Xaml.Media.Imaging;
 using Pixiv_Wallpaper_for_Windows_10.Model;
 using Pixiv_Wallpaper_for_Windows_10.Util;
 using System.Runtime.CompilerServices;
+using Windows.UI.Xaml;
 
 namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
 {
     class ImageShowViewModel : INotifyPropertyChanged
     {
-        public string Title { get; set; }
-        public int ViewCount { get; set; }
-        public string UserName { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public BitmapImage ImageSource { get; set; }
+        private string title;
+        public string Title
+        {
+            get => title;
+            private set
+            {
+                title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int viewCount;
+        public int ViewCount 
+        {
+            get => viewCount;
+            private set
+            {
+                viewCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            private set
+            {
+                userName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int height;
+        public int Height
+        {
+            get => height;
+            private set
+            {
+                height = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int width;
+        public int Width
+        {
+            get => width;
+            private set
+            {
+                width = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private BitmapImage imageSource;
+        public BitmapImage ImageSource
+        {
+            get => imageSource;
+            private set
+            {
+                imageSource = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int progress;
         public int Progress 
         { 
@@ -28,6 +89,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
             private set
             {
                 progress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility loading;
+        public Visibility Loading
+        {
+            get => loading;
+            private set
+            {
+                loading = value;
                 OnPropertyChanged();
             }
         }
@@ -44,20 +116,33 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         /// </summary>
         /// <param name="image">设置给ViewModel的插画信息</param>
         /// <returns></returns>
-        public async Task SetItems(ImageInfo image)
+        public async Task SetItems(ImageInfo image = null)
         {
             BitmapImage bitmap = new BitmapImage();
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + image.imgId + '.' + image.format));
-            using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+            if(image != null)
             {
-                await bitmap.SetSourceAsync(fileStream);
-                Title = image.title;
-                ViewCount = image.viewCount;
-                UserName = image.userName;
-                Height = image.height;
-                Width = image.width;
-                ImageSource = bitmap;
-                Progress = 100;
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + image.imgId + '.' + image.format));
+                using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    await bitmap.SetSourceAsync(fileStream);
+                    Title = image.title;
+                    ViewCount = image.viewCount;
+                    UserName = image.userName;
+                    Height = image.height;
+                    Width = image.width;
+                    ImageSource = bitmap;
+                    Progress = 100;
+                    Loading = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
+                using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    await bitmap.SetSourceAsync(fileStream);
+                    Loading = Visibility.Collapsed;
+                }
             }
         }
 
@@ -70,6 +155,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         public async Task LoadImageAsync(ImageInfo image, Conf c)
         {
             bool result;
+            Loading = Visibility.Visible;
             DownloadManager download = new DownloadManager();
             if(c.mode.Equals("You_Like_V2"))
             {

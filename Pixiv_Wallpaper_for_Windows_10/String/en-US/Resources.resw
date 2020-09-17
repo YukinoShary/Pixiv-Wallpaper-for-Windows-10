@@ -207,6 +207,9 @@
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator: </value>
   </data>
+  <data name="LoadingStatus.Text" xml:space="preserve">
+    <value>Loading Illustration... </value>
+  </data>
   <data name="LocalData.Text" xml:space="preserve">
     <value>Local data</value>
   </data>
@@ -271,7 +274,7 @@
     <value>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</value>
   </data>
   <data name="ReviewTimes" xml:space="preserve">
-    <value>times review</value>
+    <value> times review</value>
   </data>
   <data name="Setting.Text" xml:space="preserve">
     <value>Setting</value>

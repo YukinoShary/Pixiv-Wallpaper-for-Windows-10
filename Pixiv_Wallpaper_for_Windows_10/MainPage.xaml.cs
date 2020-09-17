@@ -84,7 +84,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private async Task ShowPageInitialize()
         {
-            //TODO:处理初次启动应用时，lastImg为空的情况
             await viewModel.SetItems(c.lastImg);
             main.Navigate(typeof(ShowPage), viewModel);
         }

@@ -40,8 +40,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
         public ShowPage()
         {
             this.InitializeComponent();
-            downloadProgress.Visibility = Visibility.Collapsed;
-            SetImage();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,29 +47,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
             if(e.Parameter != null)
             {
                 viewModel = e.Parameter as ImageShowViewModel;
-            }
-        }
-
-        private async Task SetImage()
-        {
-            c = new Conf();
-            if (c.lastImg == null)
-            {
-                file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/SplashScreen.scale-200.png"));
-            }
-            else
-            {
-                img = c.lastImg;
-                file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + img.format));                
-                title.Text = img.title;
-                userName.Text = img.userName;
-                viewCount.Text = (img.viewCount + MainPage.loader.GetString("ReviewTimes"));
-            }
-            using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                BitmapImage bitmap = new BitmapImage();
-                await bitmap.SetSourceAsync(fileStream);
-                show_img.Source = bitmap;
             }
         }
         

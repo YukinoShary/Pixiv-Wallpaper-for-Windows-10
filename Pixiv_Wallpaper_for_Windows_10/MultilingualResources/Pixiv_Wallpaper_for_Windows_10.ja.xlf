@@ -211,8 +211,8 @@
           <target state="final">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
         </trans-unit>
         <trans-unit id="ReviewTimes" translate="yes" xml:space="preserve">
-          <source>times review</source>
-          <target state="final">回レビュー</target>
+          <source> times review</source>
+          <target state="needs-review-translation"> 回レビュー</target>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -261,6 +261,10 @@
         <trans-unit id="VisitLocalFolder.Content" translate="yes" xml:space="preserve">
           <source>Visit local folder</source>
           <target state="final">ローカルフォルダにアクセスする</target>
+        </trans-unit>
+        <trans-unit id="LoadingStatus.Text" translate="yes" xml:space="preserve">
+          <source>Loading Illustration... </source>
+          <target state="final">イラストを読み込んでいます... </target>
         </trans-unit>
       </group>
     </body>

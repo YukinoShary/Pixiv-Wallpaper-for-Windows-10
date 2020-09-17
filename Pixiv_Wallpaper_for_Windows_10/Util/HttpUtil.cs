@@ -44,7 +44,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             "image/webp,image/apng,image/*,*/*;q=0.8"
         };
 
-        private static readonly String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36";
+        private static readonly String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36 Edg/85.0.564.51";
 
         private string url;
         private Contype dataType;
@@ -144,68 +144,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         }
 
         /// <summary>
-        /// HTTP GET请求
-        /// </summary>
-        /// <returns>返回的数据</returns>
-        public async Task<string> GetDataAsync()
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Accept = contype[(int)dataType];
-            request.Headers["Cookie"] = cookie;
-            request.Headers["Accept-Encoding"] = "gzip,deflate,sdch";
-            request.UserAgent = USER_AGENT;
-            request.Headers["Scheme"] = "https";
-            request.Headers["Authority"] = "www.pixiv.net";
-            if (authority != null)
-            {
-                request.Headers["Authority"] = authority;
-            }           
-            if (referrer != null)
-            {
-                request.Headers["Referer"] = referrer;
-            }
-
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
-                string res = "Error";
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    Stream s = response.GetResponseStream();
-                    if (response.Headers["Content-Encoding"] != null && response.Headers["Content-Encoding"].ToLower().Contains("gzip"))
-                    {
-                        s = new GZipStream(s, CompressionMode.Decompress);
-                    }
-                    StreamReader sr = new StreamReader(s, Encoding.GetEncoding("utf-8"));
-                    res = await sr.ReadToEndAsync();
-                    cookie = response.Headers["Set-Cookie"];
-
-                    sr.Dispose();
-                    s.Dispose();  
-                }
-                response.Dispose();
-                return res;
-            }
-            catch(Exception e)
-            {
-                string title = MainPage.loader.GetString("DataRequestFail");
-                string content = "";
-                if ("The remote server returned an error: (403) .".Equals(e.Message))
-                {
-                    content = MainPage.loader.GetString("DataRequestFailExplanation");
-                }
-                else
-                {
-                    content = e.Message.ToString();
-                }
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
-                tm.ToastPush(60);
-                return "ERROR";
-            }
-        }
-
-        /// <summary>
         /// 获取插画原图
         /// </summary>
         /// <returns>插画服务器返回的http回应消息</returns>
@@ -246,73 +184,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 tm.ToastPush(60);
                 return null;
             }
-        }
-
-        /// <summary>
-        /// 插画下载方法
-        /// </summary>
-        /// <param name="img">插画信息</param>
-        /// <returns></returns>
-        public async Task<string> ImageDownloadAsync(ImageInfo img)
-        {
-            //应访问一次插画展示页使pixiv记录一次浏览数以尊重他人成果
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(referrer);
-            request.Method = "GET";
-            request.Accept = contype[(int)dataType];
-            request.Headers["Cookie"] = cookie;
-            request.Headers["Referer"] = "https://www.pixiv.net/discovery";
-            await request.GetResponseAsync();
-
-            //正式开始获取插画原图
-            request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Accept = contype[(int)dataType];
-            request.Headers["Cookie"] = cookie;
-            request.Headers["Referer"] = referrer;
-
-            try
-            {
-                //判断文件夹中是否已存在该插画，若存在则直接返回该插画
-                if(await ApplicationData.Current.LocalFolder.TryGetItemAsync(img.imgId + '.' + img.format) != null)
-                {
-                    return "EXIST";
-                }
-                else
-                {
-                    HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        using (Stream res = response.GetResponseStream())
-                        {
-
-                            StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(img.imgId + '.' + img.format, CreationCollisionOption.ReplaceExisting);
-                            using (Stream writer = await file.OpenStreamForWriteAsync())
-                            {
-                                await res.CopyToAsync(writer);
-                                return img.imgId;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        string title = MainPage.loader.GetString("ConnectionFail") ;
-                        string content = MainPage.loader.GetString("ConnectionFailExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
-                        tm.ToastPush(60);
-                        return "ERROR";
-                    }
-                }
-            }    
-            catch(Exception)
-            {
-                string title = MainPage.loader.GetString("ConnectionLost");
-                string content = MainPage.loader.GetString("ConnectionLostExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
-                tm.ToastPush(60);
-                return "ERROR";
-            }
-
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
             HttpUtil top50 = new HttpUtil(RALL_URL, HttpUtil.Contype.JSON);
 
-            rall = await top50.GetDataAsync();
+            rall = await top50.NewGetDataAsync();
 
             if (!rall.Equals("ERROR"))
             {
@@ -94,7 +94,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             recomm.cookie = cookie;
             recomm.referrer = "https://www.pixiv.net/discovery";
 
-            like = await recomm.GetDataAsync();
+            like = await recomm.NewGetDataAsync();
 
             if (like != "ERROR")
             {
@@ -189,7 +189,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             ImageInfo imginfo = null;
             HttpUtil info = new HttpUtil(DETA_URL + imgId, HttpUtil.Contype.JSON);
-            string data = await info.GetDataAsync();
+            string data = await info.NewGetDataAsync();
             if (!data.Equals("ERROR"))
             {
                 imginfo = new ImageInfo();
@@ -216,59 +216,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 imginfo.format = imginfo.imgUrl.Split('.').Last();
             }
             return imginfo;
-        }
-
-        /// <summary>
-        /// 插画下载
-        /// </summary>
-        /// <param name="img">要下载的插画信息</param>
-        /// <returns>是否成功下载插画</returns>
-        public async Task<string> downloadImgV1(ImageInfo img)
-        {
-            Regex reg = new Regex("/c/[0-9]+x[0-9]+/img-master");
-            img.imgUrl = reg.Replace(img.imgUrl, "/img-master", 1);
-            HttpUtil download = new HttpUtil(img.imgUrl, HttpUtil.Contype.IMG);
-            download.referrer = "https://www.pixiv.net/artworks/" + img.imgId;
-            download.cookie = cookie;
-            return await download.ImageDownloadAsync(img);   
-        }
-
-        /// <summary>
-        /// 使用PixivCS API进行插画下载
-        /// </summary>
-        /// <param name="img"></param>
-        /// <returns>是否成功下载插画</returns>
-        public async Task<string> downloadImgV2(ImageInfo img)
-        {
-            try
-            {
-                if (await ApplicationData.Current.LocalFolder.TryGetItemAsync(img.imgId + '.' + img.format) != null)
-                {
-                    return "EXIST";
-                }
-                else
-                {
-                    using (Stream resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
-                      img.imgUrl, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
-                      Content.ReadAsStreamAsync())
-                    {
-                        StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(img.imgId + '.' + img.format, CreationCollisionOption.ReplaceExisting);
-                        using (Stream writer = await file.OpenStreamForWriteAsync())
-                        {
-                            await resStream.CopyToAsync(writer);
-                            return img.imgId;
-                        }
-                    }
-                }   
-            }
-            catch(Exception)
-            {
-                string title = MainPage.loader.GetString("UnknownError");
-                string content = " ";
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
-                tm.ToastPush(60);
-                return "ERROR";
-            }
         }
     }
 }

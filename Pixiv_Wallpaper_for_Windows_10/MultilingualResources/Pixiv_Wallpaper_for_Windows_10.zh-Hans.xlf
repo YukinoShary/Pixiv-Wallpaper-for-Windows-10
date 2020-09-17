@@ -211,8 +211,9 @@
           <target state="final">此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</target>
         </trans-unit>
         <trans-unit id="ReviewTimes" translate="yes" xml:space="preserve">
-          <source>times review</source>
-          <target state="final">次浏览</target>
+          <source> times review</source>
+          <target state="needs-review-translation"> 次浏览</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -261,6 +262,10 @@
         <trans-unit id="VisitLocalFolder.Content" translate="yes" xml:space="preserve">
           <source>Visit local folder</source>
           <target state="final">浏览本地文件夹</target>
+        </trans-unit>
+        <trans-unit id="LoadingStatus.Text" translate="yes" xml:space="preserve">
+          <source>Loading Illustration... </source>
+          <target state="final">插画加载中...</target>
         </trans-unit>
       </group>
     </body>
