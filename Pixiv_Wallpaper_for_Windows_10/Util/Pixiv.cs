@@ -65,7 +65,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             {
                 string title = MainPage.loader.GetString("UnknownError");
                 string content = " ";
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
+                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
                 tm.ToastPush(60);
             }
             return queue;
@@ -77,7 +77,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// </summary>
         /// <returns>插画id队列</returns>
 
-        public async Task<ConcurrentQueue<string>> getRecommlistV1(string imgId)
+        public async Task<ConcurrentQueue<string>> getRecommenlist(string imgId)
         {
             string like, finalUrl;
             HttpUtil recomm;
@@ -96,7 +96,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 
             like = await recomm.NewGetDataAsync();
 
-            if (like != "ERROR")
+            if (!like.Equals("ERROR"))
             {
                 dynamic o = JObject.Parse(like);
                 JArray arr = o.recommendations;
@@ -115,7 +115,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns>插画信息队列</returns>
-        public async Task<ConcurrentQueue<ImageInfo>> getRecommenlistV2(string account = null, string password = null)
+        public async Task<ConcurrentQueue<ImageInfo>> getRecommenlist(string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.IllustRecommended recommendres = null;

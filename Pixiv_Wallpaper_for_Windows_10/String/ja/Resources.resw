@@ -165,8 +165,8 @@
   <data name="RefreshExplanation" xml:space="preserve">
     <value>この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</value>
   </data>
-  <data name="ReviewTimes" xml:space="preserve">
-    <value>回レビュー</value>
+  <data name="ReviewTimes.Text" xml:space="preserve">
+    <value> 回レビュー</value>
   </data>
   <data name="Setting.Text" xml:space="preserve">
     <value>設定</value>
@@ -203,5 +203,11 @@
   </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>ローカルフォルダにアクセスする</value>
+  </data>
+  <data name="LoadingStatus.Text" xml:space="preserve">
+    <value>イラストを読み込んでいます... </value>
+  </data>
+  <data name="Resolution.Text" xml:space="preserve">
+    <value> ピクセル</value>
   </data>
 </root>

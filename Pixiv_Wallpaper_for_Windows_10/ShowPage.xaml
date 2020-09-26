@@ -15,8 +15,8 @@
               TintOpacity="0.3"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
-        <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource}"></Image>
-        <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom">
+        <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource, Mode=OneWay}"></Image>
+        <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom" Visibility="{x:Bind viewModel.InfoBar}">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Offset="0"/>
@@ -28,24 +28,28 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <TextBlock x:Name="title" FontSize="28" Foreground="White" Margin="40,0,0,0"/>
-                <TextBlock x:Name="userName" FontSize="24" Foreground="White" Margin="40,0,0,10"/>
+                <TextBlock x:Name="title" FontSize="28" Foreground="White" Text="{x:Bind viewModel.Title, Mode=OneWay}" Margin="40,0,0,0"/>
+                <TextBlock x:Name="userName" FontSize="24" Foreground="White" Margin="40,0,0,10" Text="{x:Bind viewModel.UserName, Mode=OneWay}"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,30,0">
-                    <TextBlock x:Name="width" Text="{x:Bind viewModel.Width}" Foreground="White" FontSize="26"/>
-                    <TextBlock Text="*" Foreground="White" FontSize="26"/>
-                    <TextBlock x:Name="height" Text="{x:Bind viewModel.Height}" Foreground="White" FontSize="26"/>
+                    <TextBlock x:Name="width" Text="{x:Bind viewModel.Width, Mode=OneWay}" Foreground="White" FontSize="24"/>
+                    <TextBlock Text="*" Foreground="White" FontSize="24"/>
+                    <TextBlock x:Name="height" Text="{x:Bind viewModel.Height, Mode = OneWay}" Foreground="White" FontSize="24"/>
+                    <TextBlock x:Uid="Resolution" Foreground="White" FontSize="24"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,30,0" HorizontalAlignment="Right">
-                    <TextBlock x:Name="viewCount" Foreground="White" FontSize="26" Text="{x:Bind viewModel.ViewCount}"/>
-                    <TextBlock Foreground="White" FontSize="26" x:Uid="ReviewTimes" Margin="0,0,0,10"/>
+                    <TextBlock x:Name="viewCount" Foreground="White" FontSize="26" Text="{x:Bind viewModel.ViewCount, Mode=OneWay}" Margin="0,0,0,10"/>
+                    <TextBlock x:Uid="ReviewTimes" Foreground="White" FontSize="26" Margin="0,0,0,10"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" x:Name="loadingStatusPanel" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{x:Bind }">
-                <TextBlock FontSize="18" x:Uid="LoadingStatus" HorizontalAlignment="Center" Foreground="White"/>
-                <TextBlock x:Name="loadingProgress" Text="{x:Bind viewModel.Progress}" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
-                <TextBlock FontSize="16" Text="%" Foreground="White"/>
+            <StackPanel x:Name="loadingStatusPanel" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{x:Bind viewModel.Loading, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="16" x:Uid="LoadingStatus" HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock x:Name="loadingProgress" Text="{x:Bind viewModel.Progress, Mode=OneWay}" FontSize="16" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="%" Foreground="White"/>
+                </StackPanel>
+                <ProgressBar IsIndeterminate="True" Height="7" Width="auto" Value="{x:Bind viewModel.Progress, Mode=OneWay}"/>
             </StackPanel>
         </Grid>
     </Grid>

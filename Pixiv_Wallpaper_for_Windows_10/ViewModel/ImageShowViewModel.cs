@@ -104,6 +104,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
             }
         }
 
+        private Visibility infoBar;
+        public Visibility InfoBar
+        {
+            get => infoBar;
+            private set
+            {
+                infoBar = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -133,6 +144,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
                     ImageSource = bitmap;
                     Progress = 100;
                     Loading = Visibility.Collapsed;
+                    InfoBar = Visibility.Visible;
                 }
             }
             else
@@ -142,6 +154,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
                 {
                     await bitmap.SetSourceAsync(fileStream);
                     Loading = Visibility.Collapsed;
+                    InfoBar = Visibility.Collapsed;
                 }
             }
         }
@@ -155,29 +168,39 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         public async Task LoadImageAsync(ImageInfo image, Conf c)
         {
             bool result;
+            Progress = 0;
             Loading = Visibility.Visible;
-            DownloadManager download = new DownloadManager();
-            if(c.mode.Equals("You_Like_V2"))
+            result = await Task.Run(async () => 
             {
-                //lamda表达式写匿名回调函数作为参数
-                result = await download.DownloadVer2(image.imgUrl, image.imgId, image.format, async (loaded, length) => 
+                DownloadManager download = new DownloadManager();
+                if (c.mode.Equals("You_Like_V2"))
                 {
-                    await Task.Run(() =>
+                    //lamda表达式写匿名回调函数作为参数
+                    var res = await download.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
                     {
-                        Progress = (int)(loaded * 100 / length);
+                        await Task.Run(() => 
+                        { 
+                            var p = (int)(loaded * 100 / length);
+                            if (p != Progress)
+                                Progress = p;
+                        });
                     });
-                });
-            }
-            else
-            {
-                result = await download.DownloadVer1(image.imgUrl, image.imgId, image.format, c.cookie, async(loaded, length) => 
+                    return res;
+                }
+                else
                 {
-                    await Task.Run(() =>
+                    var res = await download.DownloadAsync(image.imgUrl, image.imgId, image.format, c.cookie, async (loaded, length) =>
                     {
-                        Progress = (int)(loaded * 100 / length);
+                        await Task.Run(() =>
+                        {
+                            var p = (int)(loaded * 100 / length);
+                            if (p != Progress)
+                                Progress = p;
+                        });
                     });
-                });
-            }
+                    return res;
+                }
+            });       
 
             if (result)
             {

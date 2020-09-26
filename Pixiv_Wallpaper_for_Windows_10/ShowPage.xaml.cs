@@ -26,16 +26,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
 {
     /// <summary>
     /// 图片预览界面
-    /// @ democyann
     /// </summary>
     public sealed partial class ShowPage : Page
     {
-        private DownloadManager download = new DownloadManager();
-        private Conf c;
-        private ImageInfo img;
-        private StorageFile file;
         private ImageShowViewModel viewModel;
-        //TODO:设计新的ShowPage UI
 
         public ShowPage()
         {

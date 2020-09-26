@@ -18,8 +18,14 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
     {
         private ConcurrentQueue<string> likeV1 = new ConcurrentQueue<string>();
         private ConcurrentQueue<ImageInfo> likeV2 = new ConcurrentQueue<ImageInfo>();
-        private Pixiv pixiv = new Pixiv();
-        private Conf c = new Conf();
+        private Pixiv pixiv;
+        private Conf c;
+
+        public PixivLike()
+        {
+            c = new Conf();
+            pixiv = new Pixiv();
+        }
 
         /// <summary>
         /// 列表更新1
@@ -30,7 +36,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if (likeV1 == null || likeV1.Count == 0 || flag)
             {
-                likeV1 = await pixiv.getRecommlistV1(imgId);
+                likeV1 = await pixiv.getRecommenlist(imgId);
                 if (likeV1 != null)
                     return true;
                 else
@@ -76,7 +82,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 string title = MainPage.loader.GetString("FailToGetQueue");
                 string content = MainPage.loader.GetString("FailToGetQueueExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
+                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
             }
@@ -114,7 +120,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 string title = MainPage.loader.GetString("FailToGetQueue");
                 string content = MainPage.loader.GetString("FailToGetQueueExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
+                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
             }
@@ -129,7 +135,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || likeV2.Count==0 || likeV1 == null)
             {
-                likeV2 = await pixiv.getRecommenlistV2(c.account,c.password);
+                likeV2 = await pixiv.getRecommenlist(c.account, c.password);
                 if (likeV2 != null)
                     return true;
                 else

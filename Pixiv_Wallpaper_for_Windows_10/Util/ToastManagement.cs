@@ -15,17 +15,20 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private string title { get; set; }
         private string content { get; set; }
         private string image { get; set; }
-        private int toastMode { get; set; }
+        private ToastMode toastMode { get; set; }
         private readonly string logo = "ms-appdata:///Square44x44Logo.scale-200.png";
         private ToastVisual visual;
         private ToastActionsCustom actions;
         private ToastContent toastContent;
-        public const int BatterySetting = 1;
-        public const int WallpaperUpdate = 2;
-        public const int OtherMessage = 3;
+        public enum ToastMode
+        {
+            BatterySetting,
+            WallpaperUpdate,
+            OtherMessage
+        };
         private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
-        public ToastManagement(string title,string content,int toastMode,string image = null)
+        public ToastManagement(string title,string content,ToastMode toastMode,string image = null)
         {
             this.title = title;
             this.content = content;
@@ -49,11 +52,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                         {
                             new AdaptiveText()
                             {
-                                Text = title
+                                Text = title,
+                                HintMaxLines = 1
                             },
                             new AdaptiveText()
                             {
-                                Text = content
+                                Text = content,
+                                HintMaxLines = 2
                             },
                             new AdaptiveImage()
                             {
@@ -96,19 +101,19 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             actions = new ToastActionsCustom();
             switch (toastMode)
             {
-                case BatterySetting:
+                case ToastMode.BatterySetting:
                     actions.Buttons.Add(new ToastButton(loader.GetString("BatterySetting"), new QueryString() { "action", "BatterySetting" }.ToString())
                     {
                         ActivationType = ToastActivationType.Protocol
                     });
                     break;
-                case WallpaperUpdate:
+                case ToastMode.WallpaperUpdate:
                     actions.Buttons.Add(new ToastButton(loader.GetString("Next/Text"), new QueryString() { "action", "NextIllust" }.ToString())
                     {
                         ActivationType = ToastActivationType.Foreground
                     });
                     break;
-                case OtherMessage:
+                case ToastMode.OtherMessage:
                     actions = null;
                     break;
             }

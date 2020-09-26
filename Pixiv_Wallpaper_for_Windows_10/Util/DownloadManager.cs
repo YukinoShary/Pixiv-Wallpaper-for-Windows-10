@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Net.Http;
+using Windows.Web.Http;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Windows.Storage;
@@ -17,7 +17,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     { 
         public bool downloading { get; private set; }
 
-        public async Task<bool> DownloadVer1(string url, string id, string format, string cookie, Func<long, long, Task> ProgressCallback)
+        public async Task<bool> DownloadAsync(string url, string id, string format, string cookie, Func<long, long, Task> ProgressCallback)
         {
             //一次只能更新一张插画，在当前下载任务完成前忽略新的下载请求
             if (!downloading)
@@ -42,40 +42,44 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
 
             StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(id + '.' + format, CreationCollisionOption.ReplaceExisting);
-            var length = res.Content.Headers.ContentLength ?? -1;
-            using (var resStream = await res.Content.ReadAsStreamAsync())
+            long length = -1;
+            if (res.Content.Headers.ContentLength != null)
             {
-                using (Stream fStream = await file.OpenStreamForWriteAsync())
+                length = (long)res.Content.Headers.ContentLength;
+            }
+            try
+            {
+                using (var resStream = await res.Content.ReadAsInputStreamAsync())
                 {
-                    var bytesCounter = 0L;
-                    int bytesRead;
-                    byte[] buffer = new byte[4096];
-                    try
+
+                    using (Stream fStream = await file.OpenStreamForWriteAsync())
                     {
-                        while ((bytesRead = await resStream.ReadAsync(buffer, 0, 4096)) != 0)
+                        var bytesCounter = 0L;
+                        int bytesRead;
+                        byte[] buffer = new byte[4096];
+                        while ((bytesRead = await resStream.AsStreamForRead().ReadAsync(buffer, 0, 4096)) != 0)
                         {
+
                             bytesCounter += bytesRead;
                             await fStream.WriteAsync(buffer, 0, bytesRead);
-                            _ = ProgressCallback.Invoke(bytesCounter, length);
+                            _ = ProgressCallback(bytesCounter, length);
                         }
                     }
-                    catch(Exception e)
-                    {
-                        string title = MainPage.loader.GetString("ConnectionLost");
-                        string content = MainPage.loader.GetString("ConnectionLostExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
-                        tm.ToastPush(60);
-                        Debug.WriteLine(e.Message);
-                        downloading = false;
-                        return false;
-                    }
                 }
+            }
+            catch (Exception)
+            {
+                string title = MainPage.loader.GetString("ConnectionLost");
+                string content = MainPage.loader.GetString("ConnectionLostExplanation");
+                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                tm.ToastPush(60);
+                return false;
             }
             downloading = false;
             return true;
         }
 
-        public async Task<bool> DownloadVer2(string url, string id, string format, Func<long, long, Task> ProgressCallback)
+        public async Task<bool> DownloadAsync(string url, string id, string format, Func<long, long, Task> ProgressCallback)
         {
             //一次只能更新一张插画，在当前下载任务完成前忽略新的下载请求
             if (!downloading)
@@ -112,7 +116,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             {
                 string title = MainPage.loader.GetString("UnknownError");
                 string content = " ";
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.OtherMessage);
+                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return false;
             }           

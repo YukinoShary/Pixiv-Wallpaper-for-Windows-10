@@ -210,9 +210,10 @@
           <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
           <target state="final">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
         </trans-unit>
-        <trans-unit id="ReviewTimes" translate="yes" xml:space="preserve">
+        <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
           <source> times review</source>
           <target state="needs-review-translation"> 回レビュー</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -265,6 +266,10 @@
         <trans-unit id="LoadingStatus.Text" translate="yes" xml:space="preserve">
           <source>Loading Illustration... </source>
           <target state="final">イラストを読み込んでいます... </target>
+        </trans-unit>
+        <trans-unit id="Resolution.Text" translate="yes" xml:space="preserve">
+          <source> Pixel</source>
+          <target state="final"> ピクセル</target>
         </trans-unit>
       </group>
     </body>

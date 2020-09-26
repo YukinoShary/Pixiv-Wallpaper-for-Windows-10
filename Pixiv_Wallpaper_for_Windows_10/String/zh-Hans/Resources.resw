@@ -165,8 +165,8 @@
   <data name="RefreshExplanation" xml:space="preserve">
     <value>此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</value>
   </data>
-  <data name="ReviewTimes" xml:space="preserve">
-    <value>次浏览</value>
+  <data name="ReviewTimes.Text" xml:space="preserve">
+    <value> 次浏览</value>
   </data>
   <data name="Setting.Text" xml:space="preserve">
     <value>设置</value>
@@ -203,5 +203,11 @@
   </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>浏览本地文件夹</value>
+  </data>
+  <data name="LoadingStatus.Text" xml:space="preserve">
+    <value>插画加载中...</value>
+  </data>
+  <data name="Resolution.Text" xml:space="preserve">
+    <value> 像素</value>
   </data>
 </root>
