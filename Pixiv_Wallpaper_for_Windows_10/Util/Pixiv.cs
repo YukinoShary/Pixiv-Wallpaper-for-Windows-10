@@ -115,10 +115,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns>插画信息队列</returns>
-        public async Task<ConcurrentQueue<ImageInfo>> getRecommenlist(string account = null, string password = null)
+        public async Task<ConcurrentQueue<ImageInfo>> getRecommenlist(string imgId, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
-            PixivCS.Objects.IllustRecommended recommendres = null;
             if (GlobalBaseAPI.AccessToken == null)
             {
                 try
@@ -131,52 +130,86 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     return null;
                 }
             }
-            //是否使用nexturl更新list
-            if ("begin".Equals(nexturl))
+            if(imgId == null)
             {
-                recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync();
+                PixivCS.Objects.IllustRecommended recommendres = null;
+                //是否使用nexturl更新list
+                if ("begin".Equals(nexturl))
+                {
+                    recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync();
+                }
+                else
+                {
+                    Uri next = new Uri(nexturl);
+                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                    recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync
+                        (ContentType: getparam("content_type"),
+                         IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
+                         Filter: getparam("filter"),
+                         MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
+                         MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
+                         Offset: getparam("offset"),
+                         IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
+                         IncludePrivacyPolicy: getparam("include_privacy_policy"));
+                }
+                try
+                {
+                    nexturl = recommendres.NextUrl?.ToString() ?? "";
+                    foreach (PixivCS.Objects.UserPreviewIllust ill in recommendres.Illusts)
+                    {
+                        if (ill.PageCount == 1)
+                        {
+                            ImageInfo imginfo = new ImageInfo();
+                            imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                            imginfo.viewCount = (int)ill.TotalView;
+                            imginfo.isR18 = false;
+                            imginfo.userId = ill.User.Id.ToString();
+                            imginfo.userName = ill.User.Name;
+                            imginfo.imgId = ill.Id.ToString();
+                            imginfo.title = ill.Title;
+                            imginfo.height = (int)ill.Height;
+                            imginfo.width = (int)ill.Width;
+                            imginfo.format = imginfo.imgUrl.Split('.').Last();
+                            queue.Enqueue(imginfo);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
             else
             {
-                Uri next = new Uri(nexturl);
-                string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync
-                    (ContentType: getparam("content_type"),
-                     IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
-                     Filter: getparam("filter"),
-                     MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
-                     MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
-                     Offset: getparam("offset"),
-                     IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
-                     IncludePrivacyPolicy: getparam("include_privacy_policy"));
-            }
-            try
-            {
-                nexturl = recommendres.NextUrl?.ToString() ?? "";
-                foreach (PixivCS.Objects.UserPreviewIllust ill in recommendres.Illusts)
+                PixivCS.Objects.UserIllusts related = null;
+                related = await new PixivAppAPI(GlobalBaseAPI).GetIllustRelatedAsync(imgId);
+                try
                 {
-                    if (ill.PageCount == 1)
+                    foreach (PixivCS.Objects.UserPreviewIllust ill in related.Illusts)
                     {
-                        ImageInfo imginfo = new ImageInfo();
-                        imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
-                        imginfo.viewCount = (int)ill.TotalView;
-                        imginfo.isR18 = false;
-                        imginfo.userId = ill.User.Id.ToString();
-                        imginfo.userName = ill.User.Name;
-                        imginfo.imgId = ill.Id.ToString();
-                        imginfo.title = ill.Title;
-                        imginfo.height = (int)ill.Height;
-                        imginfo.width = (int)ill.Width;
-                        imginfo.format = imginfo.imgUrl.Split('.').Last();
-                        queue.Enqueue(imginfo);                        
-                    }  
+                        if (ill.PageCount == 1)
+                        {
+                            ImageInfo imginfo = new ImageInfo();
+                            imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                            imginfo.viewCount = (int)ill.TotalView;
+                            imginfo.isR18 = false;
+                            imginfo.userId = ill.User.Id.ToString();
+                            imginfo.userName = ill.User.Name;
+                            imginfo.imgId = ill.Id.ToString();
+                            imginfo.title = ill.Title;
+                            imginfo.height = (int)ill.Height;
+                            imginfo.width = (int)ill.Width;
+                            imginfo.format = imginfo.imgUrl.Split('.').Last();
+                            queue.Enqueue(imginfo);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
-            catch(Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return null;
-            }
+            
             return queue;
         }
 

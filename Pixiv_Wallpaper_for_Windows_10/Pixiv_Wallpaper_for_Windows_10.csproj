@@ -20,9 +20,8 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>
-    </PackageCertificateThumbprint>
-    <AppxPackageDir>D:\</AppxPackageDir>
+    <PackageCertificateThumbprint>1ADD1EEC0A31238767611CCC03E9E4A33483BA14</PackageCertificateThumbprint>
+    <AppxPackageDir>E:\Visual Studio Works\</AppxPackageDir>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>

@@ -169,6 +169,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         {
             bool result;
             Progress = 0;
+            InfoBar = Visibility.Visible;
             Loading = Visibility.Visible;
             result = await Task.Run(async () => 
             {
@@ -178,11 +179,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
                     //lamda表达式写匿名回调函数作为参数
                     var res = await download.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
                     {
-                        await Task.Run(() => 
-                        { 
-                            var p = (int)(loaded * 100 / length);
-                            if (p != Progress)
-                                Progress = p;
+                        await Task.Run(async () => 
+                        {
+                            await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                                Progress = (int)(loaded * 100 / length);
+                            });
                         });
                     });
                     return res;
@@ -191,11 +192,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
                 {
                     var res = await download.DownloadAsync(image.imgUrl, image.imgId, image.format, c.cookie, async (loaded, length) =>
                     {
-                        await Task.Run(() =>
+                        await Task.Run(async () =>
                         {
-                            var p = (int)(loaded * 100 / length);
-                            if (p != Progress)
-                                Progress = p;
+                            await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                                Progress = (int)(loaded * 100 / length);
+                            });
                         });
                     });
                     return res;

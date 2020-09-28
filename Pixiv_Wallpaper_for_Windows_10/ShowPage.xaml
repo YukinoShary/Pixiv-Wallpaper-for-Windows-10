@@ -16,7 +16,7 @@
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
         <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource, Mode=OneWay}"></Image>
-        <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom" Visibility="{x:Bind viewModel.InfoBar}">
+        <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom" Visibility="{x:Bind viewModel.InfoBar, Mode=OneWay}">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Offset="0"/>
@@ -43,13 +43,13 @@
                     <TextBlock x:Uid="ReviewTimes" Foreground="White" FontSize="26" Margin="0,0,0,10"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel x:Name="loadingStatusPanel" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{x:Bind viewModel.Loading, Mode=OneWay}">
-                <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="loadingStatusPanel" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Visibility="{x:Bind viewModel.Loading, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock FontSize="16" x:Uid="LoadingStatus" HorizontalAlignment="Center" Foreground="White"/>
                     <TextBlock x:Name="loadingProgress" Text="{x:Bind viewModel.Progress, Mode=OneWay}" FontSize="16" Foreground="White" HorizontalAlignment="Center" />
                     <TextBlock FontSize="16" Text="%" Foreground="White"/>
                 </StackPanel>
-                <ProgressBar IsIndeterminate="True" Height="7" Width="auto" Value="{x:Bind viewModel.Progress, Mode=OneWay}"/>
+                <ProgressBar IsIndeterminate="True" Height="3" HorizontalAlignment="Stretch" Value="{x:Bind viewModel.Progress, Mode=OneWay}" Maximum="100" Minimum="0" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>

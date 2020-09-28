@@ -131,11 +131,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// </summary>
         /// <param name="flag">是否强制更新</param>
         /// <returns></returns>
-        public async Task<bool> ListUpdateV2(bool flag = false)
+        public async Task<bool> ListUpdateV2(bool flag = false, string imgId = null)
         {
             if(flag || likeV2.Count==0 || likeV1 == null)
             {
-                likeV2 = await pixiv.getRecommenlist(c.account, c.password);
+                likeV2 = await pixiv.getRecommenlist(imgId, c.account, c.password);
                 if (likeV2 != null)
                     return true;
                 else

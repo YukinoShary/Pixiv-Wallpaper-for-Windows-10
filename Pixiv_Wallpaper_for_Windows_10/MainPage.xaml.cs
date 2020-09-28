@@ -327,7 +327,13 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     if (like == null)
                         like = new PixivLike();
                     await like.ListUpdateV1(true, c.lastImg.imgId);
-                }     
+                }
+                else if(c.mode == "You_Like_V2")
+                {
+                    if (like == null)
+                        like = new PixivLike();
+                    await like.ListUpdateV2(true, c.lastImg.imgId);
+                }
             }
         }
 

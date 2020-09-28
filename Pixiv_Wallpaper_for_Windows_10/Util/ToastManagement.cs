@@ -58,7 +58,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                             new AdaptiveText()
                             {
                                 Text = content,
-                                HintMaxLines = 2
+                                HintMaxLines = 3
                             },
                             new AdaptiveImage()
                             {
@@ -124,6 +124,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 toastContent.Actions = actions;
             }
             var toast = new ToastNotification(toastContent.GetXml());
+            toast.Group = "pixivWallPaper";
             toast.ExpirationTime = DateTime.Now.AddMinutes(minutes);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
