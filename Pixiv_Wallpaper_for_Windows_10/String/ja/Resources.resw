@@ -85,7 +85,7 @@
     <value>ロック画面は変更できません</value>
   </data>
   <data name="FailToChangeWallpaper" xml:space="preserve">
-    <value>壁紙は変更できません</value>
+    <value>壁紙が変更できません</value>
   </data>
   <data name="FailToGetQueue" xml:space="preserve">
     <value>pixivおすすめキューを取得できません</value>
@@ -172,7 +172,7 @@
     <value>設定</value>
   </data>
   <data name="SetWallpaper.Text" xml:space="preserve">
-    <value>壁紙にする</value>
+    <value>壁紙に設定する</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>壁紙を変更しました</value>

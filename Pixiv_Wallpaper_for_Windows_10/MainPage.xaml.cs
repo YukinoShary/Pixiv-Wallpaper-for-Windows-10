@@ -159,7 +159,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 {
                     string title = loader.GetString("NotSupport");
                     string content = " ";
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
                     return;
                 }
@@ -183,7 +183,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         string title = loader.GetString("FailToChangeLock");
                         string content = " ";
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(60);
                     }
                 }
@@ -194,7 +194,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 {
                     string title = loader.GetString("FailToChangeWallpaper");
                     string content = " ";
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
                 }
                 else
@@ -205,7 +205,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                         + "id: " + c.lastImg.imgId + "\r\n" 
                         + loader.GetString("Illustrator") + c.lastImg.userName;
                     string imagePath = file.Path;
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.WallpaperUpdate, imagePath);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.WallpaperUpdate, imagePath);
                     tm.ToastPush(10);
                 }
             }
@@ -242,7 +242,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     //建立Toast通知
                     string title = loader.GetString("ExtendedExecutionDenied");
                     string content = loader.GetString("ExtendedExcutionDeniedExplanation");
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.BatterySetting);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.BatterySetting);
                     tm.ToastPush(120);
                     break;
             }
@@ -273,7 +273,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 string title = loader.GetString("BackgroundTaskDenied");
                 string content = loader.GetString("BackgroundTaskDeniedExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.BatterySetting);
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.BatterySetting);
                 tm.ToastPush(120);
             }
             else
@@ -355,7 +355,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         string title = loader.GetString("Top50Refresh");
                         string content = loader.GetString("RefreshExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     break;
@@ -368,7 +368,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         string title = loader.GetString("RecommendedV1Refresh");
                         string content = loader.GetString("RefreshExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     break;
@@ -381,7 +381,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         string title = loader.GetString("RecommendedV2Refresh");
                         string content = loader.GetString("RefreshExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     await like.ListUpdateV2(true);
@@ -395,7 +395,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         string title = loader.GetString("Top50Refresh");
                         string content = loader.GetString("RefreshExplanation");
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     break;

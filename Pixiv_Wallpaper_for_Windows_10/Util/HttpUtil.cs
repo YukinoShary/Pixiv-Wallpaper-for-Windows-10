@@ -121,7 +121,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     {
                         string title = MainPage.loader.GetString("DataRequestFail");
                         string content =  message.ReasonPhrase;
-                        ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(60);
                         return "ERROR";
                     }
@@ -139,7 +139,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     {
                         content = e.Message.ToString();
                     }
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
                     return "ERROR";
                 }
@@ -182,7 +182,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     string title = MainPage.loader.GetString("ConnectionFail");
                     string content = MainPage.loader.GetString("ConnectionFailExplanation");
-                    ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
                     return null;
                 }
@@ -191,7 +191,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             {
                 string title = MainPage.loader.GetString("ConnectionLost");
                 string content = MainPage.loader.GetString("ConnectionLostExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
             }

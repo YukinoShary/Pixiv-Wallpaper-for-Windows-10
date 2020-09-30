@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>1ADD1EEC0A31238767611CCC03E9E4A33483BA14</PackageCertificateThumbprint>
@@ -132,7 +132,7 @@
     <Compile Include="Util\Pixiv.cs" />
     <Compile Include="Collection\PixivLike.cs" />
     <Compile Include="Collection\PixivTop50.cs" />
-    <Compile Include="Util\ToastManagement.cs" />
+    <Compile Include="Util\ToastMessage.cs" />
     <Compile Include="Util\WebViewLogin.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" IgnorableNamespaces="uap mp uap4 uap3 iot">
-  <Identity Name="63929Shary.PixivWallpaperforWindows10" Publisher="CN=4B2F5DA6-1E58-4424-8D35-41457C542913" Version="1.2.20.0" />
+  <Identity Name="63929Shary.PixivWallpaperforWindows10" Publisher="CN=4B2F5DA6-1E58-4424-8D35-41457C542913" Version="1.2.23.0" />
   <mp:PhoneIdentity PhoneProductId="74467a8b-a2c6-4331-8d66-a0fab208836e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Pixiv Wallpaper for Windows 10</DisplayName>

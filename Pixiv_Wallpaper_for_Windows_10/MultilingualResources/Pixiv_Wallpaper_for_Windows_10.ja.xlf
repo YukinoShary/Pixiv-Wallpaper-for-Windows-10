@@ -104,7 +104,7 @@
         </trans-unit>
         <trans-unit id="FailToChangeWallpaper" translate="yes" xml:space="preserve">
           <source>Failed to change wallpaper</source>
-          <target state="final">壁紙は変更できません</target>
+          <target state="final">壁紙が変更できません</target>
         </trans-unit>
         <trans-unit id="FailToGetQueue" translate="yes" xml:space="preserve">
           <source>Failed to get pixiv recommendation queue</source>
@@ -221,7 +221,7 @@
         </trans-unit>
         <trans-unit id="SetWallpaper.Text" translate="yes" xml:space="preserve">
           <source>Set as wallpaper</source>
-          <target state="final">壁紙にする</target>
+          <target state="final">壁紙に設定する</target>
         </trans-unit>
         <trans-unit id="Success" translate="yes" xml:space="preserve">
           <source>Change wallpaper successfully</source>

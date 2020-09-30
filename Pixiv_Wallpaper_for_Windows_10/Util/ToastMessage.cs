@@ -10,7 +10,7 @@ using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
-    class ToastManagement
+    class ToastMessage
     {
         private string title { get; set; }
         private string content { get; set; }
@@ -28,7 +28,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         };
         private static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
-        public ToastManagement(string title,string content,ToastMode toastMode,string image = null)
+        public ToastMessage(string title,string content,ToastMode toastMode,string image = null)
         {
             this.title = title;
             this.content = content;
@@ -53,12 +53,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                             new AdaptiveText()
                             {
                                 Text = title,
-                                HintMaxLines = 1
                             },
                             new AdaptiveText()
                             {
                                 Text = content,
-                                HintMaxLines = 3
                             },
                             new AdaptiveImage()
                             {
@@ -124,7 +122,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 toastContent.Actions = actions;
             }
             var toast = new ToastNotification(toastContent.GetXml());
-            toast.Group = "pixivWallPaper";
             toast.ExpirationTime = DateTime.Now.AddMinutes(minutes);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }

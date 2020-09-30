@@ -65,7 +65,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             {
                 string title = MainPage.loader.GetString("UnknownError");
                 string content = " ";
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
             }
             return queue;

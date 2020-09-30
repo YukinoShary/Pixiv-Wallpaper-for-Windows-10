@@ -82,7 +82,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 string title = MainPage.loader.GetString("FailToGetQueue");
                 string content = MainPage.loader.GetString("FailToGetQueueExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
             }
@@ -120,7 +120,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 string title = MainPage.loader.GetString("FailToGetQueue");
                 string content = MainPage.loader.GetString("FailToGetQueueExplanation");
-                ToastManagement tm = new ToastManagement(title, content, ToastManagement.ToastMode.OtherMessage);
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
             }
