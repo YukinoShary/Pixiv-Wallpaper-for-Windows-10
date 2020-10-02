@@ -171,6 +171,9 @@
   <data name="ConnectionLostExplanation" xml:space="preserve">
     <value>The connection was interrupted while downloading illustrations from pixiv. Please check the network connection</value>
   </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>The link has been copied to the clipboard</value>
+  </data>
   <data name="DataRequestFail" xml:space="preserve">
     <value>Data request failed</value>
   </data>
@@ -285,6 +288,9 @@
   <data name="SetWallpaper.Text" xml:space="preserve">
     <value>Set as wallpaper</value>
   </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>Share the illustration</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Change wallpaper successfully</value>
   </data>
@@ -308,9 +314,6 @@
   </data>
   <data name="UpdateModeExplanation.Text" xml:space="preserve">
     <value>Select the illustrations update mode."Recommendation" mode will select the illustrations with appropriate aspect ratio</value>
-  </data>
-  <data name="Visit.Text" xml:space="preserve">
-    <value>Visit illustration page</value>
   </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>Visit local folder</value>

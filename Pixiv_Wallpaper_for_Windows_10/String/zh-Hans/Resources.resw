@@ -198,9 +198,6 @@
   <data name="UpdateModeExplanation.Text" xml:space="preserve">
     <value>选择插画更新的模式，"pixiv推荐"模式会自动筛选出长宽比合适的插画</value>
   </data>
-  <data name="Visit.Text" xml:space="preserve">
-    <value>在pixiv上浏览该插画</value>
-  </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>浏览本地文件夹</value>
   </data>
@@ -209,5 +206,8 @@
   </data>
   <data name="Resolution.Text" xml:space="preserve">
     <value> 像素</value>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>分享插画</value>
   </data>
 </root>

@@ -187,7 +187,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             c.backgroundMode = combox2.SelectedValue.ToString();
         }
 
-        private void lock_switch_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void lock_switch_Toggled(object sender, RoutedEventArgs e)
         {
             c.lockscr = lock_switch.IsOn;
         }

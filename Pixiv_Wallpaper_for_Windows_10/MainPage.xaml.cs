@@ -29,6 +29,7 @@ using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace Pixiv_Wallpaper_for_Windows_10
 {
@@ -315,14 +316,18 @@ namespace Pixiv_Wallpaper_for_Windows_10
             update();
         }
 
-        private async void visiturl_btn_Click(object sender, RoutedEventArgs e)       //访问p站
+        private async void share_btn_Click(object sender, RoutedEventArgs e)       //访问p站
         {
             if(c.lastImg != null)
             {
-                var uriPixiv = new Uri(@"https://www.pixiv.net/artworks/" + c.lastImg.imgId);
-                var visit = Windows.System.Launcher.LaunchUriAsync(uriPixiv);
-
-                if(c.mode == "You_Like_V1")
+                DataPackage dataPackage = new DataPackage();
+                dataPackage.RequestedOperation = DataPackageOperation.Copy;
+                dataPackage.SetText(@"https://www.pixiv.net/artworks/" + c.lastImg.imgId);
+                string title = loader.GetString("CopyLink");
+                string content = "";
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                tm.ToastPush(1);
+                if (c.mode == "You_Like_V1")
                 {
                     if (like == null)
                         like = new PixivLike();

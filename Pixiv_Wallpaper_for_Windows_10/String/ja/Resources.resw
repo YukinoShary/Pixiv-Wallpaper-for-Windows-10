@@ -198,9 +198,6 @@
   <data name="UpdateModeExplanation.Text" xml:space="preserve">
     <value>イラスト更新モードを選択してください。「おすすめ」モードでは、適切なアスペクト比のイラストを選択します</value>
   </data>
-  <data name="Visit.Text" xml:space="preserve">
-    <value>pixivでイラストページをアクセスする</value>
-  </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>ローカルフォルダにアクセスする</value>
   </data>
@@ -209,5 +206,8 @@
   </data>
   <data name="Resolution.Text" xml:space="preserve">
     <value> ピクセル</value>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>イラストをシェアする</value>
   </data>
 </root>
