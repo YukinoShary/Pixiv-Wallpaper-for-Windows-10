@@ -324,6 +324,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 dataPackage.RequestedOperation = DataPackageOperation.Copy;
                 dataPackage.SetText(@"https://www.pixiv.net/artworks/" + c.lastImg.imgId);
                 string title = loader.GetString("CopyLink");
+                Clipboard.SetContent(dataPackage);
                 string content = "";
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(1);
