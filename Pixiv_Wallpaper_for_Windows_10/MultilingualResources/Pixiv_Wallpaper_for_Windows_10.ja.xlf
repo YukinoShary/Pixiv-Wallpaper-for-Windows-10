@@ -268,12 +268,12 @@
           <target state="translated"> ピクセル</target>
         </trans-unit>
         <trans-unit id="Share.Text" translate="yes" xml:space="preserve">
-          <source>Share the illustration</source>
-          <target state="translated">イラストをシェアする</target>
+          <source>Share the illustration link</source>
+          <target state="translated">イラストリンクをシェアする</target>
         </trans-unit>
         <trans-unit id="CopyLink" translate="yes" xml:space="preserve">
           <source>The link has been copied to the clipboard</source>
-          <target state="new">The link has been copied to the clipboard</target>
+          <target state="translated">リンクがクリップボードにコピーされました</target>
         </trans-unit>
       </group>
     </body>

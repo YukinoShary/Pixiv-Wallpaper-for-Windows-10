@@ -208,6 +208,9 @@
     <value> 像素</value>
   </data>
   <data name="Share.Text" xml:space="preserve">
-    <value>分享插画</value>
+    <value>分享插画链接</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>链接已复制到剪贴板</value>
   </data>
 </root>

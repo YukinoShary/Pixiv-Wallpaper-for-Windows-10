@@ -268,12 +268,12 @@
           <target state="translated"> 像素</target>
         </trans-unit>
         <trans-unit id="Share.Text" translate="yes" xml:space="preserve">
-          <source>Share the illustration</source>
-          <target state="translated">分享插画</target>
+          <source>Share the illustration link</source>
+          <target state="translated">分享插画链接</target>
         </trans-unit>
         <trans-unit id="CopyLink" translate="yes" xml:space="preserve">
           <source>The link has been copied to the clipboard</source>
-          <target state="new">The link has been copied to the clipboard</target>
+          <target state="translated">链接已复制到剪贴板</target>
         </trans-unit>
       </group>
     </body>

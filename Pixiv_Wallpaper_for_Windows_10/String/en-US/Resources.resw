@@ -289,7 +289,7 @@
     <value>Set as wallpaper</value>
   </data>
   <data name="Share.Text" xml:space="preserve">
-    <value>Share the illustration</value>
+    <value>Share the illustration link</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Change wallpaper successfully</value>

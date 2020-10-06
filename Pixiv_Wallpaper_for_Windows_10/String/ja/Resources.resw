@@ -208,6 +208,9 @@
     <value> ピクセル</value>
   </data>
   <data name="Share.Text" xml:space="preserve">
-    <value>イラストをシェアする</value>
+    <value>イラストリンクをシェアする</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>リンクがクリップボードにコピーされました</value>
   </data>
 </root>
