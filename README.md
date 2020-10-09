@@ -3,7 +3,7 @@
 
 抓取pixiv.net的图片并设置为Windows 10桌面壁纸的UWP APP，需要在Windows 10 1903以上的版本系统中运行。
 
-依赖部分NuGet包，没有多语种支持，目前只有简体中文一种语言。
+依赖部分NuGet包，包含简体中文，日文，英文三种语言。
 
 有top50与"猜你喜欢"两种模式，"猜你喜欢"对应网页pixiv.net/discovery 内容，需要登录pixiv账号。
 
