@@ -10,14 +10,16 @@ using System.Text.RegularExpressions;
 using Windows.Storage;
 using System.Diagnostics;
 using PixivCS;
+using Windows.ApplicationModel.Resources;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     class DownloadManager
     { 
-        public bool downloading { get; private set; }
+        public static bool downloading { get; private set; }
+        public static ResourceLoader loader { get; set; }
 
-        public async Task<bool> DownloadAsync(string url, string id, string format, string cookie, Func<long, long, Task> ProgressCallback)
+        public static async Task<bool> DownloadAsync(string url, string id, string format, string cookie, Func<long, long, Task> ProgressCallback)
         {
             //一次只能更新一张插画，在当前下载任务完成前忽略新的下载请求
             if (!downloading)
@@ -31,7 +33,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             
             Regex reg = new Regex("/c/[0-9]+x[0-9]+/img-master");
             url = reg.Replace(url, "/img-master", 1);
-            HttpUtil downloadRequest = new HttpUtil(url, HttpUtil.Contype.IMG);
+            HttpUtil downloadRequest = new HttpUtil(url, HttpUtil.Contype.IMG, loader);
             downloadRequest.referrer = "https://www.pixiv.net/artworks/" + id;
             downloadRequest.cookie = cookie;
             HttpResponseMessage res = await downloadRequest.NewImageDownloadAsync();
@@ -69,8 +71,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch (Exception)
             {
-                string title = MainPage.loader.GetString("ConnectionLost");
-                string content = MainPage.loader.GetString("ConnectionLostExplanation");
+                string title = loader.GetString("ConnectionLost");
+                string content = loader.GetString("ConnectionLostExplanation");
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return false;
@@ -79,7 +81,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             return true;
         }
 
-        public async Task<bool> DownloadAsync(string url, string id, string format, Func<long, long, Task> ProgressCallback)
+        public static async Task<bool> DownloadAsync(string url, string id, string format, Func<long, long, Task> ProgressCallback)
         {
             //一次只能更新一张插画，在当前下载任务完成前忽略新的下载请求
             if (!downloading)
@@ -114,7 +116,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch (Exception)
             {
-                string title = MainPage.loader.GetString("UnknownError");
+                string title = loader.GetString("UnknownError");
                 string content = " ";
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);

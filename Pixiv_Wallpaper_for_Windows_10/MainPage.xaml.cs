@@ -47,14 +47,14 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private PixivLike like;
         private string backgroundMode;
         private ImageShowViewModel viewModel;
-        public static ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
+        public ResourceLoader loader;
 
         public MainPage()
         {
             this.InitializeComponent();
+            loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
             c = new Conf();
-            //img = c.lastImg;
             viewModel = new ImageShowViewModel();
             session = null;
             backgroundMode = c.backgroundMode;
@@ -105,28 +105,28 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Top_50":
                     if(top50 == null)
                     {
-                        top50 = new PixivTop50();
+                        top50 = new PixivTop50(loader);
                     }
                     img = await top50.SelectArtWork();         
                     break;
                 case "You_Like_V1":
                     if(like == null)
                     {
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     }
                     img = await like.SelectArtWorkV1();
                     break;
                 case "You_Like_V2":
                     if (like == null)
                     {
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     }
                     img = await like.SelectArtWorkV2(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
                     if (top50 == null)
                     {
-                        top50 = new PixivTop50();
+                        top50 = new PixivTop50(loader);
                     }
                     await Task.Run(async () => { img = await top50.SelectArtWork(); });
                     break;
@@ -331,13 +331,13 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 if (c.mode == "You_Like_V1")
                 {
                     if (like == null)
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     await like.ListUpdateV1(true, c.lastImg.imgId);
                 }
                 else if(c.mode == "You_Like_V2")
                 {
                     if (like == null)
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     await like.ListUpdateV2(true, c.lastImg.imgId);
                 }
             }
@@ -355,7 +355,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Top_50":
                     if(top50 == null)
                     {
-                        top50 = new PixivTop50();
+                        top50 = new PixivTop50(loader);
                     }
                     if(await top50.listUpdate(true))
                     {
@@ -368,7 +368,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "You_Like_V1":
                     if(like == null)
                     {
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     }
                     if(await like.ListUpdateV1(true))
                     {
@@ -381,7 +381,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "You_Like_V2":
                     if(like == null)
                     {
-                        like = new PixivLike();
+                        like = new PixivLike(c, loader);
                     }
                     if(await like.ListUpdateV2(true))
                     {
@@ -395,7 +395,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 default:
                     if(top50 == null)
                     {
-                        top50 = new PixivTop50();
+                        top50 = new PixivTop50(loader);
                     }
                     if(await top50.listUpdate(true))
                     {

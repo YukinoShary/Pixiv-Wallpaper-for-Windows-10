@@ -15,8 +15,15 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivTop50
     {
-        public ConcurrentQueue<string> results = new ConcurrentQueue<string>();
-        private Pixiv p = new Pixiv();
+        private ConcurrentQueue<string> results = new ConcurrentQueue<string>();
+        private Pixiv pixiv;
+        private ResourceLoader loader;
+
+        public PixivTop50(ResourceLoader loader)
+        {
+            pixiv = new Pixiv();
+            this.loader = loader;
+        }
 
 
         /// <summary>
@@ -28,7 +35,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if (results == null || results.Count <= 0 || flag)
             {
-                results = await p.getRallist();
+                results = await pixiv.getRallist();
                 if (results != null)
                     return true;
                 else
@@ -52,14 +59,14 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                 string id = "";
                 if (results.TryDequeue(out id))
                 {
-                    img = await p.getImageInfo(id);
+                    img = await pixiv.getImageInfo(id);
                 }
                 return img;
             }
             else
             {
-                string title = MainPage.loader.GetString("FailToGetTop50Queue");
-                string content = MainPage.loader.GetString("PleaseCheckNetwork");
+                string title = loader.GetString("FailToGetTop50Queue");
+                string content = loader.GetString("PleaseCheckNetwork");
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;

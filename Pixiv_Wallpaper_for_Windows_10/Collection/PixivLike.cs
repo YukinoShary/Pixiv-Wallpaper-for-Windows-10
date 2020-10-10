@@ -19,11 +19,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         private ConcurrentQueue<string> likeV1 = new ConcurrentQueue<string>();
         private ConcurrentQueue<ImageInfo> likeV2 = new ConcurrentQueue<ImageInfo>();
         private Pixiv pixiv;
-        private Conf c;
+        private Conf config;
+        private ResourceLoader loader;
 
-        public PixivLike()
+        public PixivLike(Conf config, ResourceLoader loader)
         {
-            c = new Conf();
+            this.config = config;
+            this.loader = loader;
             pixiv = new Pixiv();
         }
 
@@ -34,6 +36,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns>返回值用于判断是否成功更新队列</returns>
         public async Task<bool> ListUpdateV1(bool flag = false, string imgId = null)
         {
+            pixiv.cookie = config.cookie;
             if (likeV1 == null || likeV1.Count == 0 || flag)
             {
                 likeV1 = await pixiv.getRecommenlist(imgId);
@@ -52,8 +55,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns></returns>
         public async Task<ImageInfo> SelectArtWorkV1()
         {
-            pixiv.cookie = c.cookie;
-
             await ListUpdateV1();
             ImageInfo img = null;
             if(likeV1 != null&&likeV1.Count != 0)
@@ -80,8 +81,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             }
             else
             {
-                string title = MainPage.loader.GetString("FailToGetQueue");
-                string content = MainPage.loader.GetString("FailToGetQueueExplanation");
+                string title = loader.GetString("FailToGetQueue");
+                string content = loader.GetString("FailToGetQueueExplanation");
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
@@ -118,8 +119,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             }
             else 
             {
-                string title = MainPage.loader.GetString("FailToGetQueue");
-                string content = MainPage.loader.GetString("FailToGetQueueExplanation");
+                string title = loader.GetString("FailToGetQueue");
+                string content = loader.GetString("FailToGetQueueExplanation");
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;
@@ -135,7 +136,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || likeV2.Count==0 || likeV1 == null)
             {
-                likeV2 = await pixiv.getRecommenlist(imgId, c.account, c.password);
+                likeV2 = await pixiv.getRecommenlist(imgId, config.account, config.password);
                 if (likeV2 != null)
                     return true;
                 else

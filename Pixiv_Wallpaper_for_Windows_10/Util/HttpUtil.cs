@@ -21,9 +21,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     //TODO:测试System.Net.Http重构的新方法
     public class HttpUtil
     {
-        public HttpUtil()
-        {  
-        }
+        private ResourceLoader loader;
         public enum Contype
         {
             /// <summary>
@@ -66,7 +64,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public string authority { get; set; }
 
         /// <summary>
-        ///   
+        /// 供UI线程调用  
         /// </summary>
         /// <param name="url">要请求的 URL</param>
         /// <param name="dataType">要请求的 MIME 类型</param>
@@ -74,7 +72,22 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             this.url = url;
             this.dataType = dataType;
+            loader = ResourceLoader.GetForCurrentView("Resources");
+            ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+        }
 
+        /// <summary>
+        /// 供子线程调用
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="dataType"></param>
+        /// <param name="loader"></param>
+        public HttpUtil(string url, Contype dataType, ResourceLoader loader)
+        {
+            this.url = url;
+            this.dataType = dataType;
+            this.loader = loader;
             ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
@@ -119,7 +132,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     }
                     else
                     {
-                        string title = MainPage.loader.GetString("DataRequestFail");
+                        string title = loader.GetString("DataRequestFail");
                         string content =  message.ReasonPhrase;
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(60);
@@ -129,11 +142,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception e)
                 {
-                    string title = MainPage.loader.GetString("DataRequestFail");
+                    string title = loader.GetString("DataRequestFail");
                     string content = "";
                     if ("The remote server returned an error: (403) .".Equals(e.Message))
                     {
-                        content = MainPage.loader.GetString("DataRequestFailExplanation");
+                        content = loader.GetString("DataRequestFailExplanation");
                     }
                     else
                     {
@@ -180,8 +193,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 else
                 {
-                    string title = MainPage.loader.GetString("ConnectionFail");
-                    string content = MainPage.loader.GetString("ConnectionFailExplanation");
+                    string title = loader.GetString("ConnectionFail");
+                    string content = loader.GetString("ConnectionFailExplanation");
                     ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
                     return null;
@@ -189,8 +202,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch (Exception)
             {
-                string title = MainPage.loader.GetString("ConnectionLost");
-                string content = MainPage.loader.GetString("ConnectionLostExplanation");
+                string title = loader.GetString("ConnectionLost");
+                string content = loader.GetString("ConnectionLostExplanation");
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(60);
                 return null;

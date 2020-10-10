@@ -14,7 +14,6 @@ using PixivCS;
 using System.Collections.Concurrent;
 using System.Web;
 using System.IO;
-using Windows.ApplicationModel.Resources;
 using Pixiv_Wallpaper_for_Windows_10.Model;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
@@ -26,16 +25,14 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private readonly string DETA_URL = "https://api.imjad.cn/pixiv/v1/?type=illust&id=";
         private readonly string RALL_URL = "https://www.pixiv.net/ranking.php?mode=daily&content=illust&p=1&format=json";
 
-        public string cookie { get; set; }
         private string nexturl = "begin";
         public static PixivBaseAPI GlobalBaseAPI;
-        private DownloadManager download;
+        public string cookie { get; set; }
 
         public Pixiv()
         {
             GlobalBaseAPI = new PixivBaseAPI();  
             GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
-            download = new DownloadManager();
         }
 
 
@@ -60,13 +57,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     queue.Enqueue(j["illust_id"].ToString());
                 }
-            }
-            else
-            {
-                string title = MainPage.loader.GetString("UnknownError");
-                string content = " ";
-                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                tm.ToastPush(60);
             }
             return queue;
         }
@@ -231,12 +221,15 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 dynamic ill = o.response;
                 imginfo.viewCount = (int)ill[0]["stats"]["views_count"];
                 imginfo.imgUrl = ill[0]["image_urls"]["large"].ToString();
-                switch(ill[0]["age_limit"].ToString())
+                switch (ill[0]["age_limit"].ToString())
                 {
-                    case "all_age":
+                    case "all-age":
                         imginfo.isR18 = false;
                         break;
-                    case "limit_r18":
+                    case "r18":
+                        imginfo.isR18 = true;
+                        break;
+                    case "r18-g":
                         imginfo.isR18 = true;
                         break;
                 }

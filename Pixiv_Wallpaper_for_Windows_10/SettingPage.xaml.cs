@@ -33,6 +33,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
     {
         private StorageFolder folder = ApplicationData.Current.LocalFolder;
         private Conf c = new Conf();
+        private ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
 
         public SettingPage()
@@ -40,14 +41,14 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
 
             //下拉框初始化   多语言适配
-            combox1.Items.Add(new KeyValuePair<string, int>(MainPage.loader.GetString("15Mins"), 15));
-            combox1.Items.Add(new KeyValuePair<string, int>(MainPage.loader.GetString("30Mins"), 30));
-            combox1.Items.Add(new KeyValuePair<string, int>(MainPage.loader.GetString("60Mins"), 60));
-            combox1.Items.Add(new KeyValuePair<string, int>(MainPage.loader.GetString("120Mins"), 120));
-            combox1.Items.Add(new KeyValuePair<string, int>(MainPage.loader.GetString("180Mins"), 180));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("60Mins"), 60));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("120Mins"), 120));
+            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("180Mins"), 180));
 
-            combox2.Items.Add(new KeyValuePair<string, string>(MainPage.loader.GetString("ExtendedSession"), "ExtendedSession"));
-            combox2.Items.Add(new KeyValuePair<string, string>(MainPage.loader.GetString("BackgroundTask"), "BackgroundTask"));
+            combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("ExtendedSession"), "ExtendedSession"));
+            combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("BackgroundTask"), "BackgroundTask"));
 
             CalcutateCacheSize();
             combox1.SelectedValue = c.time;
@@ -55,11 +56,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
             if(c.cookie!=null&&!"".Equals(c.cookie))
             {
-                loginV1.Content = MainPage.loader.GetString("PixivLoginV1LoggedIn");
+                loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
             }
             else
             {
-                loginV1.Content = MainPage.loader.GetString("PixivLoginV1Not");
+                loginV1.Content = loader.GetString("PixivLoginV1Not");
             }
 
             lock_switch.IsOn = c.lockscr;
@@ -86,7 +87,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void SetCookie(string str)
         {
             c.cookie = str;
-            loginV1.Content = MainPage.loader.GetString("PixivLoginV1LoggedIn");
+            loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)
@@ -111,7 +112,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             c.token = null;
             c.cookie = null;
-            loginV1.Content = MainPage.loader.GetString("PixivLoginV1Not"); 
+            loginV1.Content = loader.GetString("PixivLoginV1Not"); 
         }
 
         private async void loginV1_Click(object sender, RoutedEventArgs e)
