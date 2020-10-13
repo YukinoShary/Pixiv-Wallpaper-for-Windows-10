@@ -7,7 +7,7 @@
 
 有top50与"猜你喜欢"两种模式，"猜你喜欢"对应网页pixiv.net/discovery 内容，需要登录pixiv账号。
 
-有两种登录模式供选择，一种采用WebView登录，支持外部账号关联登录(如weibo、Twitter账号登录)，该模式下均使用pixiv web接口进行http通信;  
+有两种登录模式供选择，一种采用WebView登录，支持外部账号关联登录(如weibo、Twitter账号登录)，该模式下均使用web api进行http通信; 部分Web api使用了[journey-ad](https://github.com/journey-ad)  dalao做的 [pixiv api](https://api.imjad.cn/pixiv.md)  
 PixivCS登录模式采用[PixivCS](https://github.com/tobiichiamane/pixivcs/blob/master/PixivAppAPI.cs/ "PixivCS") API，内部大部分使用ios客户端api进行通信。PixivCS模式的代码参考了[pixivUWP](https://github.com/tobiichiamane/pixivfs-uwp/ "pixiv-uwp")项目。十分感谢[鱼](https://github.com/tobiichiamane)在技术上的指导与帮助~  
 
 目前正在将项目从最初的MVC模式重构为MVVM模式。下载功能从HTTP模块中分离出来成为了单独的模块并加入了进度显示功能，ShowPage整体都用ViewModel处理内容的展示。后续也许会对SettingPage进行MVVM重构，也有可能因为过于繁琐放弃……   
