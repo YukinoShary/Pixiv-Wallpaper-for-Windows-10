@@ -21,12 +21,14 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         private Pixiv pixiv;
         private Conf config;
         private ResourceLoader loader;
+        private string nextUrl;
 
         public PixivLike(Conf config, ResourceLoader loader)
         {
             this.config = config;
             this.loader = loader;
             pixiv = new Pixiv();
+            nextUrl = "begin";
         }
 
         /// <summary>
@@ -136,9 +138,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || likeV2.Count==0 || likeV1 == null)
             {
-                likeV2 = await pixiv.getRecommenlist(imgId, config.account, config.password);
+                var t = await pixiv.getRecommenlist(imgId, nextUrl, config.account, config.password);
+                likeV2 = t.Item1;
+                nextUrl = t.Item2;
                 if (likeV2 != null)
-                    return true;
+                    return true;                   
                 else
                     return false;
             }

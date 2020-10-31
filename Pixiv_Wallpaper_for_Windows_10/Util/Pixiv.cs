@@ -25,7 +25,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private readonly string DETA_URL = "https://api.imjad.cn/pixiv/v1/?type=illust&id=";
         private readonly string RALL_URL = "https://www.pixiv.net/ranking.php?mode=daily&content=illust&p=1&format=json";
 
-        private string nexturl = "begin";
+        //private string nexturl = "begin";
         public static PixivBaseAPI GlobalBaseAPI;
         public string cookie { get; set; }
 
@@ -102,10 +102,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <summary>
         /// 获取"猜你喜欢"(PixivCS Api)
         /// </summary>
+        /// <param name="imgId">获取与此插画类似的其他插画</param>
+        /// <param name="nexturl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns>插画信息队列</returns>
-        public async Task<ConcurrentQueue<ImageInfo>> getRecommenlist(string imgId, string account = null, string password = null)
+        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nexturl, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             if (GlobalBaseAPI.AccessToken == null)
@@ -198,9 +200,122 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     return null;
                 }
+            }      
+            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nexturl);
+        }
+
+        /// <summary>
+        /// 获取已关注画师最近更新的插画队列(PixivCS)
+        /// </summary>
+        /// <param name="nexturl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getIllustFollowList(string nexturl, string account = null, string password = null)
+        {
+            ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
+            PixivCS.Objects.UserIllusts followIllust = null;
+            if (GlobalBaseAPI.AccessToken == null)
+            {
+                try
+                {
+                    PixivCS.Objects.AuthResult res = null;
+                    res = await GlobalBaseAPI.AuthAsync(account, password);
+                }
+                catch
+                {
+                    return null;
+                }
             }
-            
-            return queue;
+            if (nexturl == "begin")
+            {
+                followIllust = await new PixivAppAPI(GlobalBaseAPI).GetIllustFollowAsync();
+            }
+            else
+            {
+                Uri next = new Uri(nexturl);
+                string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                followIllust = await new PixivCS
+                    .PixivAppAPI(GlobalBaseAPI)
+                    .GetIllustFollowAsync(getparam("restrict"), getparam("offset"));
+            }
+
+            foreach (PixivCS.Objects.UserPreviewIllust ill in followIllust.Illusts)
+            {
+                if (ill.PageCount == 1)
+                {
+                    ImageInfo imginfo = new ImageInfo();
+                    imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                    imginfo.viewCount = (int)ill.TotalView;
+                    imginfo.isR18 = false;
+                    imginfo.userId = ill.User.Id.ToString();
+                    imginfo.userName = ill.User.Name;
+                    imginfo.imgId = ill.Id.ToString();
+                    imginfo.title = ill.Title;
+                    imginfo.height = (int)ill.Height;
+                    imginfo.width = (int)ill.Width;
+                    imginfo.format = imginfo.imgUrl.Split('.').Last();
+                    queue.Enqueue(imginfo);
+                }
+            }
+            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nexturl);
+        }
+
+        /// <summary>
+        /// 获取书签插画队列(PixivCS)
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="nexturl"></param>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getBookmarkIllustList(string userId, string nexturl, string account = null, string password = null)
+        {
+            ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
+            PixivCS.Objects.UserIllusts bookmarkIllust = null;
+            if (GlobalBaseAPI.AccessToken == null)
+            {
+                try
+                {
+                    PixivCS.Objects.AuthResult res = null;
+                    res = await GlobalBaseAPI.AuthAsync(account, password);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            if (nexturl == "begin")
+            {
+                bookmarkIllust = await new PixivAppAPI(GlobalBaseAPI).GetUserBookmarksIllustAsync(userId);
+            }
+            else
+            {
+                Uri next = new Uri(nexturl);
+                string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                bookmarkIllust = await new PixivCS
+                    .PixivAppAPI(GlobalBaseAPI)
+                    .GetUserBookmarksIllustAsync(userId, getparam("restrict"),
+                    getparam("filter"), getparam("max_bookmark_id"));
+            }
+            nexturl = bookmarkIllust.NextUrl?.ToString() ?? "";
+            foreach (PixivCS.Objects.UserPreviewIllust ill in bookmarkIllust.Illusts)
+            {
+                if (ill.PageCount == 1)
+                {
+                    ImageInfo imginfo = new ImageInfo();
+                    imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                    imginfo.viewCount = (int)ill.TotalView;
+                    imginfo.isR18 = false;
+                    imginfo.userId = ill.User.Id.ToString();
+                    imginfo.userName = ill.User.Name;
+                    imginfo.imgId = ill.Id.ToString();
+                    imginfo.height = (int)ill.Height;
+                    imginfo.width = (int)ill.Width;
+                    queue.Enqueue(imginfo);
+                }
+            }
+            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nexturl);
         }
 
         /// <summary>
