@@ -15,13 +15,14 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivTop50
     {
-        private ConcurrentQueue<string> results = new ConcurrentQueue<string>();
+        private ConcurrentQueue<string> results;
         private Pixiv pixiv;
         private ResourceLoader loader;
 
         public PixivTop50(ResourceLoader loader)
         {
             pixiv = new Pixiv();
+            results = new ConcurrentQueue<string>();
             this.loader = loader;
         }
 

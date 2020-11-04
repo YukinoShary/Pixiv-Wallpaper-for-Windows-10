@@ -114,6 +114,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Collection\PixivBookmark.cs" />
+    <Compile Include="Collection\PixivFollowingIllust.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -130,7 +132,7 @@
     <Compile Include="Model\ImageInfo.cs" />
     <Compile Include="ViewModel\ImageShowViewModel.cs" />
     <Compile Include="Util\Pixiv.cs" />
-    <Compile Include="Collection\PixivLike.cs" />
+    <Compile Include="Collection\PixivRecommendation.cs" />
     <Compile Include="Collection\PixivTop50.cs" />
     <Compile Include="Util\ToastMessage.cs" />
     <Compile Include="Util\WebViewLogin.cs" />

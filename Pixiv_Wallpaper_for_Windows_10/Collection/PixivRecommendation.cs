@@ -14,20 +14,22 @@ using Pixiv_Wallpaper_for_Windows_10.Model;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
-    class PixivLike
+    class PixivRecommendation
     {
-        private ConcurrentQueue<string> likeV1 = new ConcurrentQueue<string>();
-        private ConcurrentQueue<ImageInfo> likeV2 = new ConcurrentQueue<ImageInfo>();
+        private ConcurrentQueue<string> RecommV1;
+        private ConcurrentQueue<ImageInfo> RecommV2;
         private Pixiv pixiv;
         private Conf config;
         private ResourceLoader loader;
         private string nextUrl;
 
-        public PixivLike(Conf config, ResourceLoader loader)
+        public PixivRecommendation(Conf config, ResourceLoader loader)
         {
             this.config = config;
             this.loader = loader;
             pixiv = new Pixiv();
+            RecommV1 = new ConcurrentQueue<string>();
+            RecommV2 = new ConcurrentQueue<ImageInfo>();
             nextUrl = "begin";
         }
 
@@ -39,10 +41,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         public async Task<bool> ListUpdateV1(bool flag = false, string imgId = null)
         {
             pixiv.cookie = config.cookie;
-            if (likeV1 == null || likeV1.Count == 0 || flag)
+            if (RecommV1 == null || RecommV1.Count == 0 || flag)
             {
-                likeV1 = await pixiv.getRecommenlist(imgId);
-                if (likeV1 != null)
+                RecommV1 = await pixiv.getRecommenlist(imgId);
+                if (RecommV1 != null)
                     return true;
                 else
                     return false;
@@ -59,17 +61,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             await ListUpdateV1();
             ImageInfo img = null;
-            if(likeV1 != null&&likeV1.Count != 0)
+            if(RecommV1 != null&&RecommV1.Count != 0)
             {
                 while (true)
                 {
                     string id = "";
-                    if (likeV1.TryDequeue(out id))
+                    if (RecommV1.TryDequeue(out id))
                     {
                         img = await pixiv.getImageInfo(id);
                         if (img != null && img.WHratio >= 1.33 && !img.isR18
                         && await Windows.Storage.ApplicationData.Current.LocalFolder.
-                    TryGetItemAsync(img.imgId + '.' + img.format) == null)    //判断高宽比合适，非R18，且非重复插画
+                        TryGetItemAsync(img.imgId + '.' + img.format) == null)    //判断高宽比合适，非R18，且非重复插画
                         {
                             return img;
                         }
@@ -99,33 +101,33 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             await ListUpdateV2();
             ImageInfo img = null;
-            if(likeV2!=null&&likeV2.Count!=0)
+            while (true)
             {
-                while (true)
+                if (RecommV2 == null)
                 {
-                    if (likeV2.TryDequeue(out img))
+                    string title = loader.GetString("FailToGetQueue");
+                    string content = loader.GetString("FailToGetQueueExplanation");
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                    tm.ToastPush(60);
+                    return null;
+                }
+                else
+                {
+                    if (RecommV2.Count != 0)
                     {
+                        RecommV2.TryDequeue(out img);
                         if (img != null && img.WHratio >= 1.33 && !img.isR18
                         && await Windows.Storage.ApplicationData.Current.LocalFolder.
-                    TryGetItemAsync(img.imgId + '.' + img.format) == null)
+                        TryGetItemAsync(img.imgId + '.' + img.format) == null)
                         {
                             return img;
                         }
                     }
-                    else
+                    else if (!await ListUpdateV2())
                     {
-                        //TODO:DequeueError
                         return null;
                     }
                 }
-            }
-            else 
-            {
-                string title = loader.GetString("FailToGetQueue");
-                string content = loader.GetString("FailToGetQueueExplanation");
-                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                tm.ToastPush(60);
-                return null;
             }
         }
 
@@ -136,12 +138,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns></returns>
         public async Task<bool> ListUpdateV2(bool flag = false, string imgId = null)
         {
-            if(flag || likeV2.Count==0 || likeV1 == null)
+            if(flag || RecommV2.Count == 0 || RecommV2 == null)
             {
                 var t = await pixiv.getRecommenlist(imgId, nextUrl, config.account, config.password);
-                likeV2 = t.Item1;
+                RecommV2 = t.Item1;
                 nextUrl = t.Item2;
-                if (likeV2 != null)
+                if (RecommV2 != null && RecommV2.Count != 0)
                     return true;                   
                 else
                     return false;

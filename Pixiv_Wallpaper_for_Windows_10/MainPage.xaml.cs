@@ -44,7 +44,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         public static MainPage mp;
         private ExtendedExecutionSession session;
         private PixivTop50 top50;
-        private PixivLike like;
+        private PixivRecommendation recommend;
         private string backgroundMode;
         private ImageShowViewModel viewModel;
         public ResourceLoader loader;
@@ -94,6 +94,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             SetWallpaper(await update());
         }
+
         /// <summary>
         /// 作品更新并显示
         /// </summary>
@@ -110,18 +111,18 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     img = await top50.SelectArtWork();         
                     break;
                 case "You_Like_V1":
-                    if(like == null)
+                    if(recommend == null)
                     {
-                        like = new PixivLike(c, loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    img = await like.SelectArtWorkV1();
+                    img = await recommend.SelectArtWorkV1();
                     break;
                 case "You_Like_V2":
-                    if (like == null)
+                    if (recommend == null)
                     {
-                        like = new PixivLike(c, loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    img = await like.SelectArtWorkV2(); //PixivCS在UI线程被建立，不支持从子线程调用
+                    img = await recommend.SelectArtWorkV2(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
                     if (top50 == null)
@@ -330,15 +331,15 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 tm.ToastPush(1);
                 if (c.mode == "You_Like_V1")
                 {
-                    if (like == null)
-                        like = new PixivLike(c, loader);
-                    await like.ListUpdateV1(true, c.lastImg.imgId);
+                    if (recommend == null)
+                        recommend = new PixivRecommendation(c, loader);
+                    await recommend.ListUpdateV1(true, c.lastImg.imgId);
                 }
                 else if(c.mode == "You_Like_V2")
                 {
-                    if (like == null)
-                        like = new PixivLike(c, loader);
-                    await like.ListUpdateV2(true, c.lastImg.imgId);
+                    if (recommend == null)
+                        recommend = new PixivRecommendation(c, loader);
+                    await recommend.ListUpdateV2(true, c.lastImg.imgId);
                 }
             }
         }
@@ -366,11 +367,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     break;
                 case "You_Like_V1":
-                    if(like == null)
+                    if(recommend == null)
                     {
-                        like = new PixivLike(c, loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    if(await like.ListUpdateV1(true))
+                    if(await recommend.ListUpdateV1(true))
                     {
                         string title = loader.GetString("RecommendedV1Refresh");
                         string content = loader.GetString("RefreshExplanation");
@@ -379,18 +380,18 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     }
                     break;
                 case "You_Like_V2":
-                    if(like == null)
+                    if(recommend == null)
                     {
-                        like = new PixivLike(c, loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    if(await like.ListUpdateV2(true))
+                    if(await recommend.ListUpdateV2(true))
                     {
                         string title = loader.GetString("RecommendedV2Refresh");
                         string content = loader.GetString("RefreshExplanation");
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
-                    await like.ListUpdateV2(true);
+                    await recommend.ListUpdateV2(true);
                     break;
                 default:
                     if(top50 == null)
