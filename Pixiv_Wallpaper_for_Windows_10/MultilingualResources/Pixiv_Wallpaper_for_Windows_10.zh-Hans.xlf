@@ -54,10 +54,6 @@
           <source>BatterySetting</source>
           <target state="translated">电池设定</target>
         </trans-unit>
-        <trans-unit id="ClearCookies.Content" translate="yes" xml:space="preserve">
-          <source>Clear cookies</source>
-          <target state="translated">清除Cookie</target>
-        </trans-unit>
         <trans-unit id="ClearIllustrations.Content" translate="yes" xml:space="preserve">
           <source>Clear illustrations</source>
           <target state="translated">清除插画</target>
@@ -114,14 +110,6 @@
           <source>Please check your network connection and enter the correct account and password</source>
           <target state="translated">请检查你的网络连接并输入正确的账号密码</target>
         </trans-unit>
-        <trans-unit id="FailToGetQueueExplanationV1" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and the login status or try to login again to update expired cookies</source>
-          <target state="translated">请检查你的网络连接以及登陆状态，或尝试再次登录以清除过期的cookies</target>
-        </trans-unit>
-        <trans-unit id="FailToGetTop50Queue" translate="yes" xml:space="preserve">
-          <source>Fail to get pixiv daily top50 queue</source>
-          <target state="translated">获取pixiv每日top50队列失败</target>
-        </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
           <target state="translated">画师: </target>
@@ -154,30 +142,6 @@
           <source>Password:</source>
           <target state="translated">密码:</target>
         </trans-unit>
-        <trans-unit id="PixivLoginV1.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login ver1(WebView)</source>
-          <target state="translated">登录Pixiv(WebView)</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1Explanation.Text" translate="yes" xml:space="preserve">
-          <source>Click the button to login</source>
-          <target state="translated">点击按钮进入pixiv登录页</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1LoggedIn" translate="yes" xml:space="preserve">
-          <source>Logged in</source>
-          <target state="translated">已登录</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1Not" translate="yes" xml:space="preserve">
-          <source>Please login</source>
-          <target state="translated">请登录</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV2.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login ver2(PixivCS)</source>
-          <target state="translated">登录Pixiv(PixivCS)</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV2Explanation.Text" translate="yes" xml:space="preserve">
-          <source>The app will automatically store your account and password locally</source>
-          <target state="translated">应用会自动将你的账号密码存储在本地</target>
-        </trans-unit>
         <trans-unit id="PleaseCheckNetwork" translate="yes" xml:space="preserve">
           <source>Please check your network connection</source>
           <target state="translated">请检查您的网络连接</target>
@@ -185,22 +149,6 @@
         <trans-unit id="Preview.Text" translate="yes" xml:space="preserve">
           <source>Preview</source>
           <target state="translated">预览</target>
-        </trans-unit>
-        <trans-unit id="RecommendedV1Refresh" translate="yes" xml:space="preserve">
-          <source>Recommended ver 1 illustration queue has been updated</source>
-          <target state="translated">pixiv推荐ver1插画队列已更新</target>
-        </trans-unit>
-        <trans-unit id="RecommendedV2Refresh" translate="yes" xml:space="preserve">
-          <source>Recommended ver 2 illustration queue has been updated</source>
-          <target state="translated">pixiv推荐ver2插画队列已更新</target>
-        </trans-unit>
-        <trans-unit id="RecommendV1.Content" translate="yes" xml:space="preserve">
-          <source>Recommendation ver1 with WebAPI</source>
-          <target state="translated">pixiv推荐ver1 WebAPI</target>
-        </trans-unit>
-        <trans-unit id="RecommendV2.Content" translate="yes" xml:space="preserve">
-          <source>Recommendation ver2 with PixivCS API</source>
-          <target state="translated">pixiv推荐ver2 PixivCS</target>
         </trans-unit>
         <trans-unit id="Refresh.Text" translate="yes" xml:space="preserve">
           <source>Refresh illustrations list</source>
@@ -226,14 +174,6 @@
         <trans-unit id="Success" translate="yes" xml:space="preserve">
           <source>Change wallpaper successfully</source>
           <target state="translated">成功更换壁纸</target>
-        </trans-unit>
-        <trans-unit id="Top50.Content" translate="yes" xml:space="preserve">
-          <source>Daily Top50</source>
-          <target state="translated">每日Top50</target>
-        </trans-unit>
-        <trans-unit id="Top50Refresh" translate="yes" xml:space="preserve">
-          <source>Top50 illustration queue has been updated</source>
-          <target state="translated">Top50插画队列已更新</target>
         </trans-unit>
         <trans-unit id="UnknownError" translate="yes" xml:space="preserve">
           <source>An unknown error occurred while downloading the illustration</source>
@@ -274,6 +214,47 @@
         <trans-unit id="CopyLink" translate="yes" xml:space="preserve">
           <source>The link has been copied to the clipboard</source>
           <target state="translated">链接已复制到剪贴板</target>
+        </trans-unit>
+        <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Bookmark</source>
+          <target state="needs-review-translation">Pixiv 书签</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
+          <source>Bookmark illustration queue has been updated</source>
+          <target state="translated">书签插画队列已更新</target>
+        </trans-unit>
+        <trans-unit id="FailToGetBookmarkQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get pixiv bookmark queue</source>
+          <target state="translated">获取书签插画队列失败</target>
+        </trans-unit>
+        <trans-unit id="FailToGetFollowingUserUpdatingQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get following users' updating queue</source>
+          <target state="translated">获取已关注用户的插画更新队列失败</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdating.Content" translate="yes" xml:space="preserve">
+          <source>Following users' updating</source>
+          <target state="translated">已关注用户的插画更新</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdatingUpdate" translate="yes" xml:space="preserve">
+          <source>Following users' updating queue has been updated</source>
+          <target state="translated">已关注用户的插画更新队列已更新</target>
+        </trans-unit>
+        <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv Login</source>
+          <target state="translated">登录Pixiv</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
+          <source>The app will automatically store your account and password locally</source>
+          <target state="translated">应用会自动储存你的账号与密码</target>
+        </trans-unit>
+        <trans-unit id="Recommend.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Recommendation </source>
+          <target state="translated">Pixiv 推荐 </target>
+        </trans-unit>
+        <trans-unit id="RecommendedRefresh" translate="yes" xml:space="preserve">
+          <source>Recommended illustration queue has been updated</source>
+          <target state="translated">推荐插画队列已更新</target>
         </trans-unit>
       </group>
     </body>

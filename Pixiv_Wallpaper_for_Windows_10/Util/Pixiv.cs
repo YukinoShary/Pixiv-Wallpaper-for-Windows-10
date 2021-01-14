@@ -27,7 +27,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 
         //private string nexturl = "begin";
         public static PixivBaseAPI GlobalBaseAPI;
-        public string cookie { get; set; }
+        //public string cookie { get; set; }
 
         public Pixiv()
         {
@@ -81,7 +81,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 finalUrl = RECOMMSAM_URL + imgId + "&num_recommendations=52";//根据sample插画进行关联推荐
             }
             recomm = new HttpUtil(finalUrl, HttpUtil.Contype.JSON);
-            recomm.cookie = cookie;
+            //recomm.cookie = cookie;
             recomm.referrer = "https://www.pixiv.net/discovery";
 
             like = await recomm.NewGetDataAsync();
@@ -106,7 +106,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
         /// <param name="account"></param>
         /// <param name="password"></param>
-        /// <returns>插画信息队列</returns>
+        /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
         public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nextUrl, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
@@ -209,7 +209,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// </summary>
         /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
         /// <param name="account"></param>
-        /// <param name="password"></param>
+        /// <param name="password">元组数据，item1为插画信息队列，item2为下次请求的url参数</param>
         /// <returns></returns>
         public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getIllustFollowList(string nextUrl, string account = null, string password = null)
         {
@@ -222,8 +222,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     PixivCS.Objects.AuthResult res = null;
                     res = await GlobalBaseAPI.AuthAsync(account, password);
                 }
-                catch
+                catch(Exception e)
                 {
+                    //处理错误
+                    Console.WriteLine(e.Message);
                     return null;
                 }
             }
@@ -239,7 +241,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     .PixivAppAPI(GlobalBaseAPI)
                     .GetIllustFollowAsync(getparam("restrict"), getparam("offset"));
             }
-
+            nextUrl = followIllust.NextUrl?.ToString() ?? "";
             foreach (PixivCS.Objects.UserPreviewIllust ill in followIllust.Illusts)
             {
                 if (ill.PageCount == 1)
@@ -264,10 +266,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <summary>
         /// 获取书签插画队列(PixivCS)
         /// </summary>
-        /// <param name="nextUrl"></param>
+        /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
         /// <param name="account"></param>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
         public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getBookmarkIllustList(string nextUrl, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
@@ -313,6 +315,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     imginfo.imgId = ill.Id.ToString();
                     imginfo.height = (int)ill.Height;
                     imginfo.width = (int)ill.Width;
+
                     queue.Enqueue(imginfo);
                 }
             }

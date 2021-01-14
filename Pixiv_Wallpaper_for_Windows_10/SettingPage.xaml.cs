@@ -54,40 +54,25 @@ namespace Pixiv_Wallpaper_for_Windows_10
             combox1.SelectedValue = c.time;
             combox2.SelectedValue = c.backgroundMode;
 
-            if(c.cookie!=null&&!"".Equals(c.cookie))
-            {
-                loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
-            }
-            else
-            {
-                loginV1.Content = loader.GetString("PixivLoginV1Not");
-            }
-
             lock_switch.IsOn = c.lockscr;
             textbox1.Text = c.account;
             passwordbox1.Password = c.password;
 
             switch (c.mode)
             {
-                case "Top_50":
+                case "Bookmark":
                     radiobutton1.IsChecked = true;
                     break;
-                case "You_Like_V1":
+                case "FollowIllust":
                     radiobutton2.IsChecked = true;
                     break;
-                case "You_Like_V2":
+                case "Recommendation":
                     radiobutton3.IsChecked = true;
                     break;
                 default:
                     radiobutton1.IsChecked = true;
                     break;
             }
-        }
-
-        private void SetCookie(string str)
-        {
-            c.cookie = str;
-            loginV1.Content = loader.GetString("PixivLoginV1LoggedIn");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)
@@ -112,33 +97,18 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             c.token = null;
             c.cookie = null;
-            loginV1.Content = loader.GetString("PixivLoginV1Not"); 
-        }
-
-        private async void loginV1_Click(object sender, RoutedEventArgs e)
-        {
-            WebViewLogin wvl = new WebViewLogin("https://accounts.pixiv.net/login", "https://www.pixiv.net/");
-            wvl.ClearCookies();
-            wvl.Method += SetCookie;
-            await wvl.ShowWebView(1000, 800);
         }
 
         private void radiobutton2_Checked(object sender, RoutedEventArgs e)
         {
-            loginV1.IsEnabled = true;
-            c.mode = "You_Like_V1";
+            c.mode = "FollowIllust";
         }
 
         private void radiobutton3_Checked(object sender, RoutedEventArgs e)
         {
             textbox1.IsEnabled = true;
             passwordbox1.IsEnabled = true;
-            c.mode = "You_Like_V2";
-        }
-
-        private void radiobutton2_Unchecked(object sender, RoutedEventArgs e)
-        {
-            loginV1.IsEnabled = false;
+            c.mode = "Recommendation";
         }
 
         private void radiobutton3_Unchecked(object sender, RoutedEventArgs e)
@@ -180,7 +150,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private void radiobutton1_Checked(object sender, RoutedEventArgs e)
         {
-            c.mode = "Top_50";
+            c.mode = "Bookmark";
         }
 
         private void combox2_SelectionChanged(object sender, SelectionChangedEventArgs e)

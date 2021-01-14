@@ -54,13 +54,9 @@
           <source>BatterySetting</source>
           <target state="translated">バッテリー設定</target>
         </trans-unit>
-        <trans-unit id="ClearCookies.Content" translate="yes" xml:space="preserve">
-          <source>Clear cookies</source>
-          <target state="translated">クッキーを消す</target>
-        </trans-unit>
         <trans-unit id="ClearIllustrations.Content" translate="yes" xml:space="preserve">
           <source>Clear illustrations</source>
-          <target state="translated">イラストを消す</target>
+          <target state="translated">イラストを全部消す</target>
         </trans-unit>
         <trans-unit id="ConnectionFail" translate="yes" xml:space="preserve">
           <source>Could not connect to the illustration download server</source>
@@ -114,14 +110,6 @@
           <source>Please check your network connection and enter the correct account and password</source>
           <target state="translated">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
         </trans-unit>
-        <trans-unit id="FailToGetQueueExplanationV1" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and the login status or try to login again to update expired cookies</source>
-          <target state="translated">ネットワーク接続とログインステータスを確認するか、期限切れのCookieを更新するために再度ログインしてみてください</target>
-        </trans-unit>
-        <trans-unit id="FailToGetTop50Queue" translate="yes" xml:space="preserve">
-          <source>Fail to get pixiv daily top50 queue</source>
-          <target state="translated">pixivランキングキューを取得できません</target>
-        </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
           <target state="translated">ユーザー: </target>
@@ -154,30 +142,6 @@
           <source>Password:</source>
           <target state="translated">パスワード:</target>
         </trans-unit>
-        <trans-unit id="PixivLoginV1.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login ver1(WebView)</source>
-          <target state="translated">pixivログインバージョン1(WebView)</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1Explanation.Text" translate="yes" xml:space="preserve">
-          <source>Click the button to login</source>
-          <target state="translated">ログインするにはボタンをクリックしてください</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1LoggedIn" translate="yes" xml:space="preserve">
-          <source>Logged in</source>
-          <target state="translated">ログインしました</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV1Not" translate="yes" xml:space="preserve">
-          <source>Please login</source>
-          <target state="translated">ログイン</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV2.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login ver2(PixivCS)</source>
-          <target state="translated">pixivログインバージョン2(PixivCS)</target>
-        </trans-unit>
-        <trans-unit id="PixivLoginV2Explanation.Text" translate="yes" xml:space="preserve">
-          <source>The app will automatically store your account and password locally</source>
-          <target state="translated">アプリは自動的にアカウントとパスワードをローカルに保存します</target>
-        </trans-unit>
         <trans-unit id="PleaseCheckNetwork" translate="yes" xml:space="preserve">
           <source>Please check your network connection</source>
           <target state="translated">ネットワーク接続を確認してください</target>
@@ -186,29 +150,14 @@
           <source>Preview</source>
           <target state="translated">プレビュー</target>
         </trans-unit>
-        <trans-unit id="RecommendedV1Refresh" translate="yes" xml:space="preserve">
-          <source>Recommended ver 1 illustration queue has been updated</source>
-          <target state="translated">イラストキューを更新しました</target>
-        </trans-unit>
-        <trans-unit id="RecommendedV2Refresh" translate="yes" xml:space="preserve">
-          <source>Recommended ver 2 illustration queue has been updated</source>
-          <target state="translated">イラストキューを更新しました</target>
-        </trans-unit>
-        <trans-unit id="RecommendV1.Content" translate="yes" xml:space="preserve">
-          <source>Recommendation ver1 with WebAPI</source>
-          <target state="translated">pixivおすすめバージョン1 WebAPI</target>
-        </trans-unit>
-        <trans-unit id="RecommendV2.Content" translate="yes" xml:space="preserve">
-          <source>Recommendation ver2 with PixivCS API</source>
-          <target state="translated">pixivおすすめバージョン1 PixivCS</target>
-        </trans-unit>
         <trans-unit id="Refresh.Text" translate="yes" xml:space="preserve">
           <source>Refresh illustrations list</source>
-          <target state="translated">イラストリストを更新する</target>
+          <target state="translated">イラストキューを更新する</target>
         </trans-unit>
         <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
           <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
-          <target state="translated">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
+          <target state="needs-review-translation">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
           <source> times review</source>
@@ -226,14 +175,6 @@
         <trans-unit id="Success" translate="yes" xml:space="preserve">
           <source>Change wallpaper successfully</source>
           <target state="translated">壁紙を変更しました</target>
-        </trans-unit>
-        <trans-unit id="Top50.Content" translate="yes" xml:space="preserve">
-          <source>Daily Top50</source>
-          <target state="translated">ランキング</target>
-        </trans-unit>
-        <trans-unit id="Top50Refresh" translate="yes" xml:space="preserve">
-          <source>Top50 illustration queue has been updated</source>
-          <target state="translated">イラストキューを更新しました</target>
         </trans-unit>
         <trans-unit id="UnknownError" translate="yes" xml:space="preserve">
           <source>An unknown error occurred while downloading the illustration</source>
@@ -274,6 +215,47 @@
         <trans-unit id="CopyLink" translate="yes" xml:space="preserve">
           <source>The link has been copied to the clipboard</source>
           <target state="translated">リンクがクリップボードにコピーされました</target>
+        </trans-unit>
+        <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Bookmark</source>
+          <target state="needs-review-translation">ピクシブブックマーク</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
+          <source>Bookmark illustration queue has been updated</source>
+          <target state="translated">ブックマークのイラストキューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="FailToGetBookmarkQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get pixiv bookmark queue</source>
+          <target state="translated">ブックマークキューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetFollowingUserUpdatingQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get following users' updating queue</source>
+          <target state="translated">フォローユーザーの作品キューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdating.Content" translate="yes" xml:space="preserve">
+          <source>Following users' updating</source>
+          <target state="translated">フォローユーザーの作品</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdatingUpdate" translate="yes" xml:space="preserve">
+          <source>Following users' updating queue has been updated</source>
+          <target state="translated">フォローユーザーの作品キューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv Login</source>
+          <target state="translated">ログイン</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
+          <source>The app will automatically store your account and password locally</source>
+          <target state="translated">アプリは自動的にアカウントとパスワードを保存します</target>
+        </trans-unit>
+        <trans-unit id="Recommend.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Recommendation </source>
+          <target state="translated">ピクシブおすすめ </target>
+        </trans-unit>
+        <trans-unit id="RecommendedRefresh" translate="yes" xml:space="preserve">
+          <source>Recommended illustration queue has been updated</source>
+          <target state="translated">おすすめキューが更新しました</target>
         </trans-unit>
       </group>
     </body>

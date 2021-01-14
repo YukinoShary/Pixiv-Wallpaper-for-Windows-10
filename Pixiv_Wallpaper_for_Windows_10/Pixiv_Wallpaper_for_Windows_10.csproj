@@ -128,14 +128,12 @@
     </Compile>
     <Compile Include="Model\Conf.cs" />
     <Compile Include="Util\DownloadManager.cs" />
-    <Compile Include="Util\HttpUtil.cs" />
     <Compile Include="Model\ImageInfo.cs" />
     <Compile Include="ViewModel\ImageShowViewModel.cs" />
     <Compile Include="Util\Pixiv.cs" />
     <Compile Include="Collection\PixivRecommendation.cs" />
     <Compile Include="Collection\PixivTop50.cs" />
     <Compile Include="Util\ToastMessage.cs" />
-    <Compile Include="Util\WebViewLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

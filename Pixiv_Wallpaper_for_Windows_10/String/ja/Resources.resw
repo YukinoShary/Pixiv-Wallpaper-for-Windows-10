@@ -48,11 +48,8 @@
   <data name="BatterySetting" xml:space="preserve">
     <value>バッテリー設定</value>
   </data>
-  <data name="ClearCookies.Content" xml:space="preserve">
-    <value>クッキーを消す</value>
-  </data>
   <data name="ClearIllustrations.Content" xml:space="preserve">
-    <value>イラストを消す</value>
+    <value>イラストを全部消す</value>
   </data>
   <data name="ConnectionFail" xml:space="preserve">
     <value>イラストのダウンロードサーバを接続できませんでした</value>
@@ -93,12 +90,6 @@
   <data name="FailToGetQueueExplanation" xml:space="preserve">
     <value>ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</value>
   </data>
-  <data name="FailToGetQueueExplanationV1" xml:space="preserve">
-    <value>ネットワーク接続とログインステータスを確認するか、期限切れのCookieを更新するために再度ログインしてみてください</value>
-  </data>
-  <data name="FailToGetTop50Queue" xml:space="preserve">
-    <value>pixivランキングキューを取得できません</value>
-  </data>
   <data name="Illustrator" xml:space="preserve">
     <value>ユーザー: </value>
   </data>
@@ -123,44 +114,14 @@
   <data name="Password.Text" xml:space="preserve">
     <value>パスワード:</value>
   </data>
-  <data name="PixivLoginV1.Text" xml:space="preserve">
-    <value>pixivログインバージョン1(WebView)</value>
-  </data>
-  <data name="PixivLoginV1Explanation.Text" xml:space="preserve">
-    <value>ログインするにはボタンをクリックしてください</value>
-  </data>
-  <data name="PixivLoginV1LoggedIn" xml:space="preserve">
-    <value>ログインしました</value>
-  </data>
-  <data name="PixivLoginV1Not" xml:space="preserve">
-    <value>ログイン</value>
-  </data>
-  <data name="PixivLoginV2.Text" xml:space="preserve">
-    <value>pixivログインバージョン2(PixivCS)</value>
-  </data>
-  <data name="PixivLoginV2Explanation.Text" xml:space="preserve">
-    <value>アプリは自動的にアカウントとパスワードをローカルに保存します</value>
-  </data>
   <data name="PleaseCheckNetwork" xml:space="preserve">
     <value>ネットワーク接続を確認してください</value>
   </data>
   <data name="Preview.Text" xml:space="preserve">
     <value>プレビュー</value>
   </data>
-  <data name="RecommendedV1Refresh" xml:space="preserve">
-    <value>イラストキューを更新しました</value>
-  </data>
-  <data name="RecommendedV2Refresh" xml:space="preserve">
-    <value>イラストキューを更新しました</value>
-  </data>
-  <data name="RecommendV1.Content" xml:space="preserve">
-    <value>pixivおすすめバージョン1 WebAPI</value>
-  </data>
-  <data name="RecommendV2.Content" xml:space="preserve">
-    <value>pixivおすすめバージョン1 PixivCS</value>
-  </data>
   <data name="Refresh.Text" xml:space="preserve">
-    <value>イラストリストを更新する</value>
+    <value>イラストキューを更新する</value>
   </data>
   <data name="RefreshExplanation" xml:space="preserve">
     <value>この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</value>
@@ -176,12 +137,6 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>壁紙を変更しました</value>
-  </data>
-  <data name="Top50.Content" xml:space="preserve">
-    <value>ランキング</value>
-  </data>
-  <data name="Top50Refresh" xml:space="preserve">
-    <value>イラストキューを更新しました</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>イラストのダウンロード中に不明なエラーが発生しました</value>
@@ -212,5 +167,35 @@
   </data>
   <data name="CopyLink" xml:space="preserve">
     <value>リンクがクリップボードにコピーされました</value>
+  </data>
+  <data name="Bookmark.Content" xml:space="preserve">
+    <value>ピクシブブックマーク</value>
+  </data>
+  <data name="BookmarkUpdate" xml:space="preserve">
+    <value>ブックマークのイラストキューが更新しました</value>
+  </data>
+  <data name="FailToGetBookmarkQueue" xml:space="preserve">
+    <value>ブックマークキューを取得できません</value>
+  </data>
+  <data name="FailToGetFollowingUserUpdatingQueue" xml:space="preserve">
+    <value>フォローユーザーの作品キューを取得できません</value>
+  </data>
+  <data name="FollowingUserUpdating.Content" xml:space="preserve">
+    <value>フォローユーザーの作品</value>
+  </data>
+  <data name="FollowingUserUpdatingUpdate" xml:space="preserve">
+    <value>フォローユーザーの作品キューが更新しました</value>
+  </data>
+  <data name="PixivLogin.Text" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="PixivLoginExplanation.Text" xml:space="preserve">
+    <value>アプリは自動的にアカウントとパスワードを保存します</value>
+  </data>
+  <data name="Recommend.Content" xml:space="preserve">
+    <value>ピクシブおすすめ </value>
+  </data>
+  <data name="RecommendedRefresh" xml:space="preserve">
+    <value>おすすめキューが更新しました</value>
   </data>
 </root>

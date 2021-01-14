@@ -153,8 +153,11 @@
   <data name="BatterySetting" xml:space="preserve">
     <value>BatterySetting</value>
   </data>
-  <data name="ClearCookies.Content" xml:space="preserve">
-    <value>Clear cookies</value>
+  <data name="Bookmark.Content" xml:space="preserve">
+    <value>Pixiv Bookmark</value>
+  </data>
+  <data name="BookmarkUpdate" xml:space="preserve">
+    <value>Bookmark illustration queue has been updated</value>
   </data>
   <data name="ClearIllustrations.Content" xml:space="preserve">
     <value>Clear illustrations</value>
@@ -195,17 +198,23 @@
   <data name="FailToChangeWallpaper" xml:space="preserve">
     <value>Failed to change wallpaper</value>
   </data>
+  <data name="FailToGetBookmarkQueue" xml:space="preserve">
+    <value>Fail to get pixiv bookmark queue</value>
+  </data>
+  <data name="FailToGetFollowingUserUpdatingQueue" xml:space="preserve">
+    <value>Fail to get following users' updating queue</value>
+  </data>
   <data name="FailToGetQueue" xml:space="preserve">
     <value>Failed to get pixiv recommendation queue</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
     <value>Please check your network connection and enter the correct account and password</value>
   </data>
-  <data name="FailToGetQueueExplanationV1" xml:space="preserve">
-    <value>Please check your network connection and the login status or try to login again to update expired cookies</value>
+  <data name="FollowingUserUpdating.Content" xml:space="preserve">
+    <value>Following users' updating</value>
   </data>
-  <data name="FailToGetTop50Queue" xml:space="preserve">
-    <value>Fail to get pixiv daily top50 queue</value>
+  <data name="FollowingUserUpdatingUpdate" xml:space="preserve">
+    <value>Following users' updating queue has been updated</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator: </value>
@@ -234,22 +243,10 @@
   <data name="Password.Text" xml:space="preserve">
     <value>Password:</value>
   </data>
-  <data name="PixivLoginV1.Text" xml:space="preserve">
-    <value>Pixiv Login ver1(WebView)</value>
+  <data name="PixivLogin.Text" xml:space="preserve">
+    <value>Pixiv Login</value>
   </data>
-  <data name="PixivLoginV1Explanation.Text" xml:space="preserve">
-    <value>Click the button to login</value>
-  </data>
-  <data name="PixivLoginV1LoggedIn" xml:space="preserve">
-    <value>Logged in</value>
-  </data>
-  <data name="PixivLoginV1Not" xml:space="preserve">
-    <value>Please login</value>
-  </data>
-  <data name="PixivLoginV2.Text" xml:space="preserve">
-    <value>Pixiv Login ver2(PixivCS)</value>
-  </data>
-  <data name="PixivLoginV2Explanation.Text" xml:space="preserve">
+  <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>The app will automatically store your account and password locally</value>
   </data>
   <data name="PleaseCheckNetwork" xml:space="preserve">
@@ -258,17 +255,11 @@
   <data name="Preview.Text" xml:space="preserve">
     <value>Preview</value>
   </data>
-  <data name="RecommendedV1Refresh" xml:space="preserve">
-    <value>Recommended ver 1 illustration queue has been updated</value>
+  <data name="Recommend.Content" xml:space="preserve">
+    <value>Pixiv Recommendation </value>
   </data>
-  <data name="RecommendedV2Refresh" xml:space="preserve">
-    <value>Recommended ver 2 illustration queue has been updated</value>
-  </data>
-  <data name="RecommendV1.Content" xml:space="preserve">
-    <value>Recommendation ver1 with WebAPI</value>
-  </data>
-  <data name="RecommendV2.Content" xml:space="preserve">
-    <value>Recommendation ver2 with PixivCS API</value>
+  <data name="RecommendedRefresh" xml:space="preserve">
+    <value>Recommended illustration queue has been updated</value>
   </data>
   <data name="Refresh.Text" xml:space="preserve">
     <value>Refresh illustrations list</value>
@@ -293,12 +284,6 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>Change wallpaper successfully</value>
-  </data>
-  <data name="Top50.Content" xml:space="preserve">
-    <value>Daily Top50</value>
-  </data>
-  <data name="Top50Refresh" xml:space="preserve">
-    <value>Top50 illustration queue has been updated</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>An unknown error occurred while downloading the illustration</value>

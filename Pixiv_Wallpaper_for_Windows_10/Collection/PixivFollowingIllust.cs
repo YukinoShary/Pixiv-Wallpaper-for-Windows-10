@@ -29,6 +29,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if (flag || illustQueue.Count == 0 || illustQueue == null)
             {
+                //Undo:处理登陆异常
+                //
+                //
                 var t = await pixiv.getIllustFollowList(nextUrl, config.account, config.password);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
@@ -50,7 +53,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 if(illustQueue == null)
                 {
-                    string title = loader.GetString("FailToGetQueue");
+                    string title = loader.GetString("FailToGetFollowingUserUpdatingQueue");
                     string content = loader.GetString("FailToGetQueueExplanation");
                     ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                     tm.ToastPush(60);
@@ -61,16 +64,16 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                     if (illustQueue.Count != 0)
                     {
                         illustQueue.TryDequeue(out img);
-                        if (img != null && img.WHratio >= 1.33 && !img.isR18
-                        && await Windows.Storage.ApplicationData.Current.LocalFolder.
-                        TryGetItemAsync(img.imgId + '.' + img.format) == null)
+                        if (img != null && img.WHratio >= 1.33 && !img.isR18)
                         {
                             return img;
                         }
                     }
                     else if (!await ListUpdate())
                     {
-                        //队列已到末尾
+                        //Undo Message:已经无法获取更多插画
+                        //
+                        //
                         return null;
                     }
                 }

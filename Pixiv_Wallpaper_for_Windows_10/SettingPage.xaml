@@ -17,21 +17,18 @@
                 </ComboBox>
                 <TextBlock x:Uid="UpdateMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="UpdateModeExplanation" FontSize="15" TextWrapping="WrapWholeWords" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Top50" RequestedTheme="Dark" Checked="radiobutton1_Checked"/>
-                <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="RecommendV1" RequestedTheme="Dark" Checked="radiobutton2_Checked" Unchecked="radiobutton2_Unchecked"/>
-                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="RecommendV2" RequestedTheme="Dark" Checked="radiobutton3_Checked" Unchecked="radiobutton3_Unchecked"/>
-                <TextBlock x:Uid="PixivLoginV1" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="PixivLoginV1Explanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <Button x:Name="loginV1" Margin="30,10,0,0" Click="loginV1_Click" RequestedTheme="Dark" IsEnabled="false"/>
-                <TextBlock x:Uid="PixivLoginV2" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="PixivLoginV2Explanation" TextWrapping="WrapWholeWords" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
+                <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Bookmark" RequestedTheme="Dark" Checked="radiobutton1_Checked"/>
+                <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="FollowingUserUpdating" RequestedTheme="Dark" Checked="radiobutton2_Checked"/>
+                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" RequestedTheme="Dark" Checked="radiobutton3_Checked" Unchecked="radiobutton3_Unchecked"/>
+                <TextBlock x:Uid="PixivLogin" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
+                <TextBlock x:Uid="PixivLoginExplanation" TextWrapping="WrapWholeWords" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
                 <StackPanel x:Name="sp2" Orientation="Horizontal">
                     <TextBlock x:Uid="Account" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                    <TextBox x:Name="textbox1" Margin="10,10,0,0"  Width="200" RequestedTheme="Dark" IsEnabled="False" LostFocus="textbox1_LostFocus"/>
+                    <TextBox x:Name="textbox1" Margin="10,10,0,0"  Width="200" RequestedTheme="Dark" LostFocus="textbox1_LostFocus"/>
                 </StackPanel>
                 <StackPanel x:Name="sp3" Orientation="Horizontal">
                     <TextBlock x:Uid="Password" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                    <PasswordBox x:Name="passwordbox1" Margin="10,10,0,0" Width="200"  RequestedTheme="Dark" IsEnabled="False" LostFocus="passwordbox1_LostFocus"/>
+                    <PasswordBox x:Name="passwordbox1" Margin="10,10,0,0" Width="200"  RequestedTheme="Dark" LostFocus="passwordbox1_LostFocus"/>
                 </StackPanel>
                 <TextBlock x:Uid="LocalData" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <StackPanel Orientation="Horizontal">
@@ -41,7 +38,6 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Name="clearPicture" x:Uid="ClearIllustrations" Margin="30,10,0,0" RequestedTheme="Dark" Click="clearPicture_Click"/>
                     <Button Name="openFilePath" x:Uid="VisitLocalFolder" Margin="30,10,0,0" Click="openFilePath_Click" RequestedTheme="Dark"/>
-                    <Button Name="cleanToken" x:Uid="ClearCookies" Margin="30,10,0,0" Click="cleanToken_Click" RequestedTheme="Dark"/>
                 </StackPanel>
                 <TextBlock x:Uid="BackgroundMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="BackgroundModeExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark" TextWrapping="WrapWholeWords"/>

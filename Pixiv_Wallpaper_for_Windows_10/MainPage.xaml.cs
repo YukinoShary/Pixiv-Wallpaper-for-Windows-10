@@ -43,7 +43,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private Conf c;
         public static MainPage mp;
         private ExtendedExecutionSession session;
-        private PixivTop50 top50;
+        private PixivBookmark bookmark;
+        private PixivFollowingIllust follow;
         private PixivRecommendation recommend;
         private string backgroundMode;
         private ImageShowViewModel viewModel;
@@ -103,33 +104,33 @@ namespace Pixiv_Wallpaper_for_Windows_10
             ImageInfo img = new ImageInfo();
             switch (c.mode)
             {
-                case "Top_50":
-                    if(top50 == null)
+                case "Bookmark":
+                    if(bookmark == null)
                     {
-                        top50 = new PixivTop50(loader);
+                        bookmark = new PixivBookmark(c, loader);
                     }
-                    img = await top50.SelectArtWork();         
+                    img = await bookmark.SelectArtwork();         
                     break;
-                case "You_Like_V1":
-                    if(recommend == null)
+                case "FollowIllust":
+                    if(follow == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        follow = new PixivFollowingIllust(c, loader);
                     }
-                    img = await recommend.SelectArtWorkV1();
+                    img = await follow.SelectArtwork();
                     break;
-                case "You_Like_V2":
+                case "Recommendation":
                     if (recommend == null)
                     {
                         recommend = new PixivRecommendation(c, loader);
                     }
-                    img = await recommend.SelectArtWorkV2(); //PixivCS在UI线程被建立，不支持从子线程调用
+                    img = await recommend.SelectArtwork(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
-                    if (top50 == null)
+                    if (recommend == null)
                     {
-                        top50 = new PixivTop50(loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    await Task.Run(async () => { img = await top50.SelectArtWork(); });
+                    await Task.Run(async () => { img = await bookmark.SelectArtwork(); });
                     break;
             }
 
@@ -329,17 +330,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 string content = "";
                 ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                 tm.ToastPush(1);
-                if (c.mode == "You_Like_V1")
+                if(c.mode == "Recommendation")
                 {
                     if (recommend == null)
                         recommend = new PixivRecommendation(c, loader);
-                    await recommend.ListUpdateV1(true, c.lastImg.imgId);
-                }
-                else if(c.mode == "You_Like_V2")
-                {
-                    if (recommend == null)
-                        recommend = new PixivRecommendation(c, loader);
-                    await recommend.ListUpdateV2(true, c.lastImg.imgId);
+                    await recommend.ListUpdate(true, c.lastImg.imgId);
                 }
             }
         }
@@ -353,54 +348,54 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             switch(c.mode)
             {
-                case "Top_50":
-                    if(top50 == null)
+                case "Bookmark":
+                    if(bookmark == null)
                     {
-                        top50 = new PixivTop50(loader);
+                        bookmark = new PixivBookmark(c, loader);
                     }
-                    if(await top50.listUpdate(true))
+                    if(await bookmark.ListUpdate(true))
                     {
-                        string title = loader.GetString("Top50Refresh");
+                        string title = loader.GetString("BookmarkUpdate");
                         string content = loader.GetString("RefreshExplanation");
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     break;
-                case "You_Like_V1":
-                    if(recommend == null)
+                case "FollowIllust":
+                    if(follow == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        follow = new PixivFollowingIllust(c, loader);
                     }
-                    if(await recommend.ListUpdateV1(true))
+                    if(await follow.ListUpdate(true))
                     {
-                        string title = loader.GetString("RecommendedV1Refresh");
+                        string title = loader.GetString("FollowingUserUpdatingUpdate");
                         string content = loader.GetString("RefreshExplanation");
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
                     break;
-                case "You_Like_V2":
+                case "Recommendation":
                     if(recommend == null)
                     {
                         recommend = new PixivRecommendation(c, loader);
                     }
-                    if(await recommend.ListUpdateV2(true))
+                    if(await recommend.ListUpdate(true))
                     {
-                        string title = loader.GetString("RecommendedV2Refresh");
+                        string title = loader.GetString("RecommendedRefresh");
                         string content = loader.GetString("RefreshExplanation");
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);
                     }
-                    await recommend.ListUpdateV2(true);
+                    await recommend.ListUpdate(true);
                     break;
                 default:
-                    if(top50 == null)
+                    if (recommend == null)
                     {
-                        top50 = new PixivTop50(loader);
+                        recommend = new PixivRecommendation(c, loader);
                     }
-                    if(await top50.listUpdate(true))
+                    if (await recommend.ListUpdate(true))
                     {
-                        string title = loader.GetString("Top50Refresh");
+                        string title = loader.GetString("RecommendedRefresh");
                         string content = loader.GetString("RefreshExplanation");
                         ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
                         tm.ToastPush(120);

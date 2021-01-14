@@ -180,43 +180,20 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
             Progress = 0;
             result = await Task.Run(async () => 
             {
-                if (c.mode.Equals("You_Like_V2"))
+                //lamda表达式写匿名回调函数作为参数
+                var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
                 {
-                    //lamda表达式写匿名回调函数作为参数
-                    var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
+                    await Task.Run(async () =>
                     {
-                        await Task.Run(async () => 
-                        {
-                            await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                                InfoBar = Visibility.Visible;
-                                Loading = Visibility.Visible;
-                                Progress = (int)(loaded * 100 / length);                                
-                            });
+                        await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                            InfoBar = Visibility.Visible;
+                            Loading = Visibility.Visible;
+                            Progress = (int)(loaded * 100 / length);
                         });
                     });
-                    return res;
-                }
-                else
-                {
-                    var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, c.cookie, async (loaded, length) =>
-                    {
-                        await Task.Run(async () =>
-                        {
-                            int progress = (int)(loaded * 100 / length);
-                            if(progress != Progress)
-                            {
-                                await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                                    InfoBar = Visibility.Visible;
-                                    Loading = Visibility.Visible;
-                                    Progress = (int)(loaded * 100 / length);
-                                });
-                            }
-                        });
-                    });
-                    return res;
-                }
+                });
+                return res;
             });       
-
             if (result)
             {
                 await SetItems(image);

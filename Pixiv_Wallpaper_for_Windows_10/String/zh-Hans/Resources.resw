@@ -48,9 +48,6 @@
   <data name="BatterySetting" xml:space="preserve">
     <value>电池设定</value>
   </data>
-  <data name="ClearCookies.Content" xml:space="preserve">
-    <value>清除Cookie</value>
-  </data>
   <data name="ClearIllustrations.Content" xml:space="preserve">
     <value>清除插画</value>
   </data>
@@ -93,12 +90,6 @@
   <data name="FailToGetQueueExplanation" xml:space="preserve">
     <value>请检查你的网络连接并输入正确的账号密码</value>
   </data>
-  <data name="FailToGetQueueExplanationV1" xml:space="preserve">
-    <value>请检查你的网络连接以及登陆状态，或尝试再次登录以清除过期的cookies</value>
-  </data>
-  <data name="FailToGetTop50Queue" xml:space="preserve">
-    <value>获取pixiv每日top50队列失败</value>
-  </data>
   <data name="Illustrator" xml:space="preserve">
     <value>画师: </value>
   </data>
@@ -123,41 +114,11 @@
   <data name="Password.Text" xml:space="preserve">
     <value>密码:</value>
   </data>
-  <data name="PixivLoginV1.Text" xml:space="preserve">
-    <value>登录Pixiv(WebView)</value>
-  </data>
-  <data name="PixivLoginV1Explanation.Text" xml:space="preserve">
-    <value>点击按钮进入pixiv登录页</value>
-  </data>
-  <data name="PixivLoginV1LoggedIn" xml:space="preserve">
-    <value>已登录</value>
-  </data>
-  <data name="PixivLoginV1Not" xml:space="preserve">
-    <value>请登录</value>
-  </data>
-  <data name="PixivLoginV2.Text" xml:space="preserve">
-    <value>登录Pixiv(PixivCS)</value>
-  </data>
-  <data name="PixivLoginV2Explanation.Text" xml:space="preserve">
-    <value>应用会自动将你的账号密码存储在本地</value>
-  </data>
   <data name="PleaseCheckNetwork" xml:space="preserve">
     <value>请检查您的网络连接</value>
   </data>
   <data name="Preview.Text" xml:space="preserve">
     <value>预览</value>
-  </data>
-  <data name="RecommendedV1Refresh" xml:space="preserve">
-    <value>pixiv推荐ver1插画队列已更新</value>
-  </data>
-  <data name="RecommendedV2Refresh" xml:space="preserve">
-    <value>pixiv推荐ver2插画队列已更新</value>
-  </data>
-  <data name="RecommendV1.Content" xml:space="preserve">
-    <value>pixiv推荐ver1 WebAPI</value>
-  </data>
-  <data name="RecommendV2.Content" xml:space="preserve">
-    <value>pixiv推荐ver2 PixivCS</value>
   </data>
   <data name="Refresh.Text" xml:space="preserve">
     <value>更新插画队列</value>
@@ -176,12 +137,6 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>成功更换壁纸</value>
-  </data>
-  <data name="Top50.Content" xml:space="preserve">
-    <value>每日Top50</value>
-  </data>
-  <data name="Top50Refresh" xml:space="preserve">
-    <value>Top50插画队列已更新</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>在下载插画时发生了未知错误</value>
@@ -212,5 +167,35 @@
   </data>
   <data name="CopyLink" xml:space="preserve">
     <value>链接已复制到剪贴板</value>
+  </data>
+  <data name="Bookmark.Content" xml:space="preserve">
+    <value>Pixiv 书签</value>
+  </data>
+  <data name="BookmarkUpdate" xml:space="preserve">
+    <value>书签插画队列已更新</value>
+  </data>
+  <data name="FailToGetBookmarkQueue" xml:space="preserve">
+    <value>获取书签插画队列失败</value>
+  </data>
+  <data name="FailToGetFollowingUserUpdatingQueue" xml:space="preserve">
+    <value>获取已关注用户的插画更新队列失败</value>
+  </data>
+  <data name="FollowingUserUpdating.Content" xml:space="preserve">
+    <value>已关注用户的插画更新</value>
+  </data>
+  <data name="FollowingUserUpdatingUpdate" xml:space="preserve">
+    <value>已关注用户的插画更新队列已更新</value>
+  </data>
+  <data name="PixivLogin.Text" xml:space="preserve">
+    <value>登录Pixiv</value>
+  </data>
+  <data name="PixivLoginExplanation.Text" xml:space="preserve">
+    <value>应用会自动储存你的账号与密码</value>
+  </data>
+  <data name="Recommend.Content" xml:space="preserve">
+    <value>Pixiv 推荐 </value>
+  </data>
+  <data name="RecommendedRefresh" xml:space="preserve">
+    <value>推荐插画队列已更新</value>
   </data>
 </root>
