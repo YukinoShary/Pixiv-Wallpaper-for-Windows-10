@@ -256,6 +256,10 @@
           <source>Recommended illustration queue has been updated</source>
           <target state="translated">推荐插画队列已更新</target>
         </trans-unit>
+        <trans-unit id="EmptyQueue" translate="yes" xml:space="preserve">
+          <source>There's not more content in this collection</source>
+          <target state="new">There's not more content in this collection</target>
+        </trans-unit>
       </group>
     </body>
   </file>

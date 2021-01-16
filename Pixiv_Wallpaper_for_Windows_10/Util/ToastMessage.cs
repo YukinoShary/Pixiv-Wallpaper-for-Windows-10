@@ -7,6 +7,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.QueryStringDotNET;
 using Windows.UI.Notifications;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
@@ -16,7 +17,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         private string content { get; set; }
         private string image { get; set; }
         private ToastMode toastMode { get; set; }
-        private readonly string logo = "ms-appdata:///Square44x44Logo.scale-200.png";
+        private readonly string logo = ApplicationData.Current.LocalFolder.Path + @"Assets\Square44x44Logo.scale-200.png";
         private ToastVisual visual;
         private ToastActionsCustom actions;
         private ToastContent toastContent;
@@ -122,6 +123,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 toastContent.Actions = actions;
             }
             var toast = new ToastNotification(toastContent.GetXml());
+            string monitor = toast.Content.GetXml();
             toast.ExpirationTime = DateTime.Now.AddMinutes(minutes);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }

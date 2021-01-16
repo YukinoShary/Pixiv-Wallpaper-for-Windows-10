@@ -73,9 +73,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                     }
                     else if (!await ListUpdate())
                     {
-                        //Undo Message:已经无法获取更多插画
-                        //
-                        //
+                        string title = loader.GetString("EmptyQueue");
+                        ToastMessage tm = new ToastMessage(title, null, ToastMessage.ToastMode.OtherMessage);
+                        tm.ToastPush(60);
                         return null;
                     }                       
                 }

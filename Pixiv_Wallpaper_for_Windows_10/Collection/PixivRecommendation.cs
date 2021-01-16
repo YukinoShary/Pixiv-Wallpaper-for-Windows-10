@@ -16,7 +16,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 {
     class PixivRecommendation
     {
-        //private ConcurrentQueue<string> RecommV1;
         private ConcurrentQueue<ImageInfo> Recomm;
         private Pixiv pixiv;
         private Conf config;
@@ -61,9 +60,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                     }
                     else if (!await ListUpdate())
                     {
-                        //Undo Message:已经无法获取更多插画
-                        //
-                        //
+                        string title = loader.GetString("FailToGetQueue");
+                        string content = loader.GetString("FailToGetQueueExplanation");
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                        tm.ToastPush(60);
                         return null;
                     }
                 }
@@ -79,9 +79,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || Recomm.Count == 0 || Recomm == null)
             {
-                //Undo:处理登陆异常
-                //
-                //
                 var t = await pixiv.getRecommenlist(imgId, nextUrl, config.account, config.password);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;

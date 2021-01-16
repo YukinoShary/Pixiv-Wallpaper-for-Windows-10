@@ -43,11 +43,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private Conf c;
         public static MainPage mp;
         private ExtendedExecutionSession session;
-        private PixivBookmark bookmark;
-        private PixivFollowingIllust follow;
-        private PixivRecommendation recommend;
-        private string backgroundMode;
-        private ImageShowViewModel viewModel;
+        private static PixivBookmark bookmark;
+        private static PixivFollowingIllust follow;
+        private static PixivRecommendation recommend;
+        private static string backgroundMode;
+        private static ImageShowViewModel viewModel;
         public ResourceLoader loader;
 
         public MainPage()
@@ -87,8 +87,15 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private async Task ShowPageInitialize()
         {
-            await viewModel.SetItems(c.lastImg);
-            main.Navigate(typeof(ShowPage), viewModel);
+            if(c.lastImg != null)
+            {
+                await viewModel.SetItems(c.lastImg);
+                main.Navigate(typeof(ShowPage), viewModel);
+            }
+            else
+            {
+                main.Navigate(typeof(SettingPage));
+            }
         }
 
         private async void Timer_Tick(object sender, object e)
@@ -102,6 +109,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         public async Task<bool> update()
         {
             ImageInfo img = new ImageInfo();
+            //也许用反射会更好？
             switch (c.mode)
             {
                 case "Bookmark":

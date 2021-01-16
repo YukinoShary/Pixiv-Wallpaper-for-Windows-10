@@ -183,6 +183,9 @@
   <data name="DataRequestFailExplanation" xml:space="preserve">
     <value>Please confirm you have logged or clear the cookies and login again</value>
   </data>
+  <data name="EmptyQueue" xml:space="preserve">
+    <value>There's not more content in this collection</value>
+  </data>
   <data name="ExtendedExecutionDenied" xml:space="preserve">
     <value>Application extended execution has been denied</value>
   </data>
@@ -208,7 +211,7 @@
     <value>Failed to get pixiv recommendation queue</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>Please check your network connection and enter the correct account and password</value>
+    <value>Please check your network connection and make sure you have enter the correct account and password</value>
   </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>

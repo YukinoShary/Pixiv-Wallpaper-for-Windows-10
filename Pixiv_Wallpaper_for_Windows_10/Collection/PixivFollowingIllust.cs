@@ -29,9 +29,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if (flag || illustQueue.Count == 0 || illustQueue == null)
             {
-                //Undo:处理登陆异常
-                //
-                //
                 var t = await pixiv.getIllustFollowList(nextUrl, config.account, config.password);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
@@ -71,9 +68,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                     }
                     else if (!await ListUpdate())
                     {
-                        //Undo Message:已经无法获取更多插画
-                        //
-                        //
+                        string title = loader.GetString("EmptyQueue");
+                        ToastMessage tm = new ToastMessage(title, null, ToastMessage.ToastMode.OtherMessage);
+                        tm.ToastPush(60);
                         return null;
                     }
                 }

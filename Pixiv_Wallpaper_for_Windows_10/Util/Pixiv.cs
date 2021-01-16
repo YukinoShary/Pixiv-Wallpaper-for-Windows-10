@@ -20,83 +20,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     public class Pixiv
     {
-        private readonly string RECOMM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=auto&num_recommendations=1000&page=discovery&mode=all";
-        private readonly string RECOMMSAM_URL = "https://www.pixiv.net/rpc/recommender.php?type=illust&sample_illusts=";
-        private readonly string DETA_URL = "https://api.imjad.cn/pixiv/v1/?type=illust&id=";
-        private readonly string RALL_URL = "https://www.pixiv.net/ranking.php?mode=daily&content=illust&p=1&format=json";
-
-        //private string nexturl = "begin";
         public static PixivBaseAPI GlobalBaseAPI;
-        //public string cookie { get; set; }
 
         public Pixiv()
         {
             GlobalBaseAPI = new PixivBaseAPI();  
-            GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
-        }
-
-
-        /// <summary>
-        /// 获取TOP 50推荐列表
-        /// </summary>
-        /// <returns></returns>
-        public async Task<ConcurrentQueue<string>> getRallist()
-        {
-            string rall;
-            ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
-            HttpUtil top50 = new HttpUtil(RALL_URL, HttpUtil.Contype.JSON);
-
-            rall = await top50.NewGetDataAsync();
-
-            if (!rall.Equals("ERROR"))
-            {
-                dynamic o = JObject.Parse(rall);
-                JArray arr = o.contents;
-
-                foreach (JToken j in arr)
-                {
-                    queue.Enqueue(j["illust_id"].ToString());
-                }
-            }
-            return queue;
-        }
-
-
-        /// <summary>
-        /// 获取"猜你喜欢"推荐列表(Web模拟)
-        /// </summary>
-        /// <returns>插画id队列</returns>
-
-        public async Task<ConcurrentQueue<string>> getRecommenlist(string imgId)
-        {
-            string like, finalUrl;
-            HttpUtil recomm;
-            ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
-            if(imgId == null)
-            {
-                finalUrl = RECOMM_URL;
-            }
-            else
-            {
-                finalUrl = RECOMMSAM_URL + imgId + "&num_recommendations=52";//根据sample插画进行关联推荐
-            }
-            recomm = new HttpUtil(finalUrl, HttpUtil.Contype.JSON);
-            //recomm.cookie = cookie;
-            recomm.referrer = "https://www.pixiv.net/discovery";
-
-            like = await recomm.NewGetDataAsync();
-
-            if (!like.Equals("ERROR"))
-            {
-                dynamic o = JObject.Parse(like);
-                JArray arr = o.recommendations;
-                foreach (JToken j in arr)
-                {
-                    queue.Enqueue(j.ToString());
-                }
-            }
-    
-            return queue;
+            //GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
         }
 
         /// <summary>
@@ -119,7 +48,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch
                 {
-                    return null;
+                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             if(imgId == null)
@@ -224,9 +153,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch(Exception e)
                 {
-                    //处理错误
                     Console.WriteLine(e.Message);
-                    return null;
+                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             if (nextUrl == "begin")
@@ -285,7 +213,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch
                 {
-                    return null;
+                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             if (nextUrl == "begin")
@@ -320,47 +248,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
             }
             return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
-        }
-
-        /// <summary>
-        /// 查询插画信息
-        /// </summary>
-        /// <param name="imgId">要查找的作品ID</param>
-        /// <returns></returns>
-        public async Task<ImageInfo> getImageInfo(string imgId)
-        {
-            ImageInfo imginfo = null;
-            HttpUtil info = new HttpUtil(DETA_URL + imgId, HttpUtil.Contype.JSON);
-            string data = await info.NewGetDataAsync();
-            if (!data.Equals("ERROR"))
-            {
-                imginfo = new ImageInfo();
-
-                dynamic o = JObject.Parse(data);
-                dynamic ill = o.response;
-                imginfo.viewCount = (int)ill[0]["stats"]["views_count"];
-                imginfo.imgUrl = ill[0]["image_urls"]["large"].ToString();
-                switch (ill[0]["age_limit"].ToString())
-                {
-                    case "all-age":
-                        imginfo.isR18 = false;
-                        break;
-                    case "r18":
-                        imginfo.isR18 = true;
-                        break;
-                    case "r18-g":
-                        imginfo.isR18 = true;
-                        break;
-                }
-                imginfo.userId = ill[0]["user"]["id"].ToString();
-                imginfo.userName = ill[0]["user"]["name"].ToString();
-                imginfo.imgId = ill[0]["id"].ToString() ;
-                imginfo.title = ill[0]["title"].ToString();
-                imginfo.height = (int)ill[0]["height"];
-                imginfo.width = (int)ill[0]["width"];
-                imginfo.format = imginfo.imgUrl.Split('.').Last();
-            }
-            return imginfo;
         }
     }
 }

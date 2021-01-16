@@ -257,6 +257,10 @@
           <source>Recommended illustration queue has been updated</source>
           <target state="translated">おすすめキューが更新しました</target>
         </trans-unit>
+        <trans-unit id="EmptyQueue" translate="yes" xml:space="preserve">
+          <source>There's not more content in this collection</source>
+          <target state="new">There's not more content in this collection</target>
+        </trans-unit>
       </group>
     </body>
   </file>

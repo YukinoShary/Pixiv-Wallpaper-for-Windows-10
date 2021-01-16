@@ -132,7 +132,6 @@
     <Compile Include="ViewModel\ImageShowViewModel.cs" />
     <Compile Include="Util\Pixiv.cs" />
     <Compile Include="Collection\PixivRecommendation.cs" />
-    <Compile Include="Collection\PixivTop50.cs" />
     <Compile Include="Util\ToastMessage.cs" />
   </ItemGroup>
   <ItemGroup>
