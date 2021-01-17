@@ -27,7 +27,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         }
         public async Task<bool> ListUpdate(bool flag = false)
         {
-            if (flag || illustQueue.Count == 0 || illustQueue == null)
+            if (flag || illustQueue == null || illustQueue.Count == 0)
             {
                 var t = await pixiv.getIllustFollowList(nextUrl, config.account, config.password);
                 illustQueue = t.Item1;

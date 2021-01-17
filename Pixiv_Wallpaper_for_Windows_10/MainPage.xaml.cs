@@ -87,9 +87,9 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private async Task ShowPageInitialize()
         {
-            if(c.lastImg != null)
-            {
-                await viewModel.SetItems(c.lastImg);
+            await viewModel.SetItems(c.lastImg);
+            if (c.lastImg != null)
+            {               
                 main.Navigate(typeof(ShowPage), viewModel);
             }
             else

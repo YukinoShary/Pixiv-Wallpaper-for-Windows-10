@@ -15,11 +15,13 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         private ConcurrentQueue<ImageInfo> illustQueue;
         private Pixiv pixiv;
         private Conf config;
+        private PixivCS.Objects.ResponseUser currentUser;
         private ResourceLoader loader;
         private string nextUrl;
         public PixivBookmark(Conf config, ResourceLoader loader)
         {
             illustQueue = new ConcurrentQueue<ImageInfo>();
+            currentUser = null;
             pixiv = new Pixiv();
             this.config = config;
             this.loader = loader;
@@ -28,11 +30,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
 
         public async Task<bool> ListUpdate(bool flag = false)
         {
-            if(flag || illustQueue.Count == 0 || illustQueue == null)
+            if(flag || illustQueue == null || illustQueue.Count == 0)
             { 
-                var t = await pixiv.getBookmarkIllustList(nextUrl, config.account, config.password);
+                var t = await pixiv.getBookmarkIllustList(nextUrl, currentUser, config.account, config.password);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
+                currentUser = t.Item3;
                 if (illustQueue != null && illustQueue.Count != 0)
                 {
                     return true;

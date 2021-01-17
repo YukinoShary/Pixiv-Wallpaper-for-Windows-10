@@ -25,7 +25,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public Pixiv()
         {
             GlobalBaseAPI = new PixivBaseAPI();  
-            //GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
+            GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
-        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nextUrl, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nextUrl, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             if (GlobalBaseAPI.AccessToken == null)
@@ -48,7 +48,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch
                 {
-                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             if(imgId == null)
@@ -78,6 +78,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     nextUrl = recommendres.NextUrl?.ToString() ?? "";
                     foreach (PixivCS.Objects.UserPreviewIllust ill in recommendres.Illusts)
                     {
+                        //当插画数大于1时插画URL会改变，以后再解决吧
                         if (ill.PageCount == 1)
                         {
                             ImageInfo imginfo = new ImageInfo();
@@ -97,7 +98,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return null;
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             else
@@ -127,10 +128,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return null;
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }      
-            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="account"></param>
         /// <param name="password">元组数据，item1为插画信息队列，item2为下次请求的url参数</param>
         /// <returns></returns>
-        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getIllustFollowList(string nextUrl, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getIllustFollowList(string nextUrl, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts followIllust = null;
@@ -154,7 +155,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
                 }
             }
             if (nextUrl == "begin")
@@ -169,26 +170,34 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     .PixivAppAPI(GlobalBaseAPI)
                     .GetIllustFollowAsync(getparam("restrict"), getparam("offset"));
             }
-            nextUrl = followIllust.NextUrl?.ToString() ?? "";
-            foreach (PixivCS.Objects.UserPreviewIllust ill in followIllust.Illusts)
+            try
             {
-                if (ill.PageCount == 1)
+                nextUrl = followIllust.NextUrl?.ToString() ?? "";
+                foreach (PixivCS.Objects.UserPreviewIllust ill in followIllust.Illusts)
                 {
-                    ImageInfo imginfo = new ImageInfo();
-                    imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
-                    imginfo.viewCount = (int)ill.TotalView;
-                    imginfo.isR18 = false;
-                    imginfo.userId = ill.User.Id.ToString();
-                    imginfo.userName = ill.User.Name;
-                    imginfo.imgId = ill.Id.ToString();
-                    imginfo.title = ill.Title;
-                    imginfo.height = (int)ill.Height;
-                    imginfo.width = (int)ill.Width;
-                    imginfo.format = imginfo.imgUrl.Split('.').Last();
-                    queue.Enqueue(imginfo);
+                    //当插画数大于1时插画URL会改变，以后再解决吧
+                    if (ill.PageCount == 1)
+                    {
+                        ImageInfo imginfo = new ImageInfo();
+                        imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                        imginfo.viewCount = (int)ill.TotalView;
+                        imginfo.isR18 = false;
+                        imginfo.userId = ill.User.Id.ToString();
+                        imginfo.userName = ill.User.Name;
+                        imginfo.imgId = ill.Id.ToString();
+                        imginfo.title = ill.Title;
+                        imginfo.height = (int)ill.Height;
+                        imginfo.width = (int)ill.Width;
+                        imginfo.format = imginfo.imgUrl.Split('.').Last();
+                        queue.Enqueue(imginfo);
+                    }
                 }
             }
-            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+            catch(Exception)
+            {
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+            }
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
         }
 
         /// <summary>
@@ -198,11 +207,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
-        public async Task<Tuple<ConcurrentQueue<ImageInfo>, string>> getBookmarkIllustList(string nextUrl, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>> getBookmarkIllustList(string nextUrl, PixivCS.Objects.ResponseUser currentUser, string account = null, string password = null)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts bookmarkIllust = null;
-            PixivCS.Objects.ResponseUser currentUser = null;
+            //Undo:解决初次登录后再次请求currentUser为null的问题
             if (GlobalBaseAPI.AccessToken == null)
             {
                 try
@@ -213,7 +222,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch
                 {
-                    return new Tuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(null, "ERROR", null);
                 }
             }
             if (nextUrl == "begin")
@@ -229,25 +238,33 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     .GetUserBookmarksIllustAsync(currentUser.Id, getparam("restrict"),
                     getparam("filter"), getparam("max_bookmark_id"));
             }
-            nextUrl = bookmarkIllust.NextUrl?.ToString() ?? "";
-            foreach (PixivCS.Objects.UserPreviewIllust ill in bookmarkIllust.Illusts)
+            try
             {
-                if (ill.PageCount == 1)
+                nextUrl = bookmarkIllust.NextUrl?.ToString() ?? "";
+                foreach (PixivCS.Objects.UserPreviewIllust ill in bookmarkIllust.Illusts)
                 {
-                    ImageInfo imginfo = new ImageInfo();
-                    imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
-                    imginfo.viewCount = (int)ill.TotalView;
-                    imginfo.isR18 = false;
-                    imginfo.userId = ill.User.Id.ToString();
-                    imginfo.userName = ill.User.Name;
-                    imginfo.imgId = ill.Id.ToString();
-                    imginfo.height = (int)ill.Height;
-                    imginfo.width = (int)ill.Width;
-
-                    queue.Enqueue(imginfo);
+                    if (ill.PageCount == 1)
+                    {
+                        ImageInfo imginfo = new ImageInfo();
+                        imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                        imginfo.viewCount = (int)ill.TotalView;
+                        imginfo.isR18 = false;
+                        imginfo.userId = ill.User.Id.ToString();
+                        imginfo.title = ill.Title;
+                        imginfo.userName = ill.User.Name;
+                        imginfo.imgId = ill.Id.ToString();
+                        imginfo.height = (int)ill.Height;
+                        imginfo.width = (int)ill.Width;
+                        imginfo.format = imginfo.imgUrl.Split('.').Last();
+                        queue.Enqueue(imginfo);
+                    }
                 }
             }
-            return new Tuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+            catch(Exception)
+            {
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(null, "ERROR", null);
+            }
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(queue, nextUrl, currentUser);
         }
     }
 }

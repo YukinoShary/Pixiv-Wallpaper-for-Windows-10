@@ -107,8 +107,9 @@
           <target state="translated">获取pixiv推荐队列失败</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and enter the correct account and password</source>
-          <target state="translated">请检查你的网络连接并输入正确的账号密码</target>
+          <source>Please check your network connection and make sure you have enter the correct account and password</source>
+          <target state="needs-review-translation">请检查你的网络连接并输入正确的账号密码</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>

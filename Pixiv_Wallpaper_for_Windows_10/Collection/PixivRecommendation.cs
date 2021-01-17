@@ -77,7 +77,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         /// <returns></returns>
         public async Task<bool> ListUpdate(bool flag = false, string imgId = null)
         {
-            if(flag || Recomm.Count == 0 || Recomm == null)
+            if(flag || Recomm == null || Recomm.Count == 0)
             {
                 var t = await pixiv.getRecommenlist(imgId, nextUrl, config.account, config.password);
                 Recomm = t.Item1;
