@@ -18,6 +18,7 @@ PixivCS登录模式采用[PixivCS](https://github.com/tobiichiamane/pixivcs/blob
 
 ## UWP使用代理
 您需要自己准备代理服务器与代理软件，通过代理软件的全局代理模式或者PAC代理模式并 [解除UWP应用Loopback限制](https://sspai.com/post/41137 "UWP loopback")的方式解决UWP应用通过代理连接pixiv.net的问题。从Microsoft Store获取的应用可以直接以管理员模式开启控制台面板输入：  
+
 `checknetisolation loopbackexempt -a -n=63929Shary.PixivWallpaperforWindows10_hzhgmpxe3vqfr`
 
 由于pixiv部分url并未被完全封锁，大部分的PAC文件中并没有写入这部分url，可能会出现代理开启的情况下图片加载速度还是很慢的情况。因此在PAC代理模式下，推荐手动将pixiv图床的url “i.pximg.net”与“pixivsketch.net”添加进pac列表中以加速图片下载速度。
