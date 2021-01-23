@@ -22,11 +22,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         private ResourceLoader loader;
         private string nextUrl;
 
-        public PixivRecommendation(Conf config, ResourceLoader loader)
+        public PixivRecommendation(Conf config, ResourceLoader loader, Pixiv pixiv)
         {
             this.config = config;
             this.loader = loader;
-            pixiv = new Pixiv();
+            this.pixiv = pixiv;
             Recomm = new ConcurrentQueue<ImageInfo>();
             nextUrl = "begin";
         }
@@ -79,9 +79,10 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || Recomm == null || Recomm.Count == 0)
             {
-                var t = await pixiv.getRecommenlist(imgId, nextUrl, config.account, config.password);
+                var t = await pixiv.getRecommenlist(imgId, nextUrl, config.ActPswText.Item1, config.ActPswText.Item2, config.RefreshToken);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;
+                config.RefreshToken = t.Item3;
                 if (Recomm != null && Recomm.Count != 0)
                     return true;                   
                 else

@@ -15,66 +15,105 @@ using System.Collections.Concurrent;
 using System.Web;
 using System.IO;
 using Pixiv_Wallpaper_for_Windows_10.Model;
+using Windows.Security.Credentials;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     public class Pixiv
     {
-        public static PixivBaseAPI GlobalBaseAPI;
+        public static PixivBaseAPI GlobalBaseAPI = new PixivBaseAPI();
+        private static bool loginSuccess;
+        private static PixivCS.Objects.ResponseUser currentUser;
 
         public Pixiv()
         {
-            GlobalBaseAPI = new PixivBaseAPI();  
             GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
+            loginSuccess = false;
+            currentUser = null;
         }
 
+        /// <summary>
+        /// 提供内部pixiv方法登录
+        /// </summary>
+        /// <param name="actPsw"></param>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
+        private async Task<string> LoginMethod(string account, string password, string refreshToken)
+        {
+            PixivCS.Objects.AuthResult res = null;
+            try
+            {    
+                if (refreshToken != null)
+                {
+                    res = await GlobalBaseAPI.AuthAsync(refreshToken);
+                    currentUser = res.Response.User;
+                    loginSuccess = true;
+                }
+                else
+                {
+                    res = await GlobalBaseAPI.AuthAsync(account, password);
+                    currentUser = res.Response.User;
+                    loginSuccess = true;
+                }
+                return refreshToken;
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    res = await GlobalBaseAPI.AuthAsync(account, password);
+                    currentUser = res.Response.User;
+                    loginSuccess = true;
+                    return refreshToken;
+                }
+                catch
+                {
+                    loginSuccess = false;
+                }
+                return "ERROR"; //凭证不能为空
+            }
+        }
         /// <summary>
         /// 获取"猜你喜欢"(PixivCS Api)
         /// </summary>
         /// <param name="imgId">获取与此插画类似的其他插画</param>
         /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
         /// <param name="account"></param>
-        /// <param name="password"></param>
+        /// /// <param name="password"></param>
+        /// <param name="refreshToken"></param>
         /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
-        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nextUrl, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, string>> getRecommenlist(string imgId, string nextUrl, string account, string password, string refreshToken)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
-            if (GlobalBaseAPI.AccessToken == null)
+            string newToken = null;
+            if (GlobalBaseAPI.AccessToken == null  || loginSuccess == false)
             {
-                try
-                {
-                    PixivCS.Objects.AuthResult res = null;
-                    res = await GlobalBaseAPI.AuthAsync(account, password);
-                }
-                catch
-                {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
-                }
+                newToken = await LoginMethod(account, password, refreshToken);
             }
             if(imgId == null)
             {
                 PixivCS.Objects.IllustRecommended recommendres = null;
-                //是否使用nexturl更新list
-                if ("begin".Equals(nextUrl))
-                {
-                    recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync();
-                }
-                else
-                {
-                    Uri next = new Uri(nextUrl);
-                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync
-                        (ContentType: getparam("content_type"),
-                         IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
-                         Filter: getparam("filter"),
-                         MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
-                         MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
-                         Offset: getparam("offset"),
-                         IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
-                         IncludePrivacyPolicy: getparam("include_privacy_policy"));
-                }
                 try
                 {
+                    //是否使用nexturl更新list
+                    if ("begin".Equals(nextUrl))
+                    {
+                        recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync();
+                    }
+                    else
+                    {
+                        Uri next = new Uri(nextUrl);
+                        string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                        recommendres = await new PixivAppAPI(GlobalBaseAPI).GetIllustRecommendedAsync
+                            (ContentType: getparam("content_type"),
+                             IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
+                             Filter: getparam("filter"),
+                             MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
+                             MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
+                             Offset: getparam("offset"),
+                             IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
+                             IncludePrivacyPolicy: getparam("include_privacy_policy"));
+                    }
                     nextUrl = recommendres.NextUrl?.ToString() ?? "";
                     foreach (PixivCS.Objects.UserPreviewIllust ill in recommendres.Illusts)
                     {
@@ -98,15 +137,15 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
                 }
             }
             else
             {
                 PixivCS.Objects.UserIllusts related = null;
-                related = await new PixivAppAPI(GlobalBaseAPI).GetIllustRelatedAsync(imgId);
                 try
                 {
+                    related = await new PixivAppAPI(GlobalBaseAPI).GetIllustRelatedAsync(imgId);
                     foreach (PixivCS.Objects.UserPreviewIllust ill in related.Illusts)
                     {
                         if (ill.PageCount == 1)
@@ -128,50 +167,42 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
                 }
             }      
-            return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
         }
 
         /// <summary>
         /// 获取已关注画师最近更新的插画队列(PixivCS)
         /// </summary>
         /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
-        /// <param name="account"></param>
-        /// <param name="password">元组数据，item1为插画信息队列，item2为下次请求的url参数</param>
+        /// <param name="actPsw"></param>
+        /// <param name="refreshToken">元组数据，item1为插画信息队列，item2为下次请求的url参数</param>
         /// <returns></returns>
-        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getIllustFollowList(string nextUrl, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, string>> getIllustFollowList(string nextUrl, string account, string password, string refreshToken)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts followIllust = null;
-            if (GlobalBaseAPI.AccessToken == null)
+            string newToken = null;
+            if (GlobalBaseAPI.AccessToken == null || loginSuccess == false)
             {
-                try
-                {
-                    PixivCS.Objects.AuthResult res = null;
-                    res = await GlobalBaseAPI.AuthAsync(account, password);
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
-                }
-            }
-            if (nextUrl == "begin")
-            {
-                followIllust = await new PixivAppAPI(GlobalBaseAPI).GetIllustFollowAsync();
-            }
-            else
-            {
-                Uri next = new Uri(nextUrl);
-                string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                followIllust = await new PixivCS
-                    .PixivAppAPI(GlobalBaseAPI)
-                    .GetIllustFollowAsync(getparam("restrict"), getparam("offset"));
+                newToken = await LoginMethod(account, password, refreshToken);
             }
             try
             {
+                if (nextUrl == "begin")
+                {
+                    followIllust = await new PixivAppAPI(GlobalBaseAPI).GetIllustFollowAsync();
+                }
+                else
+                {
+                    Uri next = new Uri(nextUrl);
+                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                    followIllust = await new PixivCS
+                        .PixivAppAPI(GlobalBaseAPI)
+                        .GetIllustFollowAsync(getparam("restrict"), getparam("offset"));
+                }
                 nextUrl = followIllust.NextUrl?.ToString() ?? "";
                 foreach (PixivCS.Objects.UserPreviewIllust ill in followIllust.Illusts)
                 {
@@ -195,51 +226,42 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch(Exception)
             {
-                return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "ERROR");
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
             }
-            return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
         }
 
         /// <summary>
         /// 获取书签插画队列(PixivCS)
         /// </summary>
         /// <param name="nextUrl">从首次请求中获取到的带有参数设置的请求url,可用于下一次的带参请求</param>
-        /// <param name="account"></param>
-        /// <param name="password"></param>
+        /// <param name="actPsw"></param>
+        /// <param name="refreshToken"></param>
         /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
-        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>> getBookmarkIllustList(string nextUrl, PixivCS.Objects.ResponseUser currentUser, string account = null, string password = null)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, string>> getBookmarkIllustList(string nextUrl, string account, string password, string refreshToken)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts bookmarkIllust = null;
-            //Undo:解决初次登录后再次请求currentUser为null的问题
-            if (GlobalBaseAPI.AccessToken == null)
+            string newToken = null;
+            if (GlobalBaseAPI.AccessToken == null || loginSuccess == false)
             {
-                try
-                {
-                    PixivCS.Objects.AuthResult res = null;
-                    res = await GlobalBaseAPI.AuthAsync(account, password);
-                    currentUser = res.Response.User;
-                }
-                catch
-                {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(null, "ERROR", null);
-                }
-            }
-            if (nextUrl == "begin")
-            {
-                bookmarkIllust = await new PixivAppAPI(GlobalBaseAPI).GetUserBookmarksIllustAsync(currentUser.Id);
-            }
-            else
-            {
-                Uri next = new Uri(nextUrl);
-                string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                bookmarkIllust = await new PixivCS
-                    .PixivAppAPI(GlobalBaseAPI)
-                    .GetUserBookmarksIllustAsync(currentUser.Id, getparam("restrict"),
-                    getparam("filter"), getparam("max_bookmark_id"));
+                newToken = await LoginMethod(account, password, refreshToken);
             }
             try
             {
+                if (nextUrl == "begin")
+                {
+                    bookmarkIllust = await new PixivAppAPI(GlobalBaseAPI).GetUserBookmarksIllustAsync(currentUser.Id);
+                }
+                else
+                {
+                    Uri next = new Uri(nextUrl);
+                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                    bookmarkIllust = await new PixivCS
+                        .PixivAppAPI(GlobalBaseAPI)
+                        .GetUserBookmarksIllustAsync(currentUser.Id, getparam("restrict"),
+                        getparam("filter"), getparam("max_bookmark_id"));
+                }
                 nextUrl = bookmarkIllust.NextUrl?.ToString() ?? "";
                 foreach (PixivCS.Objects.UserPreviewIllust ill in bookmarkIllust.Illusts)
                 {
@@ -262,9 +284,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch(Exception)
             {
-                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(null, "ERROR", null);
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
             }
-            return new ValueTuple<ConcurrentQueue<ImageInfo>, string, PixivCS.Objects.ResponseUser>(queue, nextUrl, currentUser);
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
         }
     }
 }

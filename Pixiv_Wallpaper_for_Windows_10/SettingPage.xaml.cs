@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Search;
 using Windows.Storage.FileProperties;
 using Windows.ApplicationModel.Resources;
+using Windows.Security.Credentials;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -53,10 +54,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
             CalcutateCacheSize();
             combox1.SelectedValue = c.time;
             combox2.SelectedValue = c.backgroundMode;
-
             lock_switch.IsOn = c.lockscr;
-            textbox1.Text = c.account;
-            passwordbox1.Password = c.password;
+
+            textbox1.Text = c.ActPswText.Item1;
+            passwordbox1.Password = c.ActPswText.Item2;
 
             switch (c.mode)
             {
@@ -135,12 +136,36 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private void textbox1_LostFocus(object sender, RoutedEventArgs e)
         {
-            c.account = textbox1.Text;
+            if(!(textbox1.Text.Equals(c.ActPswText.Item1)&&passwordbox1.Password.Equals(c.ActPswText.Item2)))
+            {
+                string str1, str2;
+                if (textbox1.Text == null)
+                    str1 = "";
+                else
+                    str1 = textbox1.Text;
+                if (passwordbox1.Password == null)
+                    str2 = "";
+                else
+                    str2 = passwordbox1.Password;
+                c.ActPswText = (str1, str2);
+            }
         }
 
         private void passwordbox1_LostFocus(object sender, RoutedEventArgs e)
         {
-            c.password = passwordbox1.Password;
+            if (!(textbox1.Text.Equals(c.ActPswText.Item1) && passwordbox1.Password.Equals(c.ActPswText.Item2)))
+            {
+                string str1, str2;
+                if (textbox1.Text == null)
+                    str1 = "";
+                else
+                    str1 = textbox1.Text;
+                if (passwordbox1.Password == null)
+                    str2 = "";
+                else
+                    str2 = passwordbox1.Password;
+                c.ActPswText = (str1, str2);
+            }
         }
 
         private void combox1_SelectionChanged(object sender, SelectionChangedEventArgs e)

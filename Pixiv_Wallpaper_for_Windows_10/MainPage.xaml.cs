@@ -48,6 +48,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private static PixivRecommendation recommend;
         private static string backgroundMode;
         private static ImageShowViewModel viewModel;
+        private static Pixiv pixiv;
         public ResourceLoader loader;
 
         public MainPage()
@@ -56,6 +57,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
             c = new Conf();
+            pixiv = new Pixiv();
             viewModel = new ImageShowViewModel();
             session = null;
             backgroundMode = c.backgroundMode;
@@ -115,28 +117,28 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Bookmark":
                     if(bookmark == null)
                     {
-                        bookmark = new PixivBookmark(c, loader);
+                        bookmark = new PixivBookmark(c, loader, pixiv);
                     }
                     img = await bookmark.SelectArtwork();         
                     break;
                 case "FollowIllust":
                     if(follow == null)
                     {
-                        follow = new PixivFollowingIllust(c, loader);
+                        follow = new PixivFollowingIllust(c, loader, pixiv);
                     }
                     img = await follow.SelectArtwork();
                     break;
                 case "Recommendation":
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        recommend = new PixivRecommendation(c, loader, pixiv);
                     }
                     img = await recommend.SelectArtwork(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        recommend = new PixivRecommendation(c, loader, pixiv);
                     }
                     await Task.Run(async () => { img = await bookmark.SelectArtwork(); });
                     break;
@@ -341,7 +343,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 if(c.mode == "Recommendation")
                 {
                     if (recommend == null)
-                        recommend = new PixivRecommendation(c, loader);
+                        recommend = new PixivRecommendation(c, loader, pixiv);
                     await recommend.ListUpdate(true, c.lastImg.imgId);
                 }
             }
@@ -359,7 +361,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Bookmark":
                     if(bookmark == null)
                     {
-                        bookmark = new PixivBookmark(c, loader);
+                        bookmark = new PixivBookmark(c, loader, pixiv);
                     }
                     if(await bookmark.ListUpdate(true))
                     {
@@ -372,7 +374,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "FollowIllust":
                     if(follow == null)
                     {
-                        follow = new PixivFollowingIllust(c, loader);
+                        follow = new PixivFollowingIllust(c, loader, pixiv);
                     }
                     if(await follow.ListUpdate(true))
                     {
@@ -385,7 +387,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Recommendation":
                     if(recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        recommend = new PixivRecommendation(c, loader, pixiv);
                     }
                     if(await recommend.ListUpdate(true))
                     {
@@ -399,7 +401,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 default:
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader);
+                        recommend = new PixivRecommendation(c, loader, pixiv);
                     }
                     if (await recommend.ListUpdate(true))
                     {

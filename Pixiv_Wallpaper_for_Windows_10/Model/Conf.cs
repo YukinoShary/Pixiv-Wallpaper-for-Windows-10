@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Credentials;
 using Windows.Storage;
 
 namespace Pixiv_Wallpaper_for_Windows_10.Model
@@ -14,49 +15,88 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
     /// </summary>
     public class Conf
     {
-        private ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        private static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        private static PasswordVault vault = new PasswordVault();
 
-        /// <summary>
-        /// 登录信息
-        /// </summary>
-        public string account
+        public Conf()
         {
-            get
+            if(localSettings.Values["Password"] != null)
             {
-                if (localSettings.Values["Account"] != null)
-                {
-                    return localSettings.Values["Account"].ToString();
-                }
-                else
-                {
-                    return "";
-                }
+                localSettings.Values["Password"] = null;
             }
-            set
+            if(localSettings.Values["Account"] != null)
             {
-                localSettings.Values["Account"] = value;
+                localSettings.Values["Account"] = null;
             }
         }
 
         /// <summary>
-        /// 密码
+        /// 登录信息
         /// </summary>
-        public string password
-        {
+        public ValueTuple<string, string> ActPswText
+        {   
             get
             {
-                if (localSettings.Values["Password"] != null)
+                PasswordCredential accountCredential = null;
+                try
                 {
-                    return localSettings.Values["Password"].ToString();
+                    var list = vault.FindAllByResource("ActPsw");
+                    if (list.Count > 0)
+                    {
+                        accountCredential = list[0];
+                    }
+                    accountCredential.RetrievePassword();
                 }
-                else
-                {
-                    return "";
-                }
+                catch { return ("", ""); }
+                return (accountCredential.UserName, accountCredential.Password);  
             }
             set
             {
-                localSettings.Values["Password"] = value;
+                try
+                {
+                    vault.Remove(vault.FindAllByResource("ActPsw")[0]);
+                    vault.Remove(vault.FindAllByResource("RefreshToken")[0]);
+                    vault.Add(new PasswordCredential("ActPsw", value.Item1, value.Item2));
+                }
+                catch { }
+                finally
+                {
+                    vault.Add(new PasswordCredential("ActPsw", value.Item1, value.Item2));
+                }
+            }
+        }
+
+
+        public string RefreshToken
+        {
+            get
+            {
+                PasswordCredential tokenCredential = null;
+                try
+                {
+                    var list = vault.FindAllByResource("RefreshToken");
+                    if (list.Count > 0)
+                    {
+                        tokenCredential = list[0];
+                    }
+                    tokenCredential.RetrievePassword();
+                }
+                catch { return null; }
+                return tokenCredential.Password;
+            }
+            set
+            {
+                try
+                {
+                    vault.Remove(vault.FindAllByResource("RefreshToken")[0]);
+                    vault.Add(new PasswordCredential("RefreshToken", "UserName" , value));
+                }
+                catch
+                {
+                    vault.Add(new PasswordCredential("RefreshToken", "UserName", value));
+                    return;
+                }
+                
             }
         }
 
@@ -69,7 +109,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
             {
                 if (localSettings.Values["Mode"] == null)
                 {
-                    return "Top_50";
+                    return "Recommendation";
                 }
                 else
                 {
