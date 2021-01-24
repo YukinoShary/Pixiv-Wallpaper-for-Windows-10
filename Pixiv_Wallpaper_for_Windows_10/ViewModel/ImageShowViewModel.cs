@@ -120,7 +120,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         public ImageShowViewModel()
         {
             loader = ResourceLoader.GetForCurrentView("Resources");
-            DownloadManager.loader = loader;
         }
 
 
@@ -176,34 +175,47 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
         /// <returns></returns>
         public async Task LoadImageAsync(ImageInfo image, Conf c)
         {
-            bool result;
+            bool result = false;
             Progress = 0;
-            result = await Task.Run(async () => 
+            try
             {
-                //lamda表达式写匿名回调函数作为参数
-                var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
+                result = await Task.Run(async () =>
                 {
-                    await Task.Run(async () =>
+                    //lamda表达式写匿名回调函数作为参数
+                    var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
                     {
-                        await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                            InfoBar = Visibility.Visible;
-                            Loading = Visibility.Visible;
-                            Progress = (int)(loaded * 100 / length);
+                        await Task.Run(async () =>
+                        {
+                            await MainPage.mp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                                InfoBar = Visibility.Visible;
+                                Loading = Visibility.Visible;
+                                Progress = (int)(loaded * 100 / length);
+                            });
                         });
                     });
+                    return res;
                 });
-                return res;
-            });       
-            if (result)
-            {
-                await SetItems(image);
-                c.lastImg = image;
             }
-            //图片获取失败则显示lastImage
-            else
+            catch (Exception e)
             {
-                await SetItems(c.lastImg);
+                string title = loader.GetString("UnknownError");
+                string content = " ";
+                ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                tm.ToastPush(60);
             }
+            finally
+            {
+                if (result)
+                {
+                    await SetItems(image);
+                    c.lastImg = image;
+                }
+                //图片获取失败则显示lastImage
+                else
+                {
+                    await SetItems(c.lastImg);
+                }
+            } 
         }
     }
 }

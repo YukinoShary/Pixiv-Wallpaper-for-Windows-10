@@ -17,7 +17,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     class DownloadManager
     { 
         public static bool downloading { get; private set; }
-        public static ResourceLoader loader { get; set; }
 
         public static async Task<bool> DownloadAsync(string url, string id, string format, Func<long, long, Task> ProgressCallback)
         {
@@ -56,10 +55,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    string title = loader.GetString("UnknownError");
-                    string content = " ";
-                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                    tm.ToastPush(60);
                     downloading = false;
                     return false;
                 }
