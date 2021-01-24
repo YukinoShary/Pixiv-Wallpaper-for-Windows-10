@@ -42,7 +42,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             PixivCS.Objects.AuthResult res = null;
             try
-            {    
+            {
                 if (refreshToken != null)
                 {
                     res = await GlobalBaseAPI.AuthAsync(refreshToken);
@@ -53,6 +53,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     res = await GlobalBaseAPI.AuthAsync(account, password);
                     currentUser = res.Response.User;
+                    refreshToken = GlobalBaseAPI.RefreshToken;
                     loginSuccess = true;
                 }
                 return refreshToken;
@@ -63,6 +64,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     res = await GlobalBaseAPI.AuthAsync(account, password);
                     currentUser = res.Response.User;
+                    refreshToken = GlobalBaseAPI.RefreshToken;
                     loginSuccess = true;
                     return refreshToken;
                 }
@@ -85,7 +87,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string, string>> getRecommenlist(string imgId, string nextUrl, string account, string password, string refreshToken)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
-            string newToken = null;
+            string newToken = refreshToken;
             if (GlobalBaseAPI.AccessToken == null  || loginSuccess == false)
             {
                 newToken = await LoginMethod(account, password, refreshToken);
@@ -137,7 +139,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "begin", newToken);
                 }
             }
             else
@@ -167,7 +169,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
                 catch (Exception)
                 {
-                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
+                    return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "begin", newToken);
                 }
             }      
             return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
@@ -184,7 +186,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts followIllust = null;
-            string newToken = null;
+            string newToken = refreshToken;
             if (GlobalBaseAPI.AccessToken == null || loginSuccess == false)
             {
                 newToken = await LoginMethod(account, password, refreshToken);
@@ -226,7 +228,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch(Exception)
             {
-                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "begin", newToken);
             }
             return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
         }
@@ -242,7 +244,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             PixivCS.Objects.UserIllusts bookmarkIllust = null;
-            string newToken = null;
+            string newToken = refreshToken;
             if (GlobalBaseAPI.AccessToken == null || loginSuccess == false)
             {
                 newToken = await LoginMethod(account, password, refreshToken);
@@ -284,7 +286,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             }
             catch(Exception)
             {
-                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "ERROR", newToken);
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(null, "begin", newToken);
             }
             return new ValueTuple<ConcurrentQueue<ImageInfo>, string, string>(queue, nextUrl, newToken);
         }
