@@ -190,12 +190,18 @@
     <value>登录Pixiv</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
-    <value>应用会自动储存你的账号与密码</value>
+    <value>应用会储存你的账号与密码</value>
   </data>
   <data name="Recommend.Content" xml:space="preserve">
     <value>Pixiv 推荐 </value>
   </data>
   <data name="RecommendedRefresh" xml:space="preserve">
     <value>推荐插画队列已更新</value>
+  </data>
+  <data name="EmptyQueue" xml:space="preserve">
+    <value>此集合中已无更多内容</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>保存</value>
   </data>
 </root>

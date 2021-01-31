@@ -43,7 +43,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             PixivCS.Objects.AuthResult res = null;
             try
             {
-                if (refreshToken != null)
+                if (refreshToken != null && !refreshToken.Equals("ERROR"))
                 {
                     res = await GlobalBaseAPI.AuthAsync(refreshToken);
                     currentUser = res.Response.User;

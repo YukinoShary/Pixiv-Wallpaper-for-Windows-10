@@ -247,8 +247,8 @@
           <target state="translated">ログイン</target>
         </trans-unit>
         <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
-          <source>The app will automatically store your account and password locally</source>
-          <target state="translated">アプリは自動的にアカウントとパスワードを保存します</target>
+          <source>The app will store your account and password locally</source>
+          <target state="translated">アプリはアカウントとパスワードをローカルに保存します</target>
         </trans-unit>
         <trans-unit id="Recommend.Content" translate="yes" xml:space="preserve">
           <source>Pixiv Recommendation </source>
@@ -260,7 +260,11 @@
         </trans-unit>
         <trans-unit id="EmptyQueue" translate="yes" xml:space="preserve">
           <source>There's not more content in this collection</source>
-          <target state="new">There's not more content in this collection</target>
+          <target state="translated">このコレクションにはこれ以上のイラストがありません</target>
+        </trans-unit>
+        <trans-unit id="SaveButton.Content" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">保存します</target>
         </trans-unit>
       </group>
     </body>

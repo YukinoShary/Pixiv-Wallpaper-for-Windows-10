@@ -56,8 +56,15 @@ namespace Pixiv_Wallpaper_for_Windows_10
             combox2.SelectedValue = c.backgroundMode;
             lock_switch.IsOn = c.lockscr;
 
-            textbox1.Text = c.ActPswText.Item1;
-            passwordbox1.Password = c.ActPswText.Item2;
+            var vp = c.ActPswText;
+            if (vp.Item1.Equals("null"))
+                textbox1.Text = "";
+            else
+                textbox1.Text = vp.Item1;
+            if (vp.Item2.Equals("null"))
+                passwordbox1.Password = "";
+            else
+                passwordbox1.Password = vp.Item2;
 
             switch (c.mode)
             {
@@ -92,12 +99,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 }     
             }
             CalcutateCacheSize();
-        }
-
-        private void cleanToken_Click(object sender, RoutedEventArgs e)
-        {
-            c.token = null;
-            c.cookie = null;
         }
 
         private void radiobutton2_Checked(object sender, RoutedEventArgs e)
@@ -186,6 +187,20 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void lock_switch_Toggled(object sender, RoutedEventArgs e)
         {
             c.lockscr = lock_switch.IsOn;
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            string str1, str2;
+            if (textbox1.Text == null || textbox1.Text.Equals(""))
+                str1 = "null";
+            else
+                str1 = textbox1.Text;
+            if (passwordbox1.Password == null || passwordbox1.Password.Equals(""))
+                str2 = "null";
+            else
+                str2 = passwordbox1.Password;
+            c.ActPswText = (str1, str2);
         }
     }
 }

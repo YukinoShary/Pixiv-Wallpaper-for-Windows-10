@@ -47,7 +47,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                     }
                     accountCredential.RetrievePassword();
                 }
-                catch { return ("", ""); }
+                catch
+                {
+                    try
+                    {
+                        return ("null", "null");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 return (accountCredential.UserName, accountCredential.Password);  
             }
             set
@@ -56,7 +66,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                 {
                     vault.Remove(vault.FindAllByResource("ActPsw")[0]);
                     vault.Remove(vault.FindAllByResource("RefreshToken")[0]);
-                    vault.Add(new PasswordCredential("ActPsw", value.Item1, value.Item2));
                 }
                 catch { }
                 finally
@@ -81,7 +90,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                     }
                     tokenCredential.RetrievePassword();
                 }
-                catch { return null; }
+                catch
+                {
+                    try
+                    {
+                        return null;
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
                 return tokenCredential.Password;
             }
             set

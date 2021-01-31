@@ -250,7 +250,7 @@
     <value>Pixiv Login</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
-    <value>The app will automatically store your account and password locally</value>
+    <value>The app will store your account and password locally</value>
   </data>
   <data name="PleaseCheckNetwork" xml:space="preserve">
     <value>Please check your network connection</value>
@@ -275,6 +275,9 @@
   </data>
   <data name="ReviewTimes.Text" xml:space="preserve">
     <value> times review</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Setting.Text" xml:space="preserve">
     <value>Setting</value>

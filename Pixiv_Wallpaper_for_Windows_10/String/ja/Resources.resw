@@ -190,12 +190,18 @@
     <value>ログイン</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
-    <value>アプリは自動的にアカウントとパスワードを保存します</value>
+    <value>アプリはアカウントとパスワードをローカルに保存します</value>
   </data>
   <data name="Recommend.Content" xml:space="preserve">
     <value>ピクシブおすすめ </value>
   </data>
   <data name="RecommendedRefresh" xml:space="preserve">
     <value>おすすめキューが更新しました</value>
+  </data>
+  <data name="EmptyQueue" xml:space="preserve">
+    <value>このコレクションにはこれ以上のイラストがありません</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>保存します</value>
   </data>
 </root>
