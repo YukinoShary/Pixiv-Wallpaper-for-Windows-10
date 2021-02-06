@@ -71,8 +71,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 catch
                 {
                     loginSuccess = false;
+                    return "ERROR"; //凭证不能为空
                 }
-                return "ERROR"; //凭证不能为空
             }
         }
         /// <summary>

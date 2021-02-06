@@ -40,10 +40,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 if (Recomm == null)
                 {
-                    string title = loader.GetString("FailToGetQueue");
-                    string content = loader.GetString("FailToGetQueueExplanation");
-                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                    tm.ToastPush(60);
                     return null;
                 }
                 else
@@ -60,10 +56,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                     }
                     else if (!await ListUpdate())
                     {
-                        string title = loader.GetString("FailToGetQueue");
-                        string content = loader.GetString("FailToGetQueueExplanation");
-                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                        tm.ToastPush(60);
                         return null;
                     }
                 }
@@ -84,9 +76,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                 nextUrl = t.Item2;
                 config.RefreshToken = t.Item3;
                 if (Recomm != null && Recomm.Count != 0)
-                    return true;                   
+                {
+                    return true;
+                }                      
                 else
+                {
+                    string title = loader.GetString("FailToGetQueue");
+                    string content = loader.GetString("FailToGetQueueExplanation");
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                    tm.ToastPush(60);
                     return false;
+                }    
             }
             else
                 return false;

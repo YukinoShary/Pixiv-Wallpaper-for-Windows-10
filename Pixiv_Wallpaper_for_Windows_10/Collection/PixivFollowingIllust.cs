@@ -33,10 +33,17 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
                 config.RefreshToken = t.Item3;
-                if (illustQueue != null && illustQueue.Count != 0)
+                if (illustQueue != null)
                     return true;
                 else
+                {
+                    string title = loader.GetString("FailToGetFollowingUserUpdatingQueue");
+                    string content = loader.GetString("FailToGetQueueExplanation");
+                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                    tm.ToastPush(60);
                     return false;
+                }
+                    
             }
             else
                 return false;
@@ -51,10 +58,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 if(illustQueue == null)
                 {
-                    string title = loader.GetString("FailToGetFollowingUserUpdatingQueue");
-                    string content = loader.GetString("FailToGetQueueExplanation");
-                    ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
-                    tm.ToastPush(60);
                     return null;
                 }
                 else

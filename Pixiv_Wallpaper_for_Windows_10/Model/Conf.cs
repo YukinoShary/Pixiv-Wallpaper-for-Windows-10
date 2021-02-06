@@ -112,8 +112,11 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                 }
                 catch
                 {
-                    vault.Add(new PasswordCredential("RefreshToken", "UserName", value));
-                    return;
+                    try
+                    {
+                        vault.Add(new PasswordCredential("RefreshToken", "UserName", value));
+                    }
+                    catch { }
                 }
                 
             }
