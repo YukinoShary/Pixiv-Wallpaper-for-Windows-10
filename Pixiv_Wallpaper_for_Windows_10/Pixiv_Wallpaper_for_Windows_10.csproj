@@ -129,6 +129,7 @@
     <Compile Include="Model\Conf.cs" />
     <Compile Include="Util\DownloadManager.cs" />
     <Compile Include="Model\ImageInfo.cs" />
+    <Compile Include="Util\PixivCSBaseModify.cs" />
     <Compile Include="ViewModel\ImageShowViewModel.cs" />
     <Compile Include="Util\Pixiv.cs" />
     <Compile Include="Collection\PixivRecommendation.cs" />

@@ -21,7 +21,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     public class Pixiv
     {
-        public static PixivBaseAPI GlobalBaseAPI = new PixivBaseAPI();
+        public static PixivBaseAPI GlobalBaseAPI = new PixivCSBaseModify();
         private static bool loginSuccess;
         private static PixivCS.Objects.ResponseUser currentUser;
 
