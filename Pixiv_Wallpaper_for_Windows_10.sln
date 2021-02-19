@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pixiv_Wallpaper_for_Windows_10", "Pixiv_Wallpaper_for_Windows_10\Pixiv_Wallpaper_for_Windows_10.csproj", "{6636CDA5-5FC9-49DC-822E-9720E7C12284}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pixiv_Wallpaper_WinUI", "Pixiv_Wallpaper_WinUI\Pixiv_Wallpaper_WinUI.csproj", "{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,28 @@ Global
 		{6636CDA5-5FC9-49DC-822E-9720E7C12284}.Release|x86.ActiveCfg = Release|x86
 		{6636CDA5-5FC9-49DC-822E-9720E7C12284}.Release|x86.Build.0 = Release|x86
 		{6636CDA5-5FC9-49DC-822E-9720E7C12284}.Release|x86.Deploy.0 = Release|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|ARM.ActiveCfg = Debug|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|ARM64.ActiveCfg = Debug|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|ARM64.Build.0 = Debug|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|ARM64.Deploy.0 = Debug|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x64.ActiveCfg = Debug|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x64.Build.0 = Debug|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x64.Deploy.0 = Debug|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x86.ActiveCfg = Debug|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x86.Build.0 = Debug|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Debug|x86.Deploy.0 = Debug|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|Any CPU.ActiveCfg = Release|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|ARM.ActiveCfg = Release|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|ARM64.ActiveCfg = Release|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|ARM64.Build.0 = Release|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|ARM64.Deploy.0 = Release|arm64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x64.ActiveCfg = Release|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x64.Build.0 = Release|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x64.Deploy.0 = Release|x64
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x86.ActiveCfg = Release|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x86.Build.0 = Release|x86
+		{67F576B9-B473-41E1-B16A-CF8CCB21E4E3}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

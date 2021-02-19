@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="120Mins" xml:space="preserve">
+    <value>120 分</value>
+  </data>
+  <data name="15Mins" xml:space="preserve">
+    <value>15 分</value>
+  </data>
+  <data name="180Mins" xml:space="preserve">
+    <value>180 分</value>
+  </data>
+  <data name="30Mins" xml:space="preserve">
+    <value>30 分</value>
+  </data>
+  <data name="60Mins" xml:space="preserve">
+    <value>60 分</value>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>アカウント:</value>
+  </data>
+  <data name="BackgroundMode.Text" xml:space="preserve">
+    <value>バックグラウンドモード</value>
+  </data>
+  <data name="BackgroundModeExplanation.Text" xml:space="preserve">
+    <value>バックグラウンドタスクモードは、ネットワーク速度が30秒以内にイラストをダウンロードできれば、省電力を最大化できます。30秒を超える場合、アプリが閉じられます</value>
+  </data>
+  <data name="BackgroundTask" xml:space="preserve">
+    <value>バックグラウンドタスク</value>
+  </data>
+  <data name="BackgroundTaskDenied" xml:space="preserve">
+    <value>アプリのバックグラウンドタスクが拒否されました</value>
+  </data>
+  <data name="BackgroundTaskDeniedExplanation" xml:space="preserve">
+    <value>このアプリをバックグラウンドで動きたい場合は電源の設定変更、又は外部電源を使用してください</value>
+  </data>
+  <data name="BatterySetting" xml:space="preserve">
+    <value>バッテリー設定</value>
+  </data>
+  <data name="ClearIllustrations.Content" xml:space="preserve">
+    <value>イラストを全部消す</value>
+  </data>
+  <data name="ConnectionFail" xml:space="preserve">
+    <value>イラストのダウンロードサーバを接続できませんでした</value>
+  </data>
+  <data name="ConnectionFailExplanation" xml:space="preserve">
+    <value>イラストをダウンロードしようとしたとき接続がタイムアウトしました。 ネットワーク接続を確認してください</value>
+  </data>
+  <data name="ConnectionLost" xml:space="preserve">
+    <value>イラストのダウンロード中に接続が失われました</value>
+  </data>
+  <data name="ConnectionLostExplanation" xml:space="preserve">
+    <value>イラストをダウンロード中に接続が切断されました。 ネットワーク接続を確認してください</value>
+  </data>
+  <data name="DataRequestFail" xml:space="preserve">
+    <value>データを取得できませんでした</value>
+  </data>
+  <data name="DataRequestFailExplanation" xml:space="preserve">
+    <value>ログインしたことを確認するか、Cookieをクリアして、再度ログインしてください</value>
+  </data>
+  <data name="ExtendedExecutionDenied" xml:space="preserve">
+    <value>アプリ延長実行が拒否されました</value>
+  </data>
+  <data name="ExtendedExecutionDeniedExplanation" xml:space="preserve">
+    <value>システムの制限により、アプリはバックグラウンドで動きません。 アプリがバックグラウンドで動くように電源の設定を変更してみてください</value>
+  </data>
+  <data name="ExtendedSession" xml:space="preserve">
+    <value>延長実行</value>
+  </data>
+  <data name="FailToChangeLock" xml:space="preserve">
+    <value>ロック画面は変更できません</value>
+  </data>
+  <data name="FailToChangeWallpaper" xml:space="preserve">
+    <value>壁紙が変更できません</value>
+  </data>
+  <data name="FailToGetQueue" xml:space="preserve">
+    <value>pixivおすすめキューを取得できません</value>
+  </data>
+  <data name="FailToGetQueueExplanation" xml:space="preserve">
+    <value>ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</value>
+  </data>
+  <data name="Illustrator" xml:space="preserve">
+    <value>ユーザー: </value>
+  </data>
+  <data name="LocalData.Text" xml:space="preserve">
+    <value>ローカルデータ</value>
+  </data>
+  <data name="LocalDataSize.Text" xml:space="preserve">
+    <value>イラストファイルサイズ:</value>
+  </data>
+  <data name="Next.Text" xml:space="preserve">
+    <value>次のイラスト</value>
+  </data>
+  <data name="NotSupport" xml:space="preserve">
+    <value>お使いのデバイスは自動壁紙交換をサポートしていません</value>
+  </data>
+  <data name="Other.Text" xml:space="preserve">
+    <value>他のオプション</value>
+  </data>
+  <data name="OtherOptionsExplanation.Text" xml:space="preserve">
+    <value>同時にロック画面を変更する</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>パスワード:</value>
+  </data>
+  <data name="PleaseCheckNetwork" xml:space="preserve">
+    <value>ネットワーク接続を確認してください</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="Refresh.Text" xml:space="preserve">
+    <value>イラストキューを更新する</value>
+  </data>
+  <data name="RefreshExplanation" xml:space="preserve">
+    <value>この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</value>
+  </data>
+  <data name="ReviewTimes.Text" xml:space="preserve">
+    <value> 回レビュー</value>
+  </data>
+  <data name="Setting.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SetWallpaper.Text" xml:space="preserve">
+    <value>壁紙に設定する</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>壁紙を変更しました</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>イラストのダウンロード中に不明なエラーが発生しました</value>
+  </data>
+  <data name="UpdateInterval.Text" xml:space="preserve">
+    <value>更新間隔</value>
+  </data>
+  <data name="UpdateIntervalExplanation.Text" xml:space="preserve">
+    <value>壁紙を更新する時間間隔を設定する</value>
+  </data>
+  <data name="UpdateMode.Text" xml:space="preserve">
+    <value>更新モード</value>
+  </data>
+  <data name="UpdateModeExplanation.Text" xml:space="preserve">
+    <value>イラスト更新モードを選択してください。「おすすめ」モードでは、適切なアスペクト比のイラストを選択します</value>
+  </data>
+  <data name="VisitLocalFolder.Content" xml:space="preserve">
+    <value>ローカルフォルダにアクセスする</value>
+  </data>
+  <data name="LoadingStatus.Text" xml:space="preserve">
+    <value>イラストを読み込んでいます... </value>
+  </data>
+  <data name="Resolution.Text" xml:space="preserve">
+    <value> ピクセル</value>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>イラストリンクをシェアする</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>リンクがクリップボードにコピーされました</value>
+  </data>
+  <data name="Bookmark.Content" xml:space="preserve">
+    <value>ピクシブブックマーク</value>
+  </data>
+  <data name="BookmarkUpdate" xml:space="preserve">
+    <value>ブックマークのイラストキューが更新しました</value>
+  </data>
+  <data name="FailToGetBookmarkQueue" xml:space="preserve">
+    <value>ブックマークキューを取得できません</value>
+  </data>
+  <data name="FailToGetFollowingUserUpdatingQueue" xml:space="preserve">
+    <value>フォローユーザーの作品キューを取得できません</value>
+  </data>
+  <data name="FollowingUserUpdating.Content" xml:space="preserve">
+    <value>フォローユーザーの作品</value>
+  </data>
+  <data name="FollowingUserUpdatingUpdate" xml:space="preserve">
+    <value>フォローユーザーの作品キューが更新しました</value>
+  </data>
+  <data name="PixivLogin.Text" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="PixivLoginExplanation.Text" xml:space="preserve">
+    <value>アプリはアカウントとパスワードをローカルに保存します</value>
+  </data>
+  <data name="Recommend.Content" xml:space="preserve">
+    <value>ピクシブおすすめ </value>
+  </data>
+  <data name="RecommendedRefresh" xml:space="preserve">
+    <value>おすすめキューが更新しました</value>
+  </data>
+  <data name="EmptyQueue" xml:space="preserve">
+    <value>このコレクションにはこれ以上のイラストがありません</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>保存します</value>
+  </data>
+</root>

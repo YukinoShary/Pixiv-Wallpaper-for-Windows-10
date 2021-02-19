@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="120Mins" xml:space="preserve">
+    <value>120 分钟</value>
+  </data>
+  <data name="15Mins" xml:space="preserve">
+    <value>15 分钟</value>
+  </data>
+  <data name="180Mins" xml:space="preserve">
+    <value>180 分钟</value>
+  </data>
+  <data name="30Mins" xml:space="preserve">
+    <value>30 分钟</value>
+  </data>
+  <data name="60Mins" xml:space="preserve">
+    <value>60 分钟</value>
+  </data>
+  <data name="Account.Text" xml:space="preserve">
+    <value>帐户:</value>
+  </data>
+  <data name="BackgroundMode.Text" xml:space="preserve">
+    <value>后台模式</value>
+  </data>
+  <data name="BackgroundModeExplanation.Text" xml:space="preserve">
+    <value>后台任务模式可以最大限度地节省电源(如有必要)，但由于系统限制，每一次后台的插画下载任务只能存活30秒。为了应用的稳定，请尽量使用扩展会话模式</value>
+  </data>
+  <data name="BackgroundTask" xml:space="preserve">
+    <value>后台任务</value>
+  </data>
+  <data name="BackgroundTaskDenied" xml:space="preserve">
+    <value>应用无法注册后台任务</value>
+  </data>
+  <data name="BackgroundTaskDeniedExplanation" xml:space="preserve">
+    <value>如果你希望应用能以后台任务的形式在后台保持活动，请更改电源设定或插入外部电源</value>
+  </data>
+  <data name="BatterySetting" xml:space="preserve">
+    <value>电池设定</value>
+  </data>
+  <data name="ClearIllustrations.Content" xml:space="preserve">
+    <value>清除插画</value>
+  </data>
+  <data name="ConnectionFail" xml:space="preserve">
+    <value>pixiv插画服务器连接失败</value>
+  </data>
+  <data name="ConnectionFailExplanation" xml:space="preserve">
+    <value>连接到pixiv插画服务器超时，请检查网络连接</value>
+  </data>
+  <data name="ConnectionLost" xml:space="preserve">
+    <value>服务器连接中断</value>
+  </data>
+  <data name="ConnectionLostExplanation" xml:space="preserve">
+    <value>从pixiv服务器下载插画时连接中断，请检查网络连接</value>
+  </data>
+  <data name="DataRequestFail" xml:space="preserve">
+    <value>数据请求失败</value>
+  </data>
+  <data name="DataRequestFailExplanation" xml:space="preserve">
+    <value>请确认你的登录状态或尝试清理cookie再次登录</value>
+  </data>
+  <data name="ExtendedExecutionDenied" xml:space="preserve">
+    <value>应用扩展会话被禁止</value>
+  </data>
+  <data name="ExtendedExecutionDeniedExplanation" xml:space="preserve">
+    <value>由于系统限制，应用无法继续在后台活动。若希望应用能在后台运行，请尝试更改电源设置</value>
+  </data>
+  <data name="ExtendedSession" xml:space="preserve">
+    <value>扩展会话</value>
+  </data>
+  <data name="FailToChangeLock" xml:space="preserve">
+    <value>更换锁屏失败</value>
+  </data>
+  <data name="FailToChangeWallpaper" xml:space="preserve">
+    <value>更换壁纸失败</value>
+  </data>
+  <data name="FailToGetQueue" xml:space="preserve">
+    <value>获取pixiv推荐队列失败</value>
+  </data>
+  <data name="FailToGetQueueExplanation" xml:space="preserve">
+    <value>请检查你的网络连接并输入正确的账号密码</value>
+  </data>
+  <data name="Illustrator" xml:space="preserve">
+    <value>画师: </value>
+  </data>
+  <data name="LocalData.Text" xml:space="preserve">
+    <value>本地数据</value>
+  </data>
+  <data name="LocalDataSize.Text" xml:space="preserve">
+    <value>本地插画缓存:</value>
+  </data>
+  <data name="Next.Text" xml:space="preserve">
+    <value>下一张插画</value>
+  </data>
+  <data name="NotSupport" xml:space="preserve">
+    <value>你的设备不支持自动更换壁纸</value>
+  </data>
+  <data name="Other.Text" xml:space="preserve">
+    <value>其他选项</value>
+  </data>
+  <data name="OtherOptionsExplanation.Text" xml:space="preserve">
+    <value>同时更换锁屏</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>密码:</value>
+  </data>
+  <data name="PleaseCheckNetwork" xml:space="preserve">
+    <value>请检查您的网络连接</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="Refresh.Text" xml:space="preserve">
+    <value>更新插画队列</value>
+  </data>
+  <data name="RefreshExplanation" xml:space="preserve">
+    <value>此更新仅仅是更新内存中的插画ID队列，你需要点击"下一张插画"在"预览"中查看新的插画</value>
+  </data>
+  <data name="ReviewTimes.Text" xml:space="preserve">
+    <value> 次浏览</value>
+  </data>
+  <data name="Setting.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SetWallpaper.Text" xml:space="preserve">
+    <value>设为壁纸</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功更换壁纸</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>在下载插画时发生了未知错误</value>
+  </data>
+  <data name="UpdateInterval.Text" xml:space="preserve">
+    <value>更新时间间隔</value>
+  </data>
+  <data name="UpdateIntervalExplanation.Text" xml:space="preserve">
+    <value>设置壁纸的更新时间间隔</value>
+  </data>
+  <data name="UpdateMode.Text" xml:space="preserve">
+    <value>更新模式</value>
+  </data>
+  <data name="UpdateModeExplanation.Text" xml:space="preserve">
+    <value>选择插画更新的模式，"pixiv推荐"模式会自动筛选出长宽比合适的插画</value>
+  </data>
+  <data name="VisitLocalFolder.Content" xml:space="preserve">
+    <value>浏览本地文件夹</value>
+  </data>
+  <data name="LoadingStatus.Text" xml:space="preserve">
+    <value>插画加载中...</value>
+  </data>
+  <data name="Resolution.Text" xml:space="preserve">
+    <value> 像素</value>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>分享插画链接</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>链接已复制到剪贴板</value>
+  </data>
+  <data name="Bookmark.Content" xml:space="preserve">
+    <value>Pixiv 书签</value>
+  </data>
+  <data name="BookmarkUpdate" xml:space="preserve">
+    <value>书签插画队列已更新</value>
+  </data>
+  <data name="FailToGetBookmarkQueue" xml:space="preserve">
+    <value>获取书签插画队列失败</value>
+  </data>
+  <data name="FailToGetFollowingUserUpdatingQueue" xml:space="preserve">
+    <value>获取已关注用户的插画更新队列失败</value>
+  </data>
+  <data name="FollowingUserUpdating.Content" xml:space="preserve">
+    <value>已关注用户的插画更新</value>
+  </data>
+  <data name="FollowingUserUpdatingUpdate" xml:space="preserve">
+    <value>已关注用户的插画更新队列已更新</value>
+  </data>
+  <data name="PixivLogin.Text" xml:space="preserve">
+    <value>登录Pixiv</value>
+  </data>
+  <data name="PixivLoginExplanation.Text" xml:space="preserve">
+    <value>应用会储存你的账号与密码</value>
+  </data>
+  <data name="Recommend.Content" xml:space="preserve">
+    <value>Pixiv 推荐 </value>
+  </data>
+  <data name="RecommendedRefresh" xml:space="preserve">
+    <value>推荐插画队列已更新</value>
+  </data>
+  <data name="EmptyQueue" xml:space="preserve">
+    <value>此集合中已无更多内容</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>保存</value>
+  </data>
+</root>

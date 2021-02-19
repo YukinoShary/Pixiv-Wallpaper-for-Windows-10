@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +13,10 @@ using PixivCS;
 using System.Collections.Concurrent;
 using System.Web;
 using System.IO;
-using Pixiv_Wallpaper_for_Windows_10.Model;
+using Pixiv_Wallpaper_WinUI.Model;
 using Windows.Security.Credentials;
 
-namespace Pixiv_Wallpaper_for_Windows_10.Util
+namespace Pixiv_Wallpaper_WinUI.Util
 {
     public class Pixiv
     {
@@ -27,7 +26,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 
         public Pixiv()
         {
-            GlobalBaseAPI = new PixivCSBaseModify();
             GlobalBaseAPI.ExperimentalConnection = true;   //直连模式打开
             loginSuccess = false;
             currentUser = null;

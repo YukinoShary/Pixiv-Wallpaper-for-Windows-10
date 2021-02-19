@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="ja" original="PIXIV_WALLPAPER_FOR_WINDOWS_10/STRING/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6916.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="PIXIV_WALLPAPER_FOR_WINDOWS_10/STRING/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="120Mins" translate="yes" xml:space="preserve">
+          <source>120 Minutes</source>
+          <target state="translated">120 分</target>
+        </trans-unit>
+        <trans-unit id="15Mins" translate="yes" xml:space="preserve">
+          <source>15 Minutes</source>
+          <target state="translated">15 分</target>
+        </trans-unit>
+        <trans-unit id="180Mins" translate="yes" xml:space="preserve">
+          <source>180 Minutes</source>
+          <target state="translated">180 分</target>
+        </trans-unit>
+        <trans-unit id="30Mins" translate="yes" xml:space="preserve">
+          <source>30 Minutes</source>
+          <target state="translated">30 分</target>
+        </trans-unit>
+        <trans-unit id="60Mins" translate="yes" xml:space="preserve">
+          <source>60 Minutes</source>
+          <target state="translated">60 分</target>
+        </trans-unit>
+        <trans-unit id="Account.Text" translate="yes" xml:space="preserve">
+          <source>Account:</source>
+          <target state="translated">アカウント:</target>
+        </trans-unit>
+        <trans-unit id="BackgroundMode.Text" translate="yes" xml:space="preserve">
+          <source>Background Mode</source>
+          <target state="translated">バックグラウンドモード</target>
+        </trans-unit>
+        <trans-unit id="BackgroundModeExplanation.Text" translate="yes" xml:space="preserve">
+          <source>The Backgound Task Mode can maximize power save if your network speed is fast enough to download an illustration within 30s, or the application will be closed.</source>
+          <target state="translated">バックグラウンドタスクモードは、ネットワーク速度が30秒以内にイラストをダウンロードできれば、省電力を最大化できます。30秒を超える場合、アプリが閉じられます</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTask" translate="yes" xml:space="preserve">
+          <source>BackgroundTask</source>
+          <target state="translated">バックグラウンドタスク</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTaskDenied" translate="yes" xml:space="preserve">
+          <source>Application cannot register background task</source>
+          <target state="translated">アプリのバックグラウンドタスクが拒否されました</target>
+        </trans-unit>
+        <trans-unit id="BackgroundTaskDeniedExplanation" translate="yes" xml:space="preserve">
+          <source>If you want to make this app active in the background with background task, try to change the power settings or plugging in wall power</source>
+          <target state="translated">このアプリをバックグラウンドで動きたい場合は電源の設定変更、又は外部電源を使用してください</target>
+        </trans-unit>
+        <trans-unit id="BatterySetting" translate="yes" xml:space="preserve">
+          <source>BatterySetting</source>
+          <target state="translated">バッテリー設定</target>
+        </trans-unit>
+        <trans-unit id="ClearIllustrations.Content" translate="yes" xml:space="preserve">
+          <source>Clear illustrations</source>
+          <target state="translated">イラストを全部消す</target>
+        </trans-unit>
+        <trans-unit id="ConnectionFail" translate="yes" xml:space="preserve">
+          <source>Could not connect to the illustration download server</source>
+          <target state="translated">イラストのダウンロードサーバを接続できませんでした</target>
+        </trans-unit>
+        <trans-unit id="ConnectionFailExplanation" translate="yes" xml:space="preserve">
+          <source>The connection timed out when trying to download illustrations from pixiv. Please check the network connection</source>
+          <target state="translated">イラストをダウンロードしようとしたとき接続がタイムアウトしました。 ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="ConnectionLost" translate="yes" xml:space="preserve">
+          <source>Connection lost while downloading illustration</source>
+          <target state="translated">イラストのダウンロード中に接続が失われました</target>
+        </trans-unit>
+        <trans-unit id="ConnectionLostExplanation" translate="yes" xml:space="preserve">
+          <source>The connection was interrupted while downloading illustrations from pixiv. Please check the network connection</source>
+          <target state="translated">イラストをダウンロード中に接続が切断されました。 ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="DataRequestFail" translate="yes" xml:space="preserve">
+          <source>Data request failed</source>
+          <target state="translated">データを取得できませんでした</target>
+        </trans-unit>
+        <trans-unit id="DataRequestFailExplanation" translate="yes" xml:space="preserve">
+          <source>Please confirm you have logged or clear the cookies and login again</source>
+          <target state="translated">ログインしたことを確認するか、Cookieをクリアして、再度ログインしてください</target>
+        </trans-unit>
+        <trans-unit id="ExtendedExecutionDenied" translate="yes" xml:space="preserve">
+          <source>Application extended execution has been denied</source>
+          <target state="translated">アプリ延長実行が拒否されました</target>
+        </trans-unit>
+        <trans-unit id="ExtendedExecutionDeniedExplanation" translate="yes" xml:space="preserve">
+          <source>Due to system limitations, the application cannot continue activities in the background. Please try to change the power settings so that the app can work in background</source>
+          <target state="translated">システムの制限により、アプリはバックグラウンドで動きません。 アプリがバックグラウンドで動くように電源の設定を変更してみてください</target>
+        </trans-unit>
+        <trans-unit id="ExtendedSession" translate="yes" xml:space="preserve">
+          <source>ExtendedSession</source>
+          <target state="translated">延長実行</target>
+        </trans-unit>
+        <trans-unit id="FailToChangeLock" translate="yes" xml:space="preserve">
+          <source>Failed to change lock screen</source>
+          <target state="translated">ロック画面は変更できません</target>
+        </trans-unit>
+        <trans-unit id="FailToChangeWallpaper" translate="yes" xml:space="preserve">
+          <source>Failed to change wallpaper</source>
+          <target state="translated">壁紙が変更できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetQueue" translate="yes" xml:space="preserve">
+          <source>Failed to get pixiv recommendation queue</source>
+          <target state="translated">pixivおすすめキューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
+          <source>Please check your network connection and make sure you have enter the correct account and password</source>
+          <target state="needs-review-translation">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
+          <source>Illustrator: </source>
+          <target state="translated">ユーザー: </target>
+        </trans-unit>
+        <trans-unit id="LocalData.Text" translate="yes" xml:space="preserve">
+          <source>Local data</source>
+          <target state="translated">ローカルデータ</target>
+        </trans-unit>
+        <trans-unit id="LocalDataSize.Text" translate="yes" xml:space="preserve">
+          <source>Local illustrations total size:</source>
+          <target state="translated">イラストファイルサイズ:</target>
+        </trans-unit>
+        <trans-unit id="Next.Text" translate="yes" xml:space="preserve">
+          <source>Next illustration</source>
+          <target state="translated">次のイラスト</target>
+        </trans-unit>
+        <trans-unit id="NotSupport" translate="yes" xml:space="preserve">
+          <source>Your device does not support automatic wallpaper replacement</source>
+          <target state="translated">お使いのデバイスは自動壁紙交換をサポートしていません</target>
+        </trans-unit>
+        <trans-unit id="Other.Text" translate="yes" xml:space="preserve">
+          <source>Other options</source>
+          <target state="translated">他のオプション</target>
+        </trans-unit>
+        <trans-unit id="OtherOptionsExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Change lock screen at the same time</source>
+          <target state="translated">同時にロック画面を変更する</target>
+        </trans-unit>
+        <trans-unit id="Password.Text" translate="yes" xml:space="preserve">
+          <source>Password:</source>
+          <target state="translated">パスワード:</target>
+        </trans-unit>
+        <trans-unit id="PleaseCheckNetwork" translate="yes" xml:space="preserve">
+          <source>Please check your network connection</source>
+          <target state="translated">ネットワーク接続を確認してください</target>
+        </trans-unit>
+        <trans-unit id="Preview.Text" translate="yes" xml:space="preserve">
+          <source>Preview</source>
+          <target state="translated">プレビュー</target>
+        </trans-unit>
+        <trans-unit id="Refresh.Text" translate="yes" xml:space="preserve">
+          <source>Refresh illustrations list</source>
+          <target state="translated">イラストキューを更新する</target>
+        </trans-unit>
+        <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
+          <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
+          <target state="needs-review-translation">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
+          <source> times review</source>
+          <target state="needs-review-translation"> 回レビュー</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
+          <source>Setting</source>
+          <target state="translated">設定</target>
+        </trans-unit>
+        <trans-unit id="SetWallpaper.Text" translate="yes" xml:space="preserve">
+          <source>Set as wallpaper</source>
+          <target state="translated">壁紙に設定する</target>
+        </trans-unit>
+        <trans-unit id="Success" translate="yes" xml:space="preserve">
+          <source>Change wallpaper successfully</source>
+          <target state="translated">壁紙を変更しました</target>
+        </trans-unit>
+        <trans-unit id="UnknownError" translate="yes" xml:space="preserve">
+          <source>An unknown error occurred while downloading the illustration</source>
+          <target state="translated">イラストのダウンロード中に不明なエラーが発生しました</target>
+        </trans-unit>
+        <trans-unit id="UpdateInterval.Text" translate="yes" xml:space="preserve">
+          <source>Update interval</source>
+          <target state="translated">更新間隔</target>
+        </trans-unit>
+        <trans-unit id="UpdateIntervalExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Set the time interval for updating Wallpapers</source>
+          <target state="translated">壁紙を更新する時間間隔を設定する</target>
+        </trans-unit>
+        <trans-unit id="UpdateMode.Text" translate="yes" xml:space="preserve">
+          <source>Update Mode</source>
+          <target state="translated">更新モード</target>
+        </trans-unit>
+        <trans-unit id="UpdateModeExplanation.Text" translate="yes" xml:space="preserve">
+          <source>Select the illustrations update mode."Recommendation" mode will select the illustrations with appropriate aspect ratio</source>
+          <target state="translated">イラスト更新モードを選択してください。「おすすめ」モードでは、適切なアスペクト比のイラストを選択します</target>
+        </trans-unit>
+        <trans-unit id="VisitLocalFolder.Content" translate="yes" xml:space="preserve">
+          <source>Visit local folder</source>
+          <target state="translated">ローカルフォルダにアクセスする</target>
+        </trans-unit>
+        <trans-unit id="LoadingStatus.Text" translate="yes" xml:space="preserve">
+          <source>Loading Illustration... </source>
+          <target state="translated">イラストを読み込んでいます... </target>
+        </trans-unit>
+        <trans-unit id="Resolution.Text" translate="yes" xml:space="preserve">
+          <source> Pixel</source>
+          <target state="translated"> ピクセル</target>
+        </trans-unit>
+        <trans-unit id="Share.Text" translate="yes" xml:space="preserve">
+          <source>Share the illustration link</source>
+          <target state="translated">イラストリンクをシェアする</target>
+        </trans-unit>
+        <trans-unit id="CopyLink" translate="yes" xml:space="preserve">
+          <source>The link has been copied to the clipboard</source>
+          <target state="translated">リンクがクリップボードにコピーされました</target>
+        </trans-unit>
+        <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Bookmark</source>
+          <target state="needs-review-translation">ピクシブブックマーク</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
+          <source>Bookmark illustration queue has been updated</source>
+          <target state="translated">ブックマークのイラストキューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="FailToGetBookmarkQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get pixiv bookmark queue</source>
+          <target state="translated">ブックマークキューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FailToGetFollowingUserUpdatingQueue" translate="yes" xml:space="preserve">
+          <source>Fail to get following users' updating queue</source>
+          <target state="translated">フォローユーザーの作品キューを取得できません</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdating.Content" translate="yes" xml:space="preserve">
+          <source>Following users' updating</source>
+          <target state="translated">フォローユーザーの作品</target>
+        </trans-unit>
+        <trans-unit id="FollowingUserUpdatingUpdate" translate="yes" xml:space="preserve">
+          <source>Following users' updating queue has been updated</source>
+          <target state="translated">フォローユーザーの作品キューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv Login</source>
+          <target state="translated">ログイン</target>
+        </trans-unit>
+        <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
+          <source>The app will store your account and password locally</source>
+          <target state="translated">アプリはアカウントとパスワードをローカルに保存します</target>
+        </trans-unit>
+        <trans-unit id="Recommend.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Recommendation </source>
+          <target state="translated">ピクシブおすすめ </target>
+        </trans-unit>
+        <trans-unit id="RecommendedRefresh" translate="yes" xml:space="preserve">
+          <source>Recommended illustration queue has been updated</source>
+          <target state="translated">おすすめキューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="EmptyQueue" translate="yes" xml:space="preserve">
+          <source>There's not more content in this collection</source>
+          <target state="translated">このコレクションにはこれ以上のイラストがありません</target>
+        </trans-unit>
+        <trans-unit id="SaveButton.Content" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">保存します</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

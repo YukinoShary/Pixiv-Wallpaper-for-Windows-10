@@ -9,8 +9,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
 {
     class PixivCSBaseModify : PixivBaseAPI
     {
-        public PixivCSBaseModify()
-        {
+        public PixivCSBaseModify() : base()
+        {           
             TargetIPs["oauth.secure.pixiv.net"] = "210.140.131.199";
             TargetIPs["www.pixiv.net"] = "210.140.131.199";
             TargetIPs["app-api.pixiv.net"] = "210.140.131.199";
