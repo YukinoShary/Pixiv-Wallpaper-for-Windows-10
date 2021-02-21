@@ -16,20 +16,18 @@ namespace Pixiv_Wallpaper_WinUI.Collection
     {
         private ConcurrentQueue<ImageInfo> Recomm;
         private Pixiv pixiv;
-        private Conf config;
         private ResourceLoader loader;
         private string nextUrl;
 
-        public PixivRecommendation(Conf config, ResourceLoader loader, Pixiv pixiv)
+        public PixivRecommendation(ResourceLoader loader, Pixiv pixiv)
         {
-            this.config = config;
             this.loader = loader;
             this.pixiv = pixiv;
             Recomm = new ConcurrentQueue<ImageInfo>();
             nextUrl = "begin";
         }
 
-        
+
         public async Task<ImageInfo> SelectArtwork()
         {
             await ListUpdate();
@@ -69,10 +67,9 @@ namespace Pixiv_Wallpaper_WinUI.Collection
         {
             if(flag || Recomm == null || Recomm.Count == 0)
             {
-                var t = await pixiv.getRecommenlist(imgId, nextUrl, config.ActPswText.Item1, config.ActPswText.Item2, config.RefreshToken);
+                var t = await pixiv.getRecommenlist(imgId, nextUrl);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;
-                config.RefreshToken = t.Item3;
                 if (Recomm != null && Recomm.Count != 0)
                 {
                     return true;

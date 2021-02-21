@@ -79,7 +79,7 @@ namespace Pixiv_Wallpaper_WinUI
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(WebViewLogin), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -113,6 +113,13 @@ namespace Pixiv_Wallpaper_WinUI
         protected async override void OnActivated(IActivatedEventArgs e)
         {
             Frame frame = Window.Current.Content as Frame;
+
+            if (e.Kind == ActivationKind.Protocol)
+            {
+                var protocolArgs = (ProtocolActivatedEventArgs)e;
+                await WebViewLogin.GetToken(protocolArgs.Uri.ToString());
+            }
+
             if (e is ToastNotificationActivatedEventArgs)
             {
                 var toastActivationArgs = e as ToastNotificationActivatedEventArgs;

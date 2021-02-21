@@ -20,16 +20,6 @@
                 <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Bookmark" RequestedTheme="Dark" Checked="radiobutton1_Checked"/>
                 <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="FollowingUserUpdating" RequestedTheme="Dark" Checked="radiobutton2_Checked"/>
                 <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" RequestedTheme="Dark" Checked="radiobutton3_Checked" Unchecked="radiobutton3_Unchecked"/>
-                <TextBlock x:Uid="PixivLogin" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="PixivLoginExplanation" TextWrapping="WrapWholeWords" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <StackPanel x:Name="sp2" Orientation="Horizontal">
-                    <TextBlock x:Uid="Account" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                    <TextBox x:Name="textbox1" Margin="10,10,0,0"  Width="200" RequestedTheme="Dark"/>
-                </StackPanel>
-                <StackPanel x:Name="sp3" Orientation="Horizontal">
-                    <TextBlock x:Uid="Password" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                    <PasswordBox x:Name="passwordbox1" Margin="10,10,0,0" Width="200"  RequestedTheme="Dark"/>
-                </StackPanel>
                 <Button x:Name="Save" x:Uid="SaveButton" Margin="30,10,0,0" RequestedTheme="Dark" Click="Save_Click"/>
                 <TextBlock x:Uid="LocalData" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <StackPanel Orientation="Horizontal">

@@ -1,13 +1,12 @@
 ﻿<Page
-    x:Class="Pixiv_Wallpaper_WinUI.WebViewLogin"
+    x:Class="Pixiv_Wallpaper_for_Windows_10.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Pixiv_Wallpaper_WinUI"
+    xmlns:local="using:Pixiv_Wallpaper_for_Windows_10"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    >
-
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <Grid.Background>
@@ -26,8 +25,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <controls:WebView2 x:Name="webView"  Grid.Row="1" Grid.ColumnSpan="2" 
-         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-
+        <WebView x:Name="webView"  Grid.Row="1" Grid.ColumnSpan="2" 
+         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed"/>
     </Grid>
 </Page>

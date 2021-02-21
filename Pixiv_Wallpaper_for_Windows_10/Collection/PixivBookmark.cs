@@ -14,14 +14,12 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
     {
         private ConcurrentQueue<ImageInfo> illustQueue;
         private Pixiv pixiv;
-        private Conf config;
         private ResourceLoader loader;
         private string nextUrl;
-        public PixivBookmark(Conf config, ResourceLoader loader, Pixiv pixiv)
+        public PixivBookmark(ResourceLoader loader, Pixiv pixiv)
         {
             illustQueue = new ConcurrentQueue<ImageInfo>();
             this.pixiv = pixiv;
-            this.config = config;
             this.loader = loader;
             nextUrl = "begin";
         }
@@ -30,10 +28,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || illustQueue == null || illustQueue.Count == 0)
             { 
-                var t = await pixiv.getBookmarkIllustList(nextUrl, config.ActPswText.Item1, config.ActPswText.Item2, config.RefreshToken);
+                var t = await pixiv.getBookmarkIllustList(nextUrl);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
-                config.RefreshToken = t.Item3;
                 if (illustQueue != null)
                 {
                     return true;

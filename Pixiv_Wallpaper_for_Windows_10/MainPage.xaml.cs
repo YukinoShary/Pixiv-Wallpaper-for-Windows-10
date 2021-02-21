@@ -56,35 +56,42 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
-            c = new Conf();
-            pixiv = new Pixiv();
             viewModel = new ImageShowViewModel();
             session = null;
-            backgroundMode = c.backgroundMode;
+            
+        }
 
-            //后台模式选择
-            if(backgroundMode.Equals("BackgroundTask"))
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter is ValueTuple<Pixiv,Conf> param)
             {
-                RegistTask(); //注册后台任务以及时间触发器
-            }
-            else
-            {
-                timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromMinutes(c.time);
-                timer.Tick += Timer_Tick;
-                timer.Start();
-                BeginExtendedExecution(); //申请延迟挂起
+                pixiv = param.Item1;
+                c = param.Item2;
+                backgroundMode = c.backgroundMode;
 
-                foreach (var i in BackgroundTaskRegistration.AllTasks.Values)
+                //后台模式选择
+                if (backgroundMode.Equals("BackgroundTask"))
                 {
-                    if (i.Name.Equals("TimeBackgroundTrigger"))
+                    RegistTask(); //注册后台任务以及时间触发器
+                }
+                else
+                {
+                    timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromMinutes(c.time);
+                    timer.Tick += Timer_Tick;
+                    timer.Start();
+                    BeginExtendedExecution(); //申请延迟挂起
+
+                    foreach (var i in BackgroundTaskRegistration.AllTasks.Values)
                     {
-                        i.Unregister(true);//将之前的时间触发器任务注销
+                        if (i.Name.Equals("TimeBackgroundTrigger"))
+                        {
+                            i.Unregister(true);//将之前的时间触发器任务注销
+                        }
                     }
                 }
+                ShowPageInitialize();
             }
-            ShowPageInitialize();
-            
         }
 
         private async Task ShowPageInitialize()
@@ -117,28 +124,28 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Bookmark":
                     if(bookmark == null)
                     {
-                        bookmark = new PixivBookmark(c, loader, pixiv);
+                        bookmark = new PixivBookmark(loader, pixiv);
                     }
                     img = await bookmark.SelectArtwork();         
                     break;
                 case "FollowIllust":
                     if(follow == null)
                     {
-                        follow = new PixivFollowingIllust(c, loader, pixiv);
+                        follow = new PixivFollowingIllust(loader, pixiv);
                     }
                     img = await follow.SelectArtwork();
                     break;
                 case "Recommendation":
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader, pixiv);
+                        recommend = new PixivRecommendation(loader, pixiv);
                     }
                     img = await recommend.SelectArtwork(); //PixivCS在UI线程被建立，不支持从子线程调用
                     break;
                 default:
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader, pixiv);
+                        recommend = new PixivRecommendation(loader, pixiv);
                     }
                     await Task.Run(async () => { img = await bookmark.SelectArtwork(); });
                     break;
@@ -343,7 +350,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 if(c.mode == "Recommendation")
                 {
                     if (recommend == null)
-                        recommend = new PixivRecommendation(c, loader, pixiv);
+                        recommend = new PixivRecommendation(loader, pixiv);
                     await recommend.ListUpdate(true, c.lastImg.imgId);
                 }
             }
@@ -361,7 +368,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Bookmark":
                     if(bookmark == null)
                     {
-                        bookmark = new PixivBookmark(c, loader, pixiv);
+                        bookmark = new PixivBookmark(loader, pixiv);
                     }
                     if(await bookmark.ListUpdate(true))
                     {
@@ -374,7 +381,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "FollowIllust":
                     if(follow == null)
                     {
-                        follow = new PixivFollowingIllust(c, loader, pixiv);
+                        follow = new PixivFollowingIllust(loader, pixiv);
                     }
                     if(await follow.ListUpdate(true))
                     {
@@ -387,7 +394,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 case "Recommendation":
                     if(recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader, pixiv);
+                        recommend = new PixivRecommendation(loader, pixiv);
                     }
                     if(await recommend.ListUpdate(true))
                     {
@@ -401,7 +408,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 default:
                     if (recommend == null)
                     {
-                        recommend = new PixivRecommendation(c, loader, pixiv);
+                        recommend = new PixivRecommendation(loader, pixiv);
                     }
                     if (await recommend.ListUpdate(true))
                     {

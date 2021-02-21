@@ -34,7 +34,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 try
                 {
                     StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(id + '.' + format, CreationCollisionOption.ReplaceExisting);
-                    var message = await new PixivAppAPI(Pixiv.GlobalBaseAPI).RequestCall("GET", url, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
+                    var message = await new PixivAppAPI(Pixiv.baseAPI).RequestCall("GET", url, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
                     long length = message.Content.Headers.ContentLength ?? -1;
                     using (var resStream = await message.Content.ReadAsStreamAsync())
                     {

@@ -14,13 +14,11 @@ namespace Pixiv_Wallpaper_WinUI.Collection
     {
         private ConcurrentQueue<ImageInfo> illustQueue;
         private Pixiv pixiv;
-        private Conf config;
         private ResourceLoader loader;
         private string nextUrl;
-        public PixivFollowingIllust(Conf config, ResourceLoader loader, Pixiv pixiv)
+        public PixivFollowingIllust(ResourceLoader loader, Pixiv pixiv)
         {
             illustQueue = new ConcurrentQueue<ImageInfo>();
-            this.config = config;
             this.loader = loader;
             this.pixiv = pixiv;
             nextUrl = "begin";
@@ -29,10 +27,9 @@ namespace Pixiv_Wallpaper_WinUI.Collection
         {
             if (flag || illustQueue == null || illustQueue.Count == 0)
             {
-                var t = await pixiv.getIllustFollowList(nextUrl, config.ActPswText.Item1, config.ActPswText.Item2, config.RefreshToken);
+                var t = await pixiv.getIllustFollowList(nextUrl);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
-                config.RefreshToken = t.Item3;
                 if (illustQueue != null)
                     return true;
                 else

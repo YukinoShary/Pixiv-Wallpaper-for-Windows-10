@@ -30,51 +30,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
             }
         }
 
-        /// <summary>
-        /// 登录信息
-        /// </summary>
-        public ValueTuple<string, string> ActPswText
-        {   
-            get
-            {
-                PasswordCredential accountCredential = null;
-                try
-                {
-                    var list = vault.FindAllByResource("ActPsw");
-                    if (list.Count > 0)
-                    {
-                        accountCredential = list[0];
-                    }
-                    accountCredential.RetrievePassword();
-                }
-                catch
-                {
-                    try
-                    {
-                        return ("null", "null");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-                return (accountCredential.UserName, accountCredential.Password);  
-            }
-            set
-            {
-                try
-                {
-                    vault.Remove(vault.FindAllByResource("ActPsw")[0]);
-                    vault.Remove(vault.FindAllByResource("RefreshToken")[0]);
-                }
-                catch { }
-                finally
-                {
-                    vault.Add(new PasswordCredential("ActPsw", value.Item1, value.Item2));
-                }
-            }
-        }
-
 
         public string RefreshToken
         {
