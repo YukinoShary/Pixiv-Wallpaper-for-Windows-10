@@ -50,16 +50,6 @@ namespace Pixiv_Wallpaper_WinUI
             combox2.SelectedValue = c.backgroundMode;
             lock_switch.IsOn = c.lockscr;
 
-            var vp = c.ActPswText;
-            if (vp.Item1.Equals("null"))
-                textbox1.Text = "";
-            else
-                textbox1.Text = vp.Item1;
-            if (vp.Item2.Equals("null"))
-                passwordbox1.Password = "";
-            else
-                passwordbox1.Password = vp.Item2;
-
             switch (c.mode)
             {
                 case "Bookmark":
@@ -101,15 +91,7 @@ namespace Pixiv_Wallpaper_WinUI
 
         private void radiobutton3_Checked(object sender, RoutedEventArgs e)
         {
-            textbox1.IsEnabled = true;
-            passwordbox1.IsEnabled = true;
             c.mode = "Recommendation";
-        }
-
-        private void radiobutton3_Unchecked(object sender, RoutedEventArgs e)
-        {
-            textbox1.IsEnabled = false;
-            passwordbox1.IsEnabled = false;
         }
 
         private async Task<long> GetFolderSizeAsync()
@@ -126,40 +108,6 @@ namespace Pixiv_Wallpaper_WinUI
             long current = await GetFolderSizeAsync();
             decimal sizeInMB = new decimal(current) / new decimal(1048576);
             cacheSize.Text = decimal.Round(sizeInMB, 2).ToString() + "MB";
-        }
-
-        private void textbox1_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (!(textbox1.Text.Equals(c.ActPswText.Item1) && passwordbox1.Password.Equals(c.ActPswText.Item2)))
-            {
-                string str1, str2;
-                if (textbox1.Text == null)
-                    str1 = "";
-                else
-                    str1 = textbox1.Text;
-                if (passwordbox1.Password == null)
-                    str2 = "";
-                else
-                    str2 = passwordbox1.Password;
-                c.ActPswText = (str1, str2);
-            }
-        }
-
-        private void passwordbox1_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (!(textbox1.Text.Equals(c.ActPswText.Item1) && passwordbox1.Password.Equals(c.ActPswText.Item2)))
-            {
-                string str1, str2;
-                if (textbox1.Text == null)
-                    str1 = "";
-                else
-                    str1 = textbox1.Text;
-                if (passwordbox1.Password == null)
-                    str2 = "";
-                else
-                    str2 = passwordbox1.Password;
-                c.ActPswText = (str1, str2);
-            }
         }
 
         private void combox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -182,18 +130,5 @@ namespace Pixiv_Wallpaper_WinUI
             c.lockscr = lock_switch.IsOn;
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            string str1, str2;
-            if (textbox1.Text == null || textbox1.Text.Equals(""))
-                str1 = "null";
-            else
-                str1 = textbox1.Text;
-            if (passwordbox1.Password == null || passwordbox1.Password.Equals(""))
-                str2 = "null";
-            else
-                str2 = passwordbox1.Password;
-            c.ActPswText = (str1, str2);
-        }
     }
 }
