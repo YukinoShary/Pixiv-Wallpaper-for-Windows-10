@@ -18,7 +18,7 @@
                 <TextBlock x:Uid="UpdateModeExplanation" FontSize="15" TextWrapping="WrapWholeWords" Margin="30,10,0,0" RequestedTheme="Dark"/>
                 <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Bookmark" RequestedTheme="Dark" Checked="radiobutton1_Checked"/>
                 <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="FollowingUserUpdating" RequestedTheme="Dark" Checked="radiobutton2_Checked"/>
-                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" RequestedTheme="Dark" Checked="radiobutton3_Checked" Unchecked="radiobutton3_Unchecked"/>
+                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" RequestedTheme="Dark" Checked="radiobutton3_Checked"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Uid="LocalDataSize" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
                     <TextBlock x:Name="cacheSize" FontSize="15" Margin="10,10,0,0" RequestedTheme="Dark"/>
@@ -26,6 +26,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Name="clearPicture" x:Uid="ClearIllustrations" Margin="30,10,0,0" RequestedTheme="Dark" Click="clearPicture_Click"/>
                     <Button Name="openFilePath" x:Uid="VisitLocalFolder" Margin="30,10,0,0" Click="openFilePath_Click" RequestedTheme="Dark"/>
+                    <Button Name="reLogin" x:Uid="ReLogin" Margin="30,10,0,0" Click="reLogin_Click"  RequestedTheme="Dark"/>
                 </StackPanel>
                 <TextBlock x:Uid="BackgroundMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="BackgroundModeExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark" TextWrapping="WrapWholeWords"/>

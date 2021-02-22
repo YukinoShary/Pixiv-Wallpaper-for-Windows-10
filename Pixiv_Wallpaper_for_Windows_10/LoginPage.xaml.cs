@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Pixiv_Wallpaper_for_Windows_10.Model;
 using Pixiv_Wallpaper_for_Windows_10.Util;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -43,9 +44,15 @@ namespace Pixiv_Wallpaper_for_Windows_10
             loader = ResourceLoader.GetForCurrentView("Resources");
             baseAPI = new PixivCS.PixivBaseAPI();
             baseAPI.ExperimentalConnection = true;
+            baseAPI.ClientLog += ClientLogOutput;
             conf = new Conf();
             lp.webView.ScriptNotify += WebView_ScriptNotify;
-            lp.webView.Source = baseAPI.GenerateWebViewUri();
+            
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            LoginMethod();
         }
 
         public static async Task LoginMethod()
@@ -123,10 +130,18 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 string[] uriSplit = uri.Split('=', '&');
                 Console.WriteLine(uriSplit[1]);
-                var res = await baseAPI.Code2Token(uriSplit[1]);
-                var currentUser = res.Response.User;
-                pixiv = new Pixiv(baseAPI, currentUser);
-                conf.RefreshToken = baseAPI.RefreshToken;
+                string monitor = uriSplit[1];
+                try
+                {
+                    var res = await baseAPI.Code2Token(uriSplit[1]);
+                    var currentUser = res.Response.User;
+                    pixiv = new Pixiv(baseAPI, currentUser);
+                    conf.RefreshToken = baseAPI.RefreshToken;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
             }
             catch(Exception e)
@@ -135,7 +150,27 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 //未完成
                 //ToastMessage message = new ToastMessage();
             }
+        }
+
+        private async Task ClientLogOutput(byte[] b)
+        {
+            StorageFile file = (StorageFile)await ApplicationData.Current.LocalFolder.TryGetItemAsync("log.txt")
+                ?? await ApplicationData.Current.LocalFolder.CreateFileAsync("log.txt");
             
+            using (Stream stream = await file.OpenStreamForWriteAsync())
+            {
+                using (StreamWriter sw = new StreamWriter(stream))
+                {
+                    await sw.WriteLineAsync("-----------------------------------------");
+                    await sw.WriteLineAsync(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        await stream.WriteAsync(b, 0, b.Length);
+                    }
+                    await sw.WriteLineAsync("-----------------------------------------");
+                }
+                
+            }
         }
     }
 }

@@ -117,9 +117,11 @@ namespace Pixiv_Wallpaper_WinUI.ViewModel
             }
         }
 
-        public ImageShowViewModel()
+        private Pixiv p;
+        public ImageShowViewModel(Pixiv p)
         {
             loader = ResourceLoader.GetForCurrentView("Resources");
+            this.p = p;
         }
 
 
@@ -182,7 +184,7 @@ namespace Pixiv_Wallpaper_WinUI.ViewModel
                 result = await Task.Run(async () =>
                 {
                     //lamda表达式写匿名回调函数作为参数
-                    var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, async (loaded, length) =>
+                    var res = await DownloadManager.DownloadAsync(image.imgUrl, image.imgId, image.format, p, async (loaded, length) =>
                     {
                         await Task.Run(async () =>
                         {

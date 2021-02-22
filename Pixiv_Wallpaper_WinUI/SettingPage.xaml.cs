@@ -130,5 +130,11 @@ namespace Pixiv_Wallpaper_WinUI
             c.lockscr = lock_switch.IsOn;
         }
 
+        private void reLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Frame root = Window.Current.Content as Frame;
+            c.RefreshToken = "ERROR";
+            root.Navigate(typeof(WebViewLogin));
+        }
     }
 }

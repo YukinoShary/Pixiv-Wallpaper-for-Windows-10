@@ -53,7 +53,6 @@ namespace Pixiv_Wallpaper_WinUI
             this.InitializeComponent();
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
-            viewModel = new ImageShowViewModel();
             session = null;
         }
 
@@ -64,7 +63,7 @@ namespace Pixiv_Wallpaper_WinUI
                 pixiv = param.Item1;
                 c = param.Item2;
                 backgroundMode = c.backgroundMode;
-
+                viewModel = new ImageShowViewModel(pixiv);
                 //后台模式选择
                 if (backgroundMode.Equals("BackgroundTask"))
                 {

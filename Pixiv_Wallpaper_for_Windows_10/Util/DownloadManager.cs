@@ -18,7 +18,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
     { 
         public static bool downloading { get; private set; }
 
-        public static async Task<bool> DownloadAsync(string url, string id, string format, Func<long, long, Task> ProgressCallback)
+        public static async Task<bool> DownloadAsync(string url, string id, string format, Pixiv p, Func<long, long, Task> ProgressCallback)
         {
             //一次只能更新一张插画，在当前下载任务完成前忽略新的下载请求
             if (!downloading)
@@ -34,7 +34,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 try
                 {
                     StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(id + '.' + format, CreationCollisionOption.ReplaceExisting);
-                    var message = await new PixivAppAPI(Pixiv.baseAPI).RequestCall("GET", url, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
+                    var message = await new PixivAppAPI(p.baseAPI).RequestCall("GET", url, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
                     long length = message.Content.Headers.ContentLength ?? -1;
                     using (var resStream = await message.Content.ReadAsStreamAsync())
                     {

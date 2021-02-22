@@ -20,7 +20,7 @@ namespace Pixiv_Wallpaper_WinUI.Util
 {
     public class Pixiv
     {
-        private PixivBaseAPI baseAPI;
+        public PixivBaseAPI baseAPI;
         private PixivCS.Objects.ResponseUser currentUser;
 
         public Pixiv(PixivBaseAPI baseAPI, PixivCS.Objects.ResponseUser currentUser)

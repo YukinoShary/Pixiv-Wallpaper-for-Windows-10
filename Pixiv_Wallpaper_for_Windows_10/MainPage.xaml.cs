@@ -56,7 +56,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
-            viewModel = new ImageShowViewModel();
             session = null;
             
         }
@@ -68,7 +67,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 pixiv = param.Item1;
                 c = param.Item2;
                 backgroundMode = c.backgroundMode;
-
+                viewModel = new ImageShowViewModel(pixiv);
                 //后台模式选择
                 if (backgroundMode.Equals("BackgroundTask"))
                 {

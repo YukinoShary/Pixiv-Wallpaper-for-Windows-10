@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Web.Http.Filters;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -44,8 +45,14 @@ namespace Pixiv_Wallpaper_WinUI
             loader = ResourceLoader.GetForCurrentView("Resources");
             baseAPI = new PixivCS.PixivBaseAPI();
             baseAPI.ExperimentalConnection = true;
+            baseAPI.ClientLog += ClientLogOutput;
             conf = new Conf();
-            lp.webView.Source = baseAPI.GenerateWebViewUri();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            LoginMethod();
         }
 
         public static async Task LoginMethod()
@@ -97,6 +104,27 @@ namespace Pixiv_Wallpaper_WinUI
                 //ToastMessage message = new ToastMessage();
             }
 
+        }
+
+        private async Task ClientLogOutput(byte[] b)
+        {
+            StorageFile file = (StorageFile)await ApplicationData.Current.LocalFolder.TryGetItemAsync("log.txt")
+                ?? await ApplicationData.Current.LocalFolder.CreateFileAsync("log.txt");
+
+            using (Stream stream = await file.OpenStreamForWriteAsync())
+            {
+                using (StreamWriter sw = new StreamWriter(stream))
+                {
+                    await sw.WriteLineAsync("-----------------------------------------");
+                    await sw.WriteLineAsync(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        await stream.WriteAsync(b, 0, b.Length);
+                    }
+                    await sw.WriteLineAsync("-----------------------------------------");
+                }
+
+            }
         }
     }
 }
