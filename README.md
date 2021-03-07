@@ -24,9 +24,6 @@ pixiv的登录改为了OAuth2，必须使用WebView访问。UWP的权限很死�
 
 由于pixiv部分url并未被完全封锁，大部分的PAC文件中并没有写入这部分url，可能会出现代理开启的情况下图片加载速度还是很慢的情况。因此在PAC代理模式下，推荐手动将pixiv图床的url “i.pximg.net”与“pixivsketch.net”添加进pac列表中以加速图片下载速度。  
 
-## 未来更新计划
-单独做一个独立的登录页面和已登录用户页面，把控制逻辑弄得简单一些。。  
-
 ## 关于原始项目
 初代版本的是由[democyann](https://github.com/democyann)与我共同开发的。democyann在2017年之后因为个人原因不再管理此项目，后续开发与维护都由我个人在分支relife完成。在与democyann进行邮件沟通后，她建议我建立自己的代码仓库继续维护此项目。因此今后的Pixiv Wallpaper for Windows 10更新与维护将在此仓库完成，Microsoft Store上面发布的版本也会与此仓库的版本保持一致。
 
