@@ -211,7 +211,7 @@
     <value>Failed to get pixiv recommendation queue</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>Please check your network connection and make sure you have enter the correct account and password</value>
+    <value>Please check your network connection</value>
   </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>
@@ -247,7 +247,7 @@
     <value>Password:</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>Pixiv Login</value>
+    <value>Pixiv Login...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>The app will store your account and password locally</value>
@@ -269,6 +269,9 @@
   </data>
   <data name="RefreshExplanation" xml:space="preserve">
     <value>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>Log out</value>
   </data>
   <data name="Resolution.Text" xml:space="preserve">
     <value> Pixel</value>

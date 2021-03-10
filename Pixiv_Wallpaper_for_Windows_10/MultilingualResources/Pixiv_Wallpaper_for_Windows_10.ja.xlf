@@ -107,7 +107,7 @@
           <target state="translated">pixivおすすめキューを取得できません</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and make sure you have enter the correct account and password</source>
+          <source>Please check your network connection</source>
           <target state="needs-review-translation">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
@@ -243,8 +243,8 @@
           <target state="translated">フォローユーザーの作品キューが更新しました</target>
         </trans-unit>
         <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login</source>
-          <target state="translated">ログイン</target>
+          <source>Pixiv Login...</source>
+          <target state="translated">ログイン中...</target>
         </trans-unit>
         <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
           <source>The app will store your account and password locally</source>
@@ -265,6 +265,10 @@
         <trans-unit id="SaveButton.Content" translate="yes" xml:space="preserve">
           <source>Save</source>
           <target state="translated">保存します</target>
+        </trans-unit>
+        <trans-unit id="ReLogin.Content" translate="yes" xml:space="preserve">
+          <source>Log out</source>
+          <target state="translated">ログアウト</target>
         </trans-unit>
       </group>
     </body>

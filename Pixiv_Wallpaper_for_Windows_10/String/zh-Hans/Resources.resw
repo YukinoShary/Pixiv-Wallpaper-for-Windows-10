@@ -187,7 +187,7 @@
     <value>已关注用户的插画更新队列已更新</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>登录Pixiv</value>
+    <value>登录Pixiv中...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>应用会储存你的账号与密码</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>退出登录</value>
   </data>
 </root>

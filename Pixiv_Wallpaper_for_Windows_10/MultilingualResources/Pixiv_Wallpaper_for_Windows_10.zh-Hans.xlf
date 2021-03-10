@@ -107,7 +107,7 @@
           <target state="translated">获取pixiv推荐队列失败</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and make sure you have enter the correct account and password</source>
+          <source>Please check your network connection</source>
           <target state="needs-review-translation">请检查你的网络连接并输入正确的账号密码</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
@@ -242,8 +242,8 @@
           <target state="translated">已关注用户的插画更新队列已更新</target>
         </trans-unit>
         <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login</source>
-          <target state="translated">登录Pixiv</target>
+          <source>Pixiv Login...</source>
+          <target state="translated">登录Pixiv中...</target>
         </trans-unit>
         <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
           <source>The app will store your account and password locally</source>
@@ -264,6 +264,10 @@
         <trans-unit id="SaveButton.Content" translate="yes" xml:space="preserve">
           <source>Save</source>
           <target state="translated">保存</target>
+        </trans-unit>
+        <trans-unit id="ReLogin.Content" translate="yes" xml:space="preserve">
+          <source>Log out</source>
+          <target state="translated">退出登录</target>
         </trans-unit>
       </group>
     </body>

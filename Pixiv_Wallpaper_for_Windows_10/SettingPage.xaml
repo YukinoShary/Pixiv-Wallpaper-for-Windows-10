@@ -28,7 +28,6 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Name="clearPicture" x:Uid="ClearIllustrations" Margin="30,10,0,0" RequestedTheme="Dark" Click="clearPicture_Click"/>
                     <Button Name="openFilePath" x:Uid="VisitLocalFolder" Margin="30,10,0,0" Click="openFilePath_Click" RequestedTheme="Dark"/>
-                    <Button Name="reLogin" x:Uid="ReLogin" Margin="30,10,0,0" Click="reLogin_Click" RequestedTheme="Dark"/>
                 </StackPanel>
                 <TextBlock x:Uid="BackgroundMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="BackgroundModeExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark" TextWrapping="WrapWholeWords"/>
@@ -37,6 +36,7 @@
                 <TextBlock x:Uid="Other" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="OtherOptionsExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
                 <ToggleSwitch x:Name="lock_switch" Margin="30,10,0,0" RequestedTheme="Dark" Toggled="lock_switch_Toggled"></ToggleSwitch>
+                <Button Name="reLogin" x:Uid="ReLogin" Margin="30,10,0,0" Click="reLogin_Click" RequestedTheme="Dark"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

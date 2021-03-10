@@ -24,7 +24,6 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
         <WebView x:Name="webView"  Grid.Row="1" Grid.ColumnSpan="2" 
          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>

@@ -63,16 +63,17 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 if (refreshToken != null && !refreshToken.Equals("ERROR"))
                 {
-                    res = await baseAPI.AuthAsync(refreshToken);
+                    res = await baseAPI.AuthAsync(refreshToken); 
+                    conf.RefreshToken = baseAPI.RefreshToken;
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
                     frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv,Conf>(pixiv, conf));
                 }
                 else
                 {
-                    //没有解决WebView持续显示的问题
                     lp.webView.Source = baseAPI.GenerateWebViewUri();
                     lp.webView.Visibility = Visibility.Visible;
+                    //lp.webView.Refresh();
                 }
             }
             catch (Exception e)
@@ -81,6 +82,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 Console.WriteLine(e.Message);
                 lp.webView.Source = baseAPI.GenerateWebViewUri();
                 lp.webView.Visibility = Visibility.Visible;
+                //lp.webView.Refresh();
             }
         }
 
@@ -159,6 +161,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             
             using (Stream stream = await file.OpenStreamForWriteAsync())
             {
+                stream.Position = stream.Length;
                 using (StreamWriter sw = new StreamWriter(stream))
                 {
                     await sw.WriteLineAsync("-----------------------------------------");

@@ -187,7 +187,7 @@
     <value>フォローユーザーの作品キューが更新しました</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>ログイン</value>
+    <value>ログイン中...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>アプリはアカウントとパスワードをローカルに保存します</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>保存します</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>ログアウト</value>
   </data>
 </root>
