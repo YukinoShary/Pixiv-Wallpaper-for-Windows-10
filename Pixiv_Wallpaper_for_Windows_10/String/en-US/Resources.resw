@@ -213,6 +213,9 @@
   <data name="FailToGetQueueExplanation" xml:space="preserve">
     <value>Please check your network connection</value>
   </data>
+  <data name="FailToLogin" xml:space="preserve">
+    <value>Credentials expired</value>
+  </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>
   </data>

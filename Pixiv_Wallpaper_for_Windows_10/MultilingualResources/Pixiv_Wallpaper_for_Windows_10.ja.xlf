@@ -108,8 +108,7 @@
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
           <source>Please check your network connection</source>
-          <target state="needs-review-translation">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ネットワーク接続を確認してください</target>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
@@ -157,13 +156,11 @@
         </trans-unit>
         <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
           <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
-          <target state="needs-review-translation">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
         </trans-unit>
         <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
           <source> times review</source>
-          <target state="needs-review-translation"> 回レビュー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated"> 回レビュー</target>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -219,8 +216,7 @@
         </trans-unit>
         <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
           <source>Pixiv Bookmark</source>
-          <target state="needs-review-translation">ピクシブブックマーク</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ピクシブブックマーク</target>
         </trans-unit>
         <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
           <source>Bookmark illustration queue has been updated</source>
@@ -269,6 +265,10 @@
         <trans-unit id="ReLogin.Content" translate="yes" xml:space="preserve">
           <source>Log out</source>
           <target state="translated">ログアウト</target>
+        </trans-unit>
+        <trans-unit id="FailToLogin" translate="yes" xml:space="preserve">
+          <source>Credentials expired</source>
+          <target state="translated">資格情報の有効期限が切れました</target>
         </trans-unit>
       </group>
     </body>

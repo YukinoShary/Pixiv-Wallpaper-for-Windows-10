@@ -61,7 +61,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             string refreshToken = conf.RefreshToken;
             try
             {
-                if (refreshToken != null && !refreshToken.Equals("ERROR"))
+                if (refreshToken != null && !refreshToken.Equals("Invalidation"))
                 {
                     res = await baseAPI.AuthAsync(refreshToken); 
                     conf.RefreshToken = baseAPI.RefreshToken;
@@ -146,11 +146,12 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 }
                 frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                Console.WriteLine(e.Message);
-                //未完成
-                //ToastMessage message = new ToastMessage();
+                string title = lp.loader.GetString("FailToLogin");
+                ToastMessage message = new ToastMessage(title, "", ToastMessage.ToastMode.OtherMessage);
+                message.ToastPush(30);
+                await LoginMethod();
             }
         }
 

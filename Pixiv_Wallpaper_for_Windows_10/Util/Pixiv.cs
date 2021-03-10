@@ -47,11 +47,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 PixivCS.Objects.IllustRecommended recommendres = null;
                 try
                 {
-                    //检查
-                    string time = baseAPI.AccessTime.ToString("yyyy-MM-ddTHH:mm:ss+00:00");
-                    string token1 = baseAPI.AccessToken;
-                    await baseAPI.CheckAccessToken();
-                    string token2 = baseAPI.AccessToken;
                     //是否使用nexturl更新list
                     if ("begin".Equals(nextUrl))
                     {
@@ -102,7 +97,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 PixivCS.Objects.UserIllusts related = null;
                 try
                 {
-                    await baseAPI.CheckAccessToken();
                     related = await new PixivAppAPI(baseAPI).GetIllustRelatedAsync(imgId);
                     foreach (PixivCS.Objects.UserPreviewIllust ill in related.Illusts)
                     {
@@ -144,7 +138,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             PixivCS.Objects.UserIllusts followIllust = null;
             try
             {
-                await baseAPI.CheckAccessToken();
                 if (nextUrl == "begin")
                 {
                     followIllust = await new PixivAppAPI(baseAPI).GetIllustFollowAsync();
@@ -196,7 +189,6 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
             PixivCS.Objects.UserIllusts bookmarkIllust = null;
             try
             {
-                await baseAPI.CheckAccessToken();
                 if (nextUrl == "begin")
                 {
                     bookmarkIllust = await new PixivAppAPI(baseAPI).GetUserBookmarksIllustAsync(currentUser.Id);

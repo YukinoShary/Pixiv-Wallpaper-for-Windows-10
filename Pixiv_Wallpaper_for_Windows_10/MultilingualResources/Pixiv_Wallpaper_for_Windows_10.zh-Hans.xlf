@@ -108,8 +108,7 @@
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
           <source>Please check your network connection</source>
-          <target state="needs-review-translation">请检查你的网络连接并输入正确的账号密码</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">请检查你的网络连接</target>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
@@ -161,8 +160,7 @@
         </trans-unit>
         <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
           <source> times review</source>
-          <target state="needs-review-translation"> 次浏览</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated"> 次浏览</target>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -218,8 +216,7 @@
         </trans-unit>
         <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
           <source>Pixiv Bookmark</source>
-          <target state="needs-review-translation">Pixiv 书签</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Pixiv 书签</target>
         </trans-unit>
         <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
           <source>Bookmark illustration queue has been updated</source>
@@ -268,6 +265,10 @@
         <trans-unit id="ReLogin.Content" translate="yes" xml:space="preserve">
           <source>Log out</source>
           <target state="translated">退出登录</target>
+        </trans-unit>
+        <trans-unit id="FailToLogin" translate="yes" xml:space="preserve">
+          <source>Credentials expired</source>
+          <target state="translated">凭证已过期</target>
         </trans-unit>
       </group>
     </body>

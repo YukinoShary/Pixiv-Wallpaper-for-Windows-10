@@ -133,7 +133,7 @@ namespace Pixiv_Wallpaper_WinUI
         private void reLogin_Click(object sender, RoutedEventArgs e)
         {
             Frame root = Window.Current.Content as Frame;
-            c.RefreshToken = "ERROR";
+            c.RefreshToken = "Invalidation";
             root.Navigate(typeof(WebViewLogin));
         }
     }

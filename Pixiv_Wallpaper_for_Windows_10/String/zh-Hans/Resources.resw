@@ -88,7 +88,7 @@
     <value>获取pixiv推荐队列失败</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>请检查你的网络连接并输入正确的账号密码</value>
+    <value>请检查你的网络连接</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>画师: </value>
@@ -206,5 +206,8 @@
   </data>
   <data name="ReLogin.Content" xml:space="preserve">
     <value>退出登录</value>
+  </data>
+  <data name="FailToLogin" xml:space="preserve">
+    <value>凭证已过期</value>
   </data>
 </root>
