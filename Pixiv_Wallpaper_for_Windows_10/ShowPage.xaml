@@ -11,8 +11,8 @@
         <Grid.Background>
             <AcrylicBrush x:Name="CMapUwpAcrylicBrush"
               BackgroundSource="HostBackdrop"
-              TintColor="#FFC3BEBE"
-              TintOpacity="0.3"
+              TintColor="#28333e"
+              TintOpacity="0.4"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
         <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource, Mode=OneWay}"></Image>
@@ -49,7 +49,7 @@
                     <TextBlock x:Name="loadingProgress" Text="{x:Bind viewModel.Progress, Mode=OneWay}" FontSize="16" Foreground="White" HorizontalAlignment="Center" />
                     <TextBlock FontSize="16" Text="%" Foreground="White"/>
                 </StackPanel>
-                <ProgressBar IsIndeterminate="True" Height="3" HorizontalAlignment="Stretch" Value="{x:Bind viewModel.Progress, Mode=OneWay}" Maximum="100" Minimum="0" Foreground="White"/>
+                <ProgressBar IsIndeterminate="False" Height="3" HorizontalAlignment="Stretch" Value="{x:Bind viewModel.Progress, Mode=OneWay}" Maximum="100" Minimum="0" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -210,4 +210,19 @@
   <data name="FailToLogin" xml:space="preserve">
     <value>資格情報の有効期限が切れました</value>
   </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>デイリー</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>マンスリー</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>ウィークリー</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>ピクシブランキング</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>ランキングのイラストキューが更新しました</value>
+  </data>
 </root>

@@ -69,7 +69,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if(flag || Recomm == null || Recomm.Count == 0)
             {
-                var t = await pixiv.getRecommenlist(imgId, nextUrl);
+                var t = await pixiv.getRecommenList(imgId, nextUrl);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;
                 if (Recomm != null && Recomm.Count != 0)

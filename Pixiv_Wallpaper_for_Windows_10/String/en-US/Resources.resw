@@ -183,6 +183,9 @@
   <data name="DataRequestFailExplanation" xml:space="preserve">
     <value>Please confirm you have logged or clear the cookies and login again</value>
   </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>Dayly</value>
+  </data>
   <data name="EmptyQueue" xml:space="preserve">
     <value>There's not more content in this collection</value>
   </data>
@@ -234,6 +237,9 @@
   <data name="LocalDataSize.Text" xml:space="preserve">
     <value>Local illustrations total size:</value>
   </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
   <data name="Next.Text" xml:space="preserve">
     <value>Next illustration</value>
   </data>
@@ -260,6 +266,12 @@
   </data>
   <data name="Preview.Text" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>Pixiv Ranking</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>Ranking illustration queue has been updated</value>
   </data>
   <data name="Recommend.Content" xml:space="preserve">
     <value>Pixiv Recommendation </value>
@@ -314,5 +326,8 @@
   </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>Visit local folder</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Weekly</value>
   </data>
 </root>

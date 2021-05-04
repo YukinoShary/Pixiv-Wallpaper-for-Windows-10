@@ -61,6 +61,9 @@ namespace Pixiv_Wallpaper_WinUI
                 case "Recommendation":
                     radiobutton3.IsChecked = true;
                     break;
+                case "Ranking":
+                    radiobutton4.IsChecked = true;
+                    break;
                 default:
                     radiobutton1.IsChecked = true;
                     break;

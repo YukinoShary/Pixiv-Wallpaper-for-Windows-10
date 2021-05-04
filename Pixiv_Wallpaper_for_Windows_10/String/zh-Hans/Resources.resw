@@ -210,4 +210,19 @@
   <data name="FailToLogin" xml:space="preserve">
     <value>凭证已过期</value>
   </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>每日排行榜</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>每月排行榜</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>每周排行榜</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>Pixiv 排行榜</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>排行榜插画队列已更新</value>
+  </data>
 </root>

@@ -39,7 +39,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
         /// /// <param name="password"></param>
         /// <param name="refreshToken"></param>
         /// <returns>元组数据，item1为插画信息队列，item2为下次请求的url参数</returns>
-        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getRecommenlist(string imgId, string nextUrl)
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getRecommenList(string imgId, string nextUrl)
         {
             ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
             if(imgId == null)
@@ -208,7 +208,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                         ImageInfo imginfo = new ImageInfo();
                         imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
                         imginfo.viewCount = (int)ill.TotalView;
-                        imginfo.isR18 = false;
+                        imginfo.isR18 = false;  //无效
                         imginfo.userId = ill.User.Id.ToString();
                         imginfo.title = ill.Title;
                         imginfo.userName = ill.User.Name;
@@ -221,6 +221,47 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 }
             }
             catch(Exception)
+            {
+                return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "begin");
+            }
+            return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);
+        }
+
+        public async Task<ValueTuple<ConcurrentQueue<ImageInfo>, string>> getRankingList(string nextUrl, string mode, string date = null)
+        {
+            ConcurrentQueue<ImageInfo> queue = new ConcurrentQueue<ImageInfo>();
+            PixivCS.Objects.UserIllusts ranking = null;            
+            try
+            {
+                if (nextUrl == "begin")
+                    ranking = await new PixivAppAPI(baseAPI).GetIllustRankingAsync(Mode: mode, Date: date);
+                else
+                {
+                    Uri next = new Uri(nextUrl);
+                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                    ranking = await new PixivAppAPI(baseAPI).GetIllustRankingAsync(Mode: getparam("mode"), 
+                        Filter: getparam("filter"), Offset: getparam("offset"));
+                }
+                foreach (PixivCS.Objects.UserPreviewIllust ill in ranking.Illusts)
+                {
+                    if (ill.PageCount == 1)
+                    {
+                        ImageInfo imginfo = new ImageInfo();
+                        imginfo.imgUrl = ill.MetaSinglePage.OriginalImageUrl.ToString();
+                        imginfo.viewCount = (int)ill.TotalView;
+                        imginfo.isR18 = false;   //ranking不会出现
+                        imginfo.userId = ill.User.Id.ToString();
+                        imginfo.title = ill.Title;
+                        imginfo.userName = ill.User.Name;
+                        imginfo.imgId = ill.Id.ToString();
+                        imginfo.height = (int)ill.Height;
+                        imginfo.width = (int)ill.Width;
+                        imginfo.format = imginfo.imgUrl.Split('.').Last();
+                        queue.Enqueue(imginfo);
+                    }
+                }
+            }
+            catch (Exception)
             {
                 return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "begin");
             }

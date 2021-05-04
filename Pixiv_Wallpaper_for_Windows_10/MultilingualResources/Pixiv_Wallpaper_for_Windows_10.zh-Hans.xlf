@@ -270,6 +270,26 @@
           <source>Credentials expired</source>
           <target state="translated">凭证已过期</target>
         </trans-unit>
+        <trans-unit id="Dayly" translate="yes" xml:space="preserve">
+          <source>Dayly</source>
+          <target state="translated">每日排行榜</target>
+        </trans-unit>
+        <trans-unit id="Monthly" translate="yes" xml:space="preserve">
+          <source>Monthly</source>
+          <target state="translated">每月排行榜</target>
+        </trans-unit>
+        <trans-unit id="Weekly" translate="yes" xml:space="preserve">
+          <source>Weekly</source>
+          <target state="translated">每周排行榜</target>
+        </trans-unit>
+        <trans-unit id="Ranking.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Ranking</source>
+          <target state="translated">Pixiv 排行榜</target>
+        </trans-unit>
+        <trans-unit id="RankingRefresh" translate="yes" xml:space="preserve">
+          <source>Ranking illustration queue has been updated</source>
+          <target state="translated">排行榜插画队列已更新</target>
+        </trans-unit>
       </group>
     </body>
   </file>

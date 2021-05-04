@@ -227,5 +227,20 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                 localSettings.Values["BackgroundMode"] = value;
             }
         }
+
+        public string rankingMode
+        {
+            get
+            {
+                if (localSettings.Values["RankingMode"] == null)
+                    return "day";
+                else
+                    return localSettings.Values["RankingMode"].ToString();
+            }
+            set
+            {
+                localSettings.Values["RankingMode"] = value;
+            }
+        }
     }
 }

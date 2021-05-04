@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Collection\PixivBookmark.cs" />
     <Compile Include="Collection\PixivFollowingIllust.cs" />
+    <Compile Include="Collection\PixivRanking.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

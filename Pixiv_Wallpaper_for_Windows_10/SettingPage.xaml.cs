@@ -42,17 +42,22 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
 
             //下拉框初始化   多语言适配
-            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
-            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
-            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("60Mins"), 60));
-            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("120Mins"), 120));
-            combox1.Items.Add(new KeyValuePair<string, int>(loader.GetString("180Mins"), 180));
+            timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
+            timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
+            timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("60Mins"), 60));
+            timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("120Mins"), 120));
+            timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("180Mins"), 180));
 
             combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("ExtendedSession"), "ExtendedSession"));
             combox2.Items.Add(new KeyValuePair<string, string>(loader.GetString("BackgroundTask"), "BackgroundTask"));
 
+            rankingMode.Items.Add(new KeyValuePair<string, string>(loader.GetString("Dayly"), "day"));
+            rankingMode.Items.Add(new KeyValuePair<string, string>(loader.GetString("Weekly"), "week"));
+            rankingMode.Items.Add(new KeyValuePair<string, string>(loader.GetString("Monthly"), "month"));
+
             CalcutateCacheSize();
-            combox1.SelectedValue = c.time;
+            timeSet.SelectedValue = c.time;
+            rankingMode.SelectedValue = c.rankingMode;
             combox2.SelectedValue = c.backgroundMode;
             lock_switch.IsOn = c.lockscr;
             switch (c.mode)
@@ -65,6 +70,9 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     break;
                 case "Recommendation":
                     radiobutton3.IsChecked = true;
+                    break;
+                case "Ranking":
+                    radiobutton4.IsChecked = true;
                     break;
                 default:
                     radiobutton1.IsChecked = true;
@@ -93,11 +101,13 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void radiobutton2_Checked(object sender, RoutedEventArgs e)
         {
             c.mode = "FollowIllust";
+            rankingMode.IsEnabled = false;
         }
 
         private void radiobutton3_Checked(object sender, RoutedEventArgs e)
         {
             c.mode = "Recommendation";
+            rankingMode.IsEnabled = false;
         }
 
         private async Task<long> GetFolderSizeAsync()
@@ -118,12 +128,13 @@ namespace Pixiv_Wallpaper_for_Windows_10
 
         private void combox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            c.time = (int)combox1.SelectedValue;
+            c.time = (int)timeSet.SelectedValue;
         }
 
         private void radiobutton1_Checked(object sender, RoutedEventArgs e)
         {
             c.mode = "Bookmark";
+            rankingMode.IsEnabled = false;
         }
 
         private void combox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,6 +152,17 @@ namespace Pixiv_Wallpaper_for_Windows_10
             Frame root = Window.Current.Content as Frame;
             c.RefreshToken = "Invalidation ";
             root.Navigate(typeof(LoginPage));
+        }
+
+        private void radiobutton4_Checked(object sender, RoutedEventArgs e)
+        {
+            c.mode = "Ranking";
+            rankingMode.IsEnabled = true;
+        }
+
+        private void rankingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            c.rankingMode = rankingMode.SelectedValue.ToString();
         }
     }
 }

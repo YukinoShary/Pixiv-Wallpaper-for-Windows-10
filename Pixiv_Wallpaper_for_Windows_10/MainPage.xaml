@@ -12,8 +12,8 @@
         <Grid.Background>
             <AcrylicBrush x:Name="CMapUwpAcrylicBrush"
               BackgroundSource="HostBackdrop"
-              TintColor="#FFC3BEBE"
-              TintOpacity="0.3"
+              TintColor="#28333e"
+              TintOpacity="0.4"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
         <TextBlock Name="title" Text="Pixiv Wallpaper for Windows 10" FontSize="14" FocusVisualPrimaryBrush="White" Foreground="White" Margin="10,5,0,0"/>
@@ -46,7 +46,7 @@
                     <StackPanel.Background>
                         <AcrylicBrush 
                             BackgroundSource="Backdrop"
-                            TintColor="#FFC3BEBE"
+                            TintColor="#222b34"
                             TintOpacity="0.1"
                             FallbackColor="{StaticResource SystemAccentColor}"/>
                     </StackPanel.Background>
