@@ -239,11 +239,15 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                 {
                     Uri next = new Uri(nextUrl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    ranking = await new PixivAppAPI(baseAPI).GetIllustRankingAsync(Mode: getparam("mode"), 
-                        Filter: getparam("filter"), Offset: getparam("offset"));
+                    if (int.Parse(getparam("offset")) < 500)
+                        ranking = await new PixivAppAPI(baseAPI).GetIllustRankingAsync(Mode: getparam("mode"),
+                            Filter: getparam("filter"), Offset: getparam("offset"));
+                    else
+                        return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, "begin");
                 }
+                nextUrl = ranking.NextUrl?.ToString() ?? "";
                 foreach (PixivCS.Objects.UserPreviewIllust ill in ranking.Illusts)
-                {
+                {                   
                     if (ill.PageCount == 1)
                     {
                         ImageInfo imginfo = new ImageInfo();

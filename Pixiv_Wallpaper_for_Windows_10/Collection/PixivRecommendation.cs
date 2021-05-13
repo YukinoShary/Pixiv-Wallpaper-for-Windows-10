@@ -42,7 +42,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                 }
                 else
                 {
-                    if (Recomm.Count != 0)
+                    if (Recomm.Count != 0 && Recomm.Count != 0)
                     {
                         Recomm.TryDequeue(out img);
                         if (img != null && img.WHratio >= 1.33 && !img.isR18
@@ -72,7 +72,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                 var t = await pixiv.getRecommenList(imgId, nextUrl);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;
-                if (Recomm != null && Recomm.Count != 0)
+                if (Recomm != null)
                 {
                     return true;
                 }                      

@@ -25,7 +25,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             this.loader = loader;
             illustQueue = new ConcurrentQueue<ImageInfo>();
             rankingMode = "";
-            date = DateTime.Today;
+            date = DateTime.UtcNow.Date.AddDays(-1);
             nextUrl = "begin";
         }
 
@@ -33,13 +33,26 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
         {
             if (flag || illustQueue == null || illustQueue.Count == 0 || this.rankingMode != rankingMode)
             {
+                //日期参数依旧存在问题
                 if (rankingMode == "day")
                 {
-                    //切换日期与nextUrl逻辑冲突未解决
-                    var t = await pixiv.getRankingList(mode : rankingMode, date : date.ToString("yyyy-MM-dd"), nextUrl : nextUrl);
-                    illustQueue = t.Item1;
-                    nextUrl = t.Item2;
-                    date = date.AddDays(-1);
+                    ValueTuple<ConcurrentQueue<ImageInfo>, string> vt = new ValueTuple<ConcurrentQueue<ImageInfo>, string>();
+                    if (date.Year == 1)
+                        vt = await pixiv.getRankingList(mode: rankingMode,date : null, nextUrl: nextUrl);
+                    else
+                        vt = await pixiv.getRankingList(mode : rankingMode, date : date.ToString("yyyy-MM-dd"), nextUrl : nextUrl);
+                    illustQueue = vt.Item1;
+                    nextUrl = vt.Item2;
+                    if (nextUrl == "begin")
+                        date = date.AddDays(-1);
+                    /*
+                    else
+                    {
+                        string dt = System.Web.HttpUtility.ParseQueryString(new Uri(nextUrl).Query).Get("date");
+                        date = DateTime.ParseExact(System.Web.HttpUtility.ParseQueryString(new Uri(nextUrl).Query).Get("date"),
+                            "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    */
                 }    
                 else
                 {
@@ -72,7 +85,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
             {
                 if (illustQueue == null)
                 {
-                    return null;
+                    break;
                 }
                 else
                 {
@@ -84,15 +97,19 @@ namespace Pixiv_Wallpaper_for_Windows_10.Collection
                             return img;
                         }
                     }
-                    else if (rankingMode != "day")
+                    else 
                     {
-                        string title = loader.GetString("EmptyQueue");
-                        ToastMessage tm = new ToastMessage(title, null, ToastMessage.ToastMode.OtherMessage);
-                        tm.ToastPush(60);
-                        return null;
+                        if (rankingMode != "day")
+                        {
+                            string title = loader.GetString("EmptyQueue");
+                            ToastMessage tm = new ToastMessage(title, null, ToastMessage.ToastMode.OtherMessage);
+                            tm.ToastPush(60);
+                        }
+                        break;
                     }
                 }
             }
+            return null;
         }
     }
 }
