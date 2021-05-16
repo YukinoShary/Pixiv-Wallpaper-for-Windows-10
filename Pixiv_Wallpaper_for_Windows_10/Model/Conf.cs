@@ -242,5 +242,20 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
                 localSettings.Values["RankingMode"] = value;
             }
         }
+
+        public string themeSelect
+        {
+            get
+            {
+                if (localSettings.Values["ThemeSelect"] == null)
+                    return "light";
+                else
+                    return localSettings.Values["ThemeSelect"].ToString();
+            }
+            set
+            {
+                localSettings.Values["ThemeSelect"] = value;
+            }
+        }
     }
 }

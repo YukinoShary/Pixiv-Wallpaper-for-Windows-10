@@ -225,4 +225,16 @@
   <data name="RankingRefresh" xml:space="preserve">
     <value>排行榜插画队列已更新</value>
   </data>
+  <data name="Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="ThemeSelect.Text" xml:space="preserve">
+    <value>颜色主题</value>
+  </data>
+  <data name="ThemeSelectExplain.Text" xml:space="preserve">
+    <value>此项更改将在应用下次启动时生效</value>
+  </data>
 </root>

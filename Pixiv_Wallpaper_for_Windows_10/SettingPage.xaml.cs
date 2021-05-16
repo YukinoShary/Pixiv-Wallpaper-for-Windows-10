@@ -55,9 +55,13 @@ namespace Pixiv_Wallpaper_for_Windows_10
             rankingMode.Items.Add(new KeyValuePair<string, string>(loader.GetString("Weekly"), "week"));
             rankingMode.Items.Add(new KeyValuePair<string, string>(loader.GetString("Monthly"), "month"));
 
+            themeSelect.Items.Add(new KeyValuePair<string, string>(loader.GetString("Dark"), "dark"));
+            themeSelect.Items.Add(new KeyValuePair<string, string>(loader.GetString("Light"), "light"));
+
             CalcutateCacheSize();
             timeSet.SelectedValue = c.time;
             rankingMode.SelectedValue = c.rankingMode;
+            themeSelect.SelectedValue = c.themeSelect;
             combox2.SelectedValue = c.backgroundMode;
             lock_switch.IsOn = c.lockscr;
             switch (c.mode)
@@ -163,6 +167,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
         private void rankingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             c.rankingMode = rankingMode.SelectedValue.ToString();
+        }
+
+        private void themeSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            c.themeSelect = themeSelect.SelectedValue.ToString();
         }
     }
 }

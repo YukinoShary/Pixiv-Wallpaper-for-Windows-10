@@ -12,31 +12,31 @@
         <Grid.Background>
             <AcrylicBrush x:Name="CMapUwpAcrylicBrush"
               BackgroundSource="HostBackdrop"
-              TintColor="#28333e"
+              TintColor="{ThemeResource SystemAltMediumColor}"
               TintOpacity="0.4"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>
-        <TextBlock Name="title" Text="Pixiv Wallpaper for Windows 10" FontSize="14" FocusVisualPrimaryBrush="White" Foreground="White" Margin="10,5,0,0"/>
+        <TextBlock Name="title" Text="Pixiv Wallpaper for Windows 10" FontSize="14" FocusVisualPrimaryBrush="White" RequestedTheme="Dark" Margin="10,5,0,0"/>
         <StackPanel Margin="0,30,0,0">
-            <Button FontSize="16" VerticalAlignment="Top" Width="50" Height="50" FontFamily="Segoe MDL2 Assets" Click="Button_Click" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" FocusVisualPrimaryBrush="#00000000">
-                <TextBlock Text="&#xE700;" Height="18" Margin="5,0,0,0"/>
+            <Button FontSize="16" VerticalAlignment="Top" Width="50" Height="50" FontFamily="Segoe MDL2 Assets" Click="Button_Click" RequestedTheme="Dark" HorizontalContentAlignment="Left" Background="#00000000" >
+                <TextBlock Text="&#xE700;" Height="18" Margin="5,0,0,0" FocusVisualPrimaryBrush="White" RequestedTheme="Dark"/>
             </Button>
-            <Button x:Name="show_btn_1" FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="show_btn_Click">
-                <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE80F;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"></TextBlock>
+            <Button x:Name="show_btn_1" FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Click="show_btn_Click" Background="#00000000" RequestedTheme="Dark">
+                <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE80F;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
             </Button>
-            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" x:Name="next_btn_1" Click="next_btn_Click">
+            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" x:Name="next_btn_1" Click="next_btn_Click">
                 <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE0AB;" Margin="5,0,0,0"></TextBlock>
             </Button>
-            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="setWallpaper_btn_Click">
+            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" Click="setWallpaper_btn_Click">
                 <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" Margin="5,0,0,0"></TextBlock>
             </Button>
-            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="refresh_btn_Click">
+            <Button FontSize="16" Height="50" Width="50" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" Click="refresh_btn_Click">
                 <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE1CD;" Margin="5,0,0,0"></TextBlock>
             </Button>
-            <Button x:Name="setting_btn_1" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="50" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="setting_btn_Click">
+            <Button x:Name="setting_btn_1" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="50" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" RequestedTheme="Dark" Click="setting_btn_Click">
                 <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Margin="5,0,0,0"></TextBlock>
             </Button>
-            <Button x:Name="share_button_1" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="50" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="share_btn_Click">
+            <Button x:Name="share_button_1" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="50" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" RequestedTheme="Dark" Click="share_btn_Click">
                 <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE72D;" Margin="5,0,0,0"></TextBlock>
             </Button>
         </StackPanel>
@@ -50,40 +50,40 @@
                             TintOpacity="0.1"
                             FallbackColor="{StaticResource SystemAccentColor}"/>
                     </StackPanel.Background>
-                    <Button FontSize="16" VerticalAlignment="Top" Width="50" Height="50" Margin="0,30,0,0" FontFamily="Segoe MDL2 Assets" Click="Button_Click" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" RequestedTheme="Dark" FocusVisualPrimaryBrush="#00000000">
+                    <Button FontSize="16" VerticalAlignment="Top" Width="50" Height="50" Margin="0,30,0,0" FontFamily="Segoe MDL2 Assets" Click="Button_Click" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark">
                         <TextBlock Text="&#xE700;" Height="18" Margin="5,0,0,0"/>
                     </Button>
-                    <Button x:Name="show_btn" FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" Click="show_btn_Click" RequestedTheme="Dark">
+                    <Button x:Name="show_btn" FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" Click="show_btn_Click" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE80F;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="Preview" Margin="20,0,0,0"  VerticalAlignment="Center" FontSize="16"/>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" x:Name="next_btn" Click="next_btn_Click" RequestedTheme="Dark">
+                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" x:Name="next_btn" Click="next_btn_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE0AB;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="Next" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" Click="setWallpaper_btn_Click" RequestedTheme="Dark">
+                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" Click="setWallpaper_btn_Click" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="SetWallpaper" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" Foreground="White" Click="refresh_btn_Click" RequestedTheme="Dark">
+                    <Button FontSize="16" Height="50" Width="300" HorizontalContentAlignment="Left" Background="#00000000" RequestedTheme="Dark" Click="refresh_btn_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE1CD;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="Refresh" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="setting_btn" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="300" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="setting_btn_Click">
+                    <Button x:Name="setting_btn" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="300" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" RequestedTheme="Dark" Click="setting_btn_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="Setting" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="share_button" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="300" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" Foreground="White" RequestedTheme="Dark" Click="share_btn_Click">
+                    <Button x:Name="share_button" FontSize="16" VerticalAlignment="Bottom" Height="50" Width="300" HorizontalContentAlignment="Left" Margin="0" Background="#00000000" RequestedTheme="Dark" Click="share_btn_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE72D;" Margin="5,0,0,0"></TextBlock>
                             <TextBlock x:Uid="Share" Margin="20,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"></TextBlock>

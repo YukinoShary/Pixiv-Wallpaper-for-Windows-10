@@ -30,6 +30,7 @@ using Windows.UI.Notifications;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI;
 
 namespace Pixiv_Wallpaper_for_Windows_10
 {
@@ -57,8 +58,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
-            session = null;
-            
+            session = null;   
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -67,6 +67,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 pixiv = param.Item1;
                 c = param.Item2;
+
                 backgroundMode = c.backgroundMode;
                 viewModel = new ImageShowViewModel(pixiv);
                 //后台模式选择

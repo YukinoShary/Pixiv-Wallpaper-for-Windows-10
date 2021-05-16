@@ -11,6 +11,7 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
@@ -37,6 +38,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if ("dark".Equals(localSettings.Values["ThemeSelect"]))
+                Current.RequestedTheme = ApplicationTheme.Dark;
+            else
+                Current.RequestedTheme = ApplicationTheme.Light;
         }
 
         /// <summary>
