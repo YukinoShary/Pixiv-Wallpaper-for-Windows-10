@@ -41,7 +41,6 @@
                 <TextBlock x:Uid="Other" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="OtherOptionsExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
                 <ToggleSwitch x:Name="lock_switch" Margin="30,10,0,0" Toggled="lock_switch_Toggled" RequestedTheme="Dark"></ToggleSwitch>
-                <TextBlock x:Uid="ThemeSelect" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
