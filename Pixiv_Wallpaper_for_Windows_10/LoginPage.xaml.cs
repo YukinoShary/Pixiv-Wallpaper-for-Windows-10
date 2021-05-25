@@ -47,7 +47,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             baseAPI.ClientLog += ClientLogOutput;
             conf = new Conf();
             lp.webView.ScriptNotify += WebView_ScriptNotify;
-            
+            lp.webView.NavigationStarting += WebView_NavigationStarting;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -71,7 +71,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 }
                 else
                 {
-                    lp.webView.Source = baseAPI.GenerateWebViewUri();
+                    lp.webView.Navigate(baseAPI.GenerateWebViewUri());
                     lp.webView.Visibility = Visibility.Visible;
                     //lp.webView.Refresh();
                 }
@@ -80,11 +80,20 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 //refreshToken失效导致的登录失败
                 Console.WriteLine(e.Message);
-                lp.webView.Source = baseAPI.GenerateWebViewUri();
+                lp.webView.Navigate(baseAPI.GenerateWebViewUri());
                 lp.webView.Visibility = Visibility.Visible;
                 //lp.webView.Refresh();
             }
         }
+
+        private async void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        {
+            var bytes = System.Text.Encoding.UTF8.GetBytes(args.Uri.ToString());
+            await ClientLogOutput(bytes);
+            if (args.Uri.Scheme == "pixiv")
+                await GetToken(args.Uri.ToString());
+        }
+
 
         private async void WebView_ScriptNotify(object sender, NotifyEventArgs e)
         {
@@ -171,7 +180,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     {
                         await stream.WriteAsync(b, 0, b.Length);
                     }
-                    await sw.WriteLineAsync("-----------------------------------------");
+                    await sw.WriteLineAsync(" ");
                 }
                 
             }
