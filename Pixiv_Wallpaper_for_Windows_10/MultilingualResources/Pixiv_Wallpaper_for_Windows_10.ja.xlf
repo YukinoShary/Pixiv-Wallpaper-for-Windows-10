@@ -307,6 +307,10 @@
           <source>This option will be applied after the app restarts</source>
           <target state="translated">このオプションはアプリの再起動後に適用されます</target>
         </trans-unit>
+        <trans-unit id="FailToLoginTry" translate="yes" xml:space="preserve">
+          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</source>
+          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</target>
+        </trans-unit>
       </group>
     </body>
   </file>

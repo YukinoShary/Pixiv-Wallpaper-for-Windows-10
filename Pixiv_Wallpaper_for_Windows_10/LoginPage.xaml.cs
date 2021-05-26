@@ -47,7 +47,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             baseAPI.ClientLog += ClientLogOutput;
             conf = new Conf();
             lp.webView.ScriptNotify += WebView_ScriptNotify;
-            lp.webView.NavigationStarting += WebView_NavigationStarting;
+            //lp.webView.NavigationStarting += WebView_NavigationStarting;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -73,26 +73,36 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 {
                     lp.webView.Navigate(baseAPI.GenerateWebViewUri());
                     lp.webView.Visibility = Visibility.Visible;
-                    //lp.webView.Refresh();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //refreshToken失效导致的登录失败
-                Console.WriteLine(e.Message);
-                lp.webView.Navigate(baseAPI.GenerateWebViewUri());
-                lp.webView.Visibility = Visibility.Visible;
-                //lp.webView.Refresh();
+                //refreshToken失效或是代理+去除SNI导致的认证失败
+                try
+                {
+                    baseAPI.ExperimentalConnection = false;
+                    res = await baseAPI.AuthAsync(refreshToken);
+                    conf.RefreshToken = baseAPI.RefreshToken;
+                    var currentUser = res.Response.User;
+                    pixiv = new Pixiv(baseAPI, currentUser);
+                    frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
+                }
+                catch(Exception)
+                {
+                    conf.RefreshToken = "Invalidation";
+                    lp.webView.Navigate(baseAPI.GenerateWebViewUri());
+                    lp.webView.Visibility = Visibility.Visible;
+                }
             }
         }
 
-        private async void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        /*private async void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes(args.Uri.ToString());
             await ClientLogOutput(bytes);
             if (args.Uri.Scheme == "pixiv")
                 await GetToken(args.Uri.ToString());
-        }
+        }*/
 
 
         private async void WebView_ScriptNotify(object sender, NotifyEventArgs e)
@@ -140,7 +150,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
             try
             {
                 string[] uriSplit = uri.Split('=', '&');
-                Console.WriteLine(uriSplit[1]);
                 string monitor = uriSplit[1];
                 try
                 {
@@ -148,19 +157,24 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
                     conf.RefreshToken = baseAPI.RefreshToken;
+                    frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
+                    lp.webView.Stop();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine(e.Message);
+                    string title = lp.loader.GetString("FailToLoginTry");
+                    ToastMessage message = new ToastMessage(title, "", ToastMessage.ToastMode.OtherMessage);
+                    message.ToastPush(30);
+                    baseAPI.ExperimentalConnection = false;
+                    lp.webView.Navigate(baseAPI.GenerateWebViewUri());
                 }
-                frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
+                
             }
             catch(Exception)
             {
                 string title = lp.loader.GetString("FailToLogin");
                 ToastMessage message = new ToastMessage(title, "", ToastMessage.ToastMode.OtherMessage);
                 message.ToastPush(30);
-                await LoginMethod();
             }
         }
 
@@ -174,12 +188,11 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 stream.Position = stream.Length;
                 using (StreamWriter sw = new StreamWriter(stream))
                 {
-                    await sw.WriteLineAsync("-----------------------------------------");
-                    await sw.WriteLineAsync(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
                     using (MemoryStream ms = new MemoryStream())
                     {
                         await stream.WriteAsync(b, 0, b.Length);
                     }
+                    await sw.WriteLineAsync("[" + DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") + "]");
                     await sw.WriteLineAsync(" ");
                 }
                 

@@ -222,6 +222,9 @@
   <data name="FailToLogin" xml:space="preserve">
     <value>Credentials expired</value>
   </data>
+  <data name="FailToLoginTry" xml:space="preserve">
+    <value>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</value>
+  </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>
   </data>
