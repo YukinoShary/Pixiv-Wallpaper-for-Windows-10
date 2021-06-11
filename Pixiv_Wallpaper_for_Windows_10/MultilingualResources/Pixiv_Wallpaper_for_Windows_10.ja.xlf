@@ -107,8 +107,8 @@
           <target state="translated">pixivおすすめキューを取得できません</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection</source>
-          <target state="translated">ネットワーク接続を確認してください</target>
+          <source>Please check your network connection and try to re-enter your account &amp; password in order to pass the reCaptcha certification.</source>
+          <target state="translated">ネットワーク接続を確認してください。また、reCAPTCHAにぶつかった可能性もあるため、ログアウトしてアカウントや暗証番号を再入力してください。</target>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
@@ -308,8 +308,8 @@
           <target state="translated">このオプションはアプリの再起動後に適用されます</target>
         </trans-unit>
         <trans-unit id="FailToLoginTry" translate="yes" xml:space="preserve">
-          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</source>
-          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</target>
+          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</source>
+          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</target>
         </trans-unit>
       </group>
     </body>

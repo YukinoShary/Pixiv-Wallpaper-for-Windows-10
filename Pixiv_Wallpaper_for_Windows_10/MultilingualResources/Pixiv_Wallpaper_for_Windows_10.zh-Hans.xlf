@@ -107,8 +107,8 @@
           <target state="translated">获取pixiv推荐队列失败</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection</source>
-          <target state="translated">请检查你的网络连接</target>
+          <source>Please check your network connection and try to re-enter your account &amp; password in order to pass the reCaptcha certification.</source>
+          <target state="translated">请检查你的网络连接并尝试重新输入账号密码登录以绕过reCAPTCHA人机认证。</target>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
@@ -308,8 +308,8 @@
           <target state="translated">此项更改将在应用下次启动时生效</target>
         </trans-unit>
         <trans-unit id="FailToLoginTry" translate="yes" xml:space="preserve">
-          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</source>
-          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</target>
+          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</source>
+          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</target>
         </trans-unit>
       </group>
     </body>

@@ -44,10 +44,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
             loader = ResourceLoader.GetForCurrentView("Resources");
             baseAPI = new PixivCS.PixivBaseAPI();
             baseAPI.ExperimentalConnection = true;
-            baseAPI.ClientLog += ClientLogOutput;
             conf = new Conf();
             lp.webView.ScriptNotify += WebView_ScriptNotify;
-            //lp.webView.NavigationStarting += WebView_NavigationStarting;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -63,8 +61,8 @@ namespace Pixiv_Wallpaper_for_Windows_10
             {
                 if (refreshToken != null && !refreshToken.Equals("Invalidation"))
                 {
-                    res = await baseAPI.AuthAsync(refreshToken); 
-                    conf.RefreshToken = baseAPI.RefreshToken;
+                    res = await baseAPI.AuthAsync(refreshToken);
+                    conf.RefreshToken = res.Response.RefreshToken;
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
                     frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv,Conf>(pixiv, conf));
@@ -82,7 +80,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 {
                     baseAPI.ExperimentalConnection = false;
                     res = await baseAPI.AuthAsync(refreshToken);
-                    conf.RefreshToken = baseAPI.RefreshToken;
+                    conf.RefreshToken = res.Response.RefreshToken;
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
                     frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
@@ -156,7 +154,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     var res = await baseAPI.Code2Token(uriSplit[1]);
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
-                    conf.RefreshToken = baseAPI.RefreshToken;
+                    conf.RefreshToken = res.Response.RefreshToken;
                     frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
                     lp.webView.Stop();
                 }
@@ -178,25 +176,5 @@ namespace Pixiv_Wallpaper_for_Windows_10
             }
         }
 
-        private async Task ClientLogOutput(byte[] b)
-        {
-            StorageFile file = (StorageFile)await ApplicationData.Current.LocalFolder.TryGetItemAsync("log.txt")
-                ?? await ApplicationData.Current.LocalFolder.CreateFileAsync("log.txt");
-            
-            using (Stream stream = await file.OpenStreamForWriteAsync())
-            {
-                stream.Position = stream.Length;
-                using (StreamWriter sw = new StreamWriter(stream))
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        await stream.WriteAsync(b, 0, b.Length);
-                    }
-                    await sw.WriteLineAsync("[" + DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") + "]");
-                    await sw.WriteLineAsync(" ");
-                }
-                
-            }
-        }
     }
 }

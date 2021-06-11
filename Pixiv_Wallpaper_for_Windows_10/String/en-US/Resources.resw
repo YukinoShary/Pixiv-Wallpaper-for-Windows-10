@@ -217,13 +217,13 @@
     <value>Failed to get pixiv recommendation queue</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>Please check your network connection</value>
+    <value>Please check your network connection and try to re-enter your account &amp; password in order to pass the reCaptcha certification.</value>
   </data>
   <data name="FailToLogin" xml:space="preserve">
     <value>Credentials expired</value>
   </data>
   <data name="FailToLoginTry" xml:space="preserve">
-    <value>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-input your account and password.</value>
+    <value>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</value>
   </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>
