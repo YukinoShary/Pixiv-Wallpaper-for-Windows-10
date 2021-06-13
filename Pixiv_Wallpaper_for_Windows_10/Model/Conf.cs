@@ -20,14 +20,8 @@ namespace Pixiv_Wallpaper_for_Windows_10.Model
 
         public Conf()
         {
-            if(localSettings.Values["Password"] != null)
-            {
-                localSettings.Values["Password"] = null;
-            }
-            if(localSettings.Values["Account"] != null)
-            {
-                localSettings.Values["Account"] = null;
-            }
+            localSettings.Values.Remove("Password");
+            localSettings.Values.Remove("Account");
         }
 
 

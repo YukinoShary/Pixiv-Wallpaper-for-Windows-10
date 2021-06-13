@@ -88,7 +88,7 @@
     <value>获取pixiv推荐队列失败</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>请检查你的网络连接</value>
+    <value>请检查你的网络连接并尝试重新输入账号密码登录以绕过reCAPTCHA人机认证。</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>画师: </value>

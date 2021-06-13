@@ -88,7 +88,7 @@
     <value>pixivおすすめキューを取得できません</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>ネットワーク接続を確認してください</value>
+    <value>ネットワーク接続を確認してください。また、reCAPTCHAにぶつかった可能性もあるため、ログアウトしてアカウントや暗証番号を再入力してください。</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>ユーザー: </value>
