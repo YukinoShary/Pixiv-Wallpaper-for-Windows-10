@@ -176,5 +176,14 @@ namespace Pixiv_Wallpaper_for_Windows_10
             }
         }
 
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void registration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
