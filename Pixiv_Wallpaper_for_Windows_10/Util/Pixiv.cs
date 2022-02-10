@@ -87,8 +87,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                     return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "begin");
                 }
             }
@@ -117,8 +118,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                     return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "begin");
                 }
             }      
@@ -169,8 +171,9 @@ namespace Pixiv_Wallpaper_for_Windows_10.Util
                     }
                 }
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(null, "begin");
             }
             return new ValueTuple<ConcurrentQueue<ImageInfo>, string>(queue, nextUrl);

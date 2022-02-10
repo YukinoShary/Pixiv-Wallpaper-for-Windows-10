@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Windows.UI.Popups;
 using System.Collections.Concurrent;
 using Windows.ApplicationModel.Resources;
@@ -27,7 +29,7 @@ namespace Pixiv_Wallpaper_WinUI.Collection
             nextUrl = "begin";
         }
 
-
+        
         public async Task<ImageInfo> SelectArtwork()
         {
             await ListUpdate();
@@ -67,10 +69,10 @@ namespace Pixiv_Wallpaper_WinUI.Collection
         {
             if(flag || Recomm == null || Recomm.Count == 0)
             {
-                var t = await pixiv.getRecommenlist(imgId, nextUrl);
+                var t = await pixiv.getRecommenList(imgId, nextUrl);
                 Recomm = t.Item1;
                 nextUrl = t.Item2;
-                if (Recomm != null && Recomm.Count != 0)
+                if (Recomm != null)
                 {
                     return true;
                 }                      

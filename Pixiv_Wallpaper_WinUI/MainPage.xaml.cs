@@ -43,6 +43,7 @@ namespace Pixiv_Wallpaper_WinUI
         private static PixivBookmark bookmark;
         private static PixivFollowingIllust follow;
         private static PixivRecommendation recommend;
+        private static PixivRanking ranking;
         private static string backgroundMode;
         private static ImageShowViewModel viewModel;
         private static Pixiv pixiv;
@@ -136,6 +137,13 @@ namespace Pixiv_Wallpaper_WinUI
                         recommend = new PixivRecommendation(loader, pixiv);
                     }
                     img = await recommend.SelectArtwork(); //PixivCS在UI线程被建立，不支持从子线程调用
+                    break;
+                case "Ranking":
+                    if (ranking == null)
+                    {
+                        ranking = new PixivRanking(loader, pixiv);
+                    }
+                    img = await ranking.SelectArtwork(c.rankingMode);
                     break;
                 default:
                     if (recommend == null)
@@ -399,6 +407,20 @@ namespace Pixiv_Wallpaper_WinUI
                         tm.ToastPush(120);
                     }
                     await recommend.ListUpdate(true);
+                    break;
+                case "Ranking":
+                    if (ranking == null)
+                    {
+                        ranking = new PixivRanking(loader, pixiv);
+                        break;
+                    }
+                    if (await ranking.ListUpdate(c.rankingMode, true))
+                    {
+                        string title = loader.GetString("RankingRefresh");
+                        string content = loader.GetString("RefreshExplanation");
+                        ToastMessage tm = new ToastMessage(title, content, ToastMessage.ToastMode.OtherMessage);
+                        tm.ToastPush(120);
+                    }
                     break;
                 default:
                     if (recommend == null)

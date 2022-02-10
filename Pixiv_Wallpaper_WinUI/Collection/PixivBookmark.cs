@@ -27,14 +27,14 @@ namespace Pixiv_Wallpaper_WinUI.Collection
         public async Task<bool> ListUpdate(bool flag = false)
         {
             if(flag || illustQueue == null || illustQueue.Count == 0)
-            {
+            { 
                 var t = await pixiv.getBookmarkIllustList(nextUrl);
                 illustQueue = t.Item1;
                 nextUrl = t.Item2;
                 if (illustQueue != null)
                 {
                     return true;
-                }
+                }      
                 else
                 {
                     string title = loader.GetString("FailToGetBookmarkQueue");

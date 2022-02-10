@@ -37,6 +37,8 @@ namespace Pixiv_Wallpaper_WinUI
         private static Pixiv pixiv;
         private static Frame frame;
         private ResourceLoader loader;
+        private readonly string authUri = "pixiv://account/login";
+
         public WebViewLogin()
         {
             this.InitializeComponent();
@@ -44,8 +46,7 @@ namespace Pixiv_Wallpaper_WinUI
             frame = Window.Current.Content as Frame;
             loader = ResourceLoader.GetForCurrentView("Resources");
             baseAPI = new PixivCS.PixivBaseAPI();
-            baseAPI.ExperimentalConnection = true;
-            baseAPI.ClientLog += ClientLogOutput;
+            webView.NavigationStarting += NavigationStarting;
             conf = new Conf();
         }
 
@@ -61,26 +62,39 @@ namespace Pixiv_Wallpaper_WinUI
             string refreshToken = conf.RefreshToken;
             try
             {
-                if (refreshToken != null && !refreshToken.Equals("ERROR"))
+                if (refreshToken != null && !refreshToken.Equals("Invalidation"))
                 {
                     res = await baseAPI.AuthAsync(refreshToken);
+                    conf.RefreshToken = res.Response.RefreshToken;
                     var currentUser = res.Response.User;
                     pixiv = new Pixiv(baseAPI, currentUser);
                     frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
                 }
                 else
                 {
-                    //没有解决WebView持续显示的问题
                     lp.webView.Source = baseAPI.GenerateWebViewUri();
                     lp.webView.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //refreshToken失效导致的登录失败
-                Console.WriteLine(e.Message);
-                lp.webView.Source = baseAPI.GenerateWebViewUri();
-                lp.webView.Visibility = Visibility.Visible;
+                //refreshToken失效或是代理+去除SNI导致的认证失败
+                try
+                {
+                    baseAPI.ExperimentalConnection = false;
+                    res = await baseAPI.AuthAsync(refreshToken);
+                    conf.RefreshToken = res.Response.RefreshToken;
+                    var currentUser = res.Response.User;
+                    pixiv = new Pixiv(baseAPI, currentUser);
+                    frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    conf.RefreshToken = "Invalidation";
+                    lp.webView.Source = baseAPI.GenerateWebViewUri();
+                    lp.webView.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -90,41 +104,30 @@ namespace Pixiv_Wallpaper_WinUI
             try
             {
                 string[] uriSplit = uri.Split('=', '&');
-                Console.WriteLine(uriSplit[1]);
+                string monitor = uriSplit[1];
                 var res = await baseAPI.Code2Token(uriSplit[1]);
                 var currentUser = res.Response.User;
                 pixiv = new Pixiv(baseAPI, currentUser);
-                conf.RefreshToken = baseAPI.RefreshToken;
+                conf.RefreshToken = res.Response.RefreshToken;
                 frame.Navigate(typeof(MainPage), new ValueTuple<Pixiv, Conf>(pixiv, conf));
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                //未完成
-                //ToastMessage message = new ToastMessage();
+                string title = lp.loader.GetString("FailToLogin");
+                ToastMessage message = new ToastMessage(title, "", ToastMessage.ToastMode.OtherMessage);
+                message.ToastPush(30);
             }
-
         }
 
-        private async Task ClientLogOutput(byte[] b)
+        private async void NavigationStarting(WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
         {
-            StorageFile file = (StorageFile)await ApplicationData.Current.LocalFolder.TryGetItemAsync("log.txt")
-                ?? await ApplicationData.Current.LocalFolder.CreateFileAsync("log.txt");
-
-            using (Stream stream = await file.OpenStreamForWriteAsync())
-            {
-                using (StreamWriter sw = new StreamWriter(stream))
-                {
-                    await sw.WriteLineAsync("-----------------------------------------");
-                    await sw.WriteLineAsync(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        await stream.WriteAsync(b, 0, b.Length);
-                    }
-                    await sw.WriteLineAsync("-----------------------------------------");
-                }
-
-            }
+            Console.WriteLine(args.Uri);
+            string[] uriSplit = args.Uri.Split('?');
+            if (uriSplit[0].Equals(authUri))
+                await GetToken(args.Uri);
         }
+            
     }
 }

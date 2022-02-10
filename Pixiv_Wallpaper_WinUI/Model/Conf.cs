@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,17 +18,6 @@ namespace Pixiv_Wallpaper_WinUI.Model
         private static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
         private static PasswordVault vault = new PasswordVault();
 
-        public Conf()
-        {
-            if(localSettings.Values["Password"] != null)
-            {
-                localSettings.Values["Password"] = null;
-            }
-            if(localSettings.Values["Account"] != null)
-            {
-                localSettings.Values["Account"] = null;
-            }
-        }
 
         public string RefreshToken
         {
@@ -223,6 +213,36 @@ namespace Pixiv_Wallpaper_WinUI.Model
             set
             {
                 localSettings.Values["BackgroundMode"] = value;
+            }
+        }
+
+        public string rankingMode
+        {
+            get
+            {
+                if (localSettings.Values["RankingMode"] == null)
+                    return "day";
+                else
+                    return localSettings.Values["RankingMode"].ToString();
+            }
+            set
+            {
+                localSettings.Values["RankingMode"] = value;
+            }
+        }
+
+        public string themeSelect
+        {
+            get
+            {
+                if (localSettings.Values["ThemeSelect"] == null)
+                    return "light";
+                else
+                    return localSettings.Values["ThemeSelect"].ToString();
+            }
+            set
+            {
+                localSettings.Values["ThemeSelect"] = value;
             }
         }
     }

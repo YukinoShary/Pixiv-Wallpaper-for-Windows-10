@@ -88,7 +88,7 @@
     <value>获取pixiv推荐队列失败</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>请检查你的网络连接并输入正确的账号密码</value>
+    <value>请检查你的网络连接并尝试重新输入账号密码登录以绕过reCAPTCHA人机认证。</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>画师: </value>
@@ -187,7 +187,7 @@
     <value>已关注用户的插画更新队列已更新</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>登录Pixiv</value>
+    <value>登录Pixiv中...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>应用会储存你的账号与密码</value>
@@ -203,5 +203,38 @@
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>退出登录</value>
+  </data>
+  <data name="FailToLogin" xml:space="preserve">
+    <value>凭证已过期</value>
+  </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>每日排行榜</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>每月排行榜</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>每周排行榜</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>Pixiv 排行榜</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>排行榜插画队列已更新</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="ThemeSelect.Text" xml:space="preserve">
+    <value>颜色主题</value>
+  </data>
+  <data name="ThemeSelectExplain.Text" xml:space="preserve">
+    <value>此项更改将在应用下次启动时生效</value>
   </data>
 </root>

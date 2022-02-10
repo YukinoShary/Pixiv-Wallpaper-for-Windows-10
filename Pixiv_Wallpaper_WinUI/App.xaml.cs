@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using Microsoft.UI;
 using Microsoft.QueryStringDotNET;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +38,11 @@ namespace Pixiv_Wallpaper_WinUI
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if ("dark".Equals(localSettings.Values["ThemeSelect"]))
+                Current.RequestedTheme = ApplicationTheme.Dark;
+            else
+                Current.RequestedTheme = ApplicationTheme.Light;
         }
 
         /// <summary>
@@ -113,7 +119,7 @@ namespace Pixiv_Wallpaper_WinUI
         protected async override void OnActivated(IActivatedEventArgs e)
         {
             Frame frame = Window.Current.Content as Frame;
-
+            
             if (e.Kind == ActivationKind.Protocol)
             {
                 var protocolArgs = (ProtocolActivatedEventArgs)e;

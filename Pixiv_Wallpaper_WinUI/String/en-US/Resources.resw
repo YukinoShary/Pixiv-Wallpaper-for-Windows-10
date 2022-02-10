@@ -177,11 +177,17 @@
   <data name="CopyLink" xml:space="preserve">
     <value>The link has been copied to the clipboard</value>
   </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
   <data name="DataRequestFail" xml:space="preserve">
     <value>Data request failed</value>
   </data>
   <data name="DataRequestFailExplanation" xml:space="preserve">
     <value>Please confirm you have logged or clear the cookies and login again</value>
+  </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>Dayly</value>
   </data>
   <data name="EmptyQueue" xml:space="preserve">
     <value>There's not more content in this collection</value>
@@ -211,7 +217,13 @@
     <value>Failed to get pixiv recommendation queue</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>Please check your network connection and make sure you have enter the correct account and password</value>
+    <value>Please check your network connection and try to re-enter your account &amp; password in order to pass the reCaptcha certification.</value>
+  </data>
+  <data name="FailToLogin" xml:space="preserve">
+    <value>Credentials expired</value>
+  </data>
+  <data name="FailToLoginTry" xml:space="preserve">
+    <value>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</value>
   </data>
   <data name="FollowingUserUpdating.Content" xml:space="preserve">
     <value>Following users' updating</value>
@@ -222,6 +234,9 @@
   <data name="Illustrator" xml:space="preserve">
     <value>Illustrator: </value>
   </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
   <data name="LoadingStatus.Text" xml:space="preserve">
     <value>Loading Illustration... </value>
   </data>
@@ -230,6 +245,9 @@
   </data>
   <data name="LocalDataSize.Text" xml:space="preserve">
     <value>Local illustrations total size:</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Monthly</value>
   </data>
   <data name="Next.Text" xml:space="preserve">
     <value>Next illustration</value>
@@ -247,7 +265,7 @@
     <value>Password:</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>Pixiv Login</value>
+    <value>Pixiv Login...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>The app will store your account and password locally</value>
@@ -257,6 +275,12 @@
   </data>
   <data name="Preview.Text" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>Pixiv Ranking</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>Ranking illustration queue has been updated</value>
   </data>
   <data name="Recommend.Content" xml:space="preserve">
     <value>Pixiv Recommendation </value>
@@ -269,6 +293,9 @@
   </data>
   <data name="RefreshExplanation" xml:space="preserve">
     <value>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>Log out</value>
   </data>
   <data name="Resolution.Text" xml:space="preserve">
     <value> Pixel</value>
@@ -291,6 +318,12 @@
   <data name="Success" xml:space="preserve">
     <value>Change wallpaper successfully</value>
   </data>
+  <data name="ThemeSelect.Text" xml:space="preserve">
+    <value>Color Theme</value>
+  </data>
+  <data name="ThemeSelectExplain.Text" xml:space="preserve">
+    <value>This option will be applied after the app restarts</value>
+  </data>
   <data name="UnknownError" xml:space="preserve">
     <value>An unknown error occurred while downloading the illustration</value>
   </data>
@@ -308,5 +341,8 @@
   </data>
   <data name="VisitLocalFolder.Content" xml:space="preserve">
     <value>Visit local folder</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Weekly</value>
   </data>
 </root>

@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Controls;
 using Pixiv_Wallpaper_WinUI.Model;
 using Pixiv_Wallpaper_WinUI.Util;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml;
 using Windows.ApplicationModel.Resources;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Pixiv_Wallpaper_WinUI.ViewModel
 {

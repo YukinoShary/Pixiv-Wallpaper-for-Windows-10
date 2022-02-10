@@ -173,5 +173,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
         {
             c.themeSelect = themeSelect.SelectedValue.ToString();
         }
+
+        private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+
+        }
     }
 }

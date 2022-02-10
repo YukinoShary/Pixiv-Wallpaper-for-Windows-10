@@ -107,9 +107,8 @@
           <target state="translated">pixivおすすめキューを取得できません</target>
         </trans-unit>
         <trans-unit id="FailToGetQueueExplanation" translate="yes" xml:space="preserve">
-          <source>Please check your network connection and make sure you have enter the correct account and password</source>
-          <target state="needs-review-translation">ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <source>Please check your network connection and try to re-enter your account &amp; password in order to pass the reCaptcha certification.</source>
+          <target state="translated">ネットワーク接続を確認してください。また、reCAPTCHAにぶつかった可能性もあるため、ログアウトしてアカウントや暗証番号を再入力してください。</target>
         </trans-unit>
         <trans-unit id="Illustrator" translate="yes" xml:space="preserve">
           <source>Illustrator: </source>
@@ -157,13 +156,11 @@
         </trans-unit>
         <trans-unit id="RefreshExplanation" translate="yes" xml:space="preserve">
           <source>This update only refresh the illustration ID queue in memory. You need to click the "Next illustration" button to check the new illustration in the preview page</source>
-          <target state="needs-review-translation">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">この更新では、メモリ内のイラストIDキューのみが更新されます。 プレビューページで新しいイラストを見るには、「次のイラスト」ボタンをクリックする必要があります</target>
         </trans-unit>
         <trans-unit id="ReviewTimes.Text" translate="yes" xml:space="preserve">
           <source> times review</source>
-          <target state="needs-review-translation"> 回レビュー</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated"> 回レビュー</target>
         </trans-unit>
         <trans-unit id="Setting.Text" translate="yes" xml:space="preserve">
           <source>Setting</source>
@@ -219,8 +216,7 @@
         </trans-unit>
         <trans-unit id="Bookmark.Content" translate="yes" xml:space="preserve">
           <source>Pixiv Bookmark</source>
-          <target state="needs-review-translation">ピクシブブックマーク</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">ピクシブブックマーク</target>
         </trans-unit>
         <trans-unit id="BookmarkUpdate" translate="yes" xml:space="preserve">
           <source>Bookmark illustration queue has been updated</source>
@@ -243,8 +239,8 @@
           <target state="translated">フォローユーザーの作品キューが更新しました</target>
         </trans-unit>
         <trans-unit id="PixivLogin.Text" translate="yes" xml:space="preserve">
-          <source>Pixiv Login</source>
-          <target state="translated">ログイン</target>
+          <source>Pixiv Login...</source>
+          <target state="translated">ログイン中...</target>
         </trans-unit>
         <trans-unit id="PixivLoginExplanation.Text" translate="yes" xml:space="preserve">
           <source>The app will store your account and password locally</source>
@@ -265,6 +261,55 @@
         <trans-unit id="SaveButton.Content" translate="yes" xml:space="preserve">
           <source>Save</source>
           <target state="translated">保存します</target>
+        </trans-unit>
+        <trans-unit id="ReLogin.Content" translate="yes" xml:space="preserve">
+          <source>Log out</source>
+          <target state="translated">ログアウト</target>
+        </trans-unit>
+        <trans-unit id="FailToLogin" translate="yes" xml:space="preserve">
+          <source>Credentials expired</source>
+          <target state="translated">資格情報の有効期限が切れました</target>
+        </trans-unit>
+        <trans-unit id="Dayly" translate="yes" xml:space="preserve">
+          <source>Dayly</source>
+          <target state="translated">デイリー</target>
+        </trans-unit>
+        <trans-unit id="Monthly" translate="yes" xml:space="preserve">
+          <source>Monthly</source>
+          <target state="translated">マンスリー</target>
+        </trans-unit>
+        <trans-unit id="Weekly" translate="yes" xml:space="preserve">
+          <source>Weekly</source>
+          <target state="translated">ウィークリー</target>
+        </trans-unit>
+        <trans-unit id="Ranking.Content" translate="yes" xml:space="preserve">
+          <source>Pixiv Ranking</source>
+          <target state="translated">ピクシブランキング</target>
+        </trans-unit>
+        <trans-unit id="RankingRefresh" translate="yes" xml:space="preserve">
+          <source>Ranking illustration queue has been updated</source>
+          <target state="translated">ランキングのイラストキューが更新しました</target>
+        </trans-unit>
+        <trans-unit id="Dark" translate="yes" xml:space="preserve">
+          <source>Dark</source>
+          <target state="translated">ダークモード</target>
+        </trans-unit>
+        <trans-unit id="Light" translate="yes" xml:space="preserve">
+          <source>Light</source>
+          <target state="translated">ライトモード</target>
+        </trans-unit>
+        <trans-unit id="ThemeSelect.Text" translate="yes" xml:space="preserve">
+          <source>Color Theme</source>
+          <target state="needs-review-translation">Color Theme</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="ThemeSelectExplain.Text" translate="yes" xml:space="preserve">
+          <source>This option will be applied after the app restarts</source>
+          <target state="translated">このオプションはアプリの再起動後に適用されます</target>
+        </trans-unit>
+        <trans-unit id="FailToLoginTry" translate="yes" xml:space="preserve">
+          <source>Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</source>
+          <target state="new">Fail to login with the "no SNI mode", now try to login one more time with the normal mode. It's required to re-enter your account and password.</target>
         </trans-unit>
       </group>
     </body>

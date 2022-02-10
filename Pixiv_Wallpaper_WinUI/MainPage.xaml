@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pixiv_Wallpaper_WinUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:media="using:Windows.UI.Xaml.Media"
     mc:Ignorable="d">
 
+    
     <Grid>
         <Grid.Background>
             <AcrylicBrush x:Name="CMapUwpAcrylicBrush"
               BackgroundSource="HostBackdrop"
-              TintColor="#FFC3BEBE"
+              TintColor="{ThemeResource SystemAltMediumColor}"
               TintOpacity="0.3"
               FallbackColor="{StaticResource SystemAccentColor}"/>
         </Grid.Background>

@@ -88,7 +88,7 @@
     <value>pixivおすすめキューを取得できません</value>
   </data>
   <data name="FailToGetQueueExplanation" xml:space="preserve">
-    <value>ネットワーク接続を確認し、そして正しいアカウントとパスワードを入力してください</value>
+    <value>ネットワーク接続を確認してください。また、reCAPTCHAにぶつかった可能性もあるため、ログアウトしてアカウントや暗証番号を再入力してください。</value>
   </data>
   <data name="Illustrator" xml:space="preserve">
     <value>ユーザー: </value>
@@ -187,7 +187,7 @@
     <value>フォローユーザーの作品キューが更新しました</value>
   </data>
   <data name="PixivLogin.Text" xml:space="preserve">
-    <value>ログイン</value>
+    <value>ログイン中...</value>
   </data>
   <data name="PixivLoginExplanation.Text" xml:space="preserve">
     <value>アプリはアカウントとパスワードをローカルに保存します</value>
@@ -203,5 +203,38 @@
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>保存します</value>
+  </data>
+  <data name="ReLogin.Content" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="FailToLogin" xml:space="preserve">
+    <value>資格情報の有効期限が切れました</value>
+  </data>
+  <data name="Dayly" xml:space="preserve">
+    <value>デイリー</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>マンスリー</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>ウィークリー</value>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>ピクシブランキング</value>
+  </data>
+  <data name="RankingRefresh" xml:space="preserve">
+    <value>ランキングのイラストキューが更新しました</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>ダークモード</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>ライトモード</value>
+  </data>
+  <data name="ThemeSelect.Text" xml:space="preserve">
+    <value>Color Theme</value>
+  </data>
+  <data name="ThemeSelectExplain.Text" xml:space="preserve">
+    <value>このオプションはアプリの再起動後に適用されます</value>
   </data>
 </root>
