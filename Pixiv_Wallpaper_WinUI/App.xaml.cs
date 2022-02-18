@@ -39,10 +39,13 @@ namespace Pixiv_Wallpaper_WinUI
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            /*
             if ("dark".Equals(localSettings.Values["ThemeSelect"]))
                 Current.RequestedTheme = ApplicationTheme.Dark;
             else
                 Current.RequestedTheme = ApplicationTheme.Light;
+            */
+            Current.RequestedTheme = ApplicationTheme.Dark;
         }
 
         /// <summary>

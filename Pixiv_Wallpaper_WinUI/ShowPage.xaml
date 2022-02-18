@@ -13,7 +13,7 @@
               BackgroundSource="HostBackdrop"
               TintColor="{ThemeResource SystemAltMediumColor}"
               TintOpacity="0.4"
-              FallbackColor="{StaticResource SystemAccentColor}"/>
+              FallbackColor="Black"/>
         </Grid.Background>
         <Image x:Name="show_img" Source="{x:Bind viewModel.ImageSource, Mode=OneWay}"></Image>
         <Grid Canvas.ZIndex="1" VerticalAlignment="Bottom" Visibility="{x:Bind viewModel.InfoBar, Mode=OneWay}">

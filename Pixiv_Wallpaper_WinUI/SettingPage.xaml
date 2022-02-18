@@ -36,7 +36,7 @@
                 <ComboBox Margin="30,10,0,0" Width="100" x:Name="combox2" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="combox2_SelectionChanged" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="ThemeSelect" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="ThemeSelectExplain" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                <ComboBox Margin="30,10,0,0" x:Name="themeSelect" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="themeSelect_SelectionChanged" RequestedTheme="Dark"/>
+                <ComboBox Margin="30,10,0,0" x:Name="themeSelect" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="themeSelect_SelectionChanged" RequestedTheme="Dark" IsEnabled="False" SelectedValue="dark"/>
                 <TextBlock x:Uid="Other" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
                 <TextBlock x:Uid="OtherOptionsExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
                 <ToggleSwitch x:Name="lock_switch" Margin="30,10,0,0" Toggled="lock_switch_Toggled" RequestedTheme="Dark"></ToggleSwitch>

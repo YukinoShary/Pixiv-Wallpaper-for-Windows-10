@@ -142,7 +142,7 @@ namespace Pixiv_Wallpaper_for_Windows_10.ViewModel
             BitmapImage bitmap = new BitmapImage();
             if(image != null)
             {
-                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + image.imgId + '.' + image.format));
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/illusts/" + image.imgId + '.' + image.format));
                 using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
                 {
                     await bitmap.SetSourceAsync(fileStream);

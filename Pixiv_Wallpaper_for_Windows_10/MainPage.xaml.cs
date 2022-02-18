@@ -58,7 +58,19 @@ namespace Pixiv_Wallpaper_for_Windows_10
             this.InitializeComponent();
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
-            session = null;   
+            session = null;
+            CheckLocalFolder();
+        }
+        private async Task CheckLocalFolder()
+        {
+            try
+            {
+                await ApplicationData.Current.LocalFolder.GetFolderAsync("illusts");
+            }
+            catch (FileNotFoundException)
+            {
+                await ApplicationData.Current.LocalFolder.CreateFolderAsync("illusts");
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -195,7 +207,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
                 StorageFile file = null;
                 try
                 {
-                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + c.lastImg.format));
+                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/illusts/" + c.lastImg.imgId + '.' + c.lastImg.format));
                 }
                 catch (Exception)
                 {

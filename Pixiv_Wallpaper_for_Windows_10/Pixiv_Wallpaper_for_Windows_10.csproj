@@ -17,11 +17,12 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>1ADD1EEC0A31238767611CCC03E9E4A33483BA14</PackageCertificateThumbprint>
-    <AppxPackageDir>E:\Visual_Studio_Works\</AppxPackageDir>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageDir>D:\</AppxPackageDir>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
@@ -29,6 +30,7 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateKeyFile>Pixiv_Wallpaper_for_Windows_10_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -161,6 +163,7 @@
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Pixiv_Wallpaper_for_Windows_10_TemporaryKey.pfx" />
     <PRIResource Include="String\zh-Hans\Resources.resw" />
     <PRIResource Include="String\ja\Resources.resw" />
     <PRIResource Include="String\en-US\Resources.resw" />
@@ -198,7 +201,7 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="PixivCS_Alter">
-      <Version>0.8.7-dev</Version>
+      <Version>0.8.9-dev</Version>
     </PackageReference>
     <PackageReference Include="QueryString.NET">
       <Version>1.0.0</Version>

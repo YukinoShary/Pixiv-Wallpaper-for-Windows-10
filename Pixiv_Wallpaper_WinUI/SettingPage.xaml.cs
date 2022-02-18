@@ -29,13 +29,17 @@ namespace Pixiv_Wallpaper_WinUI
     /// </summary>
     public sealed partial class SettingPage : Page
     {
-        private StorageFolder folder = ApplicationData.Current.LocalFolder;
+        private StorageFolder folder;
         private Conf c = new Conf();
         private ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
         public SettingPage()
         {
             this.InitializeComponent();
-
+            c.themeSelect = "dark";
+        }
+        protected override async void OnNavigatedTo(NavigationEventArgs args)
+        {
+            folder = (StorageFolder) await ApplicationData.Current.LocalFolder.TryGetItemAsync("illusts");
             //下拉框初始化   多语言适配
             timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
             timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
@@ -78,7 +82,6 @@ namespace Pixiv_Wallpaper_WinUI
                     break;
             }
         }
-
         private async void openFilePath_Click(object sender, RoutedEventArgs e)
         {
             var t = new FolderLauncherOptions();

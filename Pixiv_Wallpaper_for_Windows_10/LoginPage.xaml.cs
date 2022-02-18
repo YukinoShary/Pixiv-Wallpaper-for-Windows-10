@@ -47,7 +47,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
             baseAPI = new PixivCS.PixivBaseAPI();
             baseAPI.ExperimentalConnection = false;
             conf = new Conf();
-            lp.webView.NavigationStarting += Web_NavigationStarting;
+            //lp.webView.NavigationStarting += Web_NavigationStarting;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

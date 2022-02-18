@@ -55,6 +55,7 @@ namespace Pixiv_Wallpaper_WinUI
             loader = ResourceLoader.GetForCurrentView("Resources");
             mp = this;
             session = null;
+            CheckLocalFolder();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,6 +89,18 @@ namespace Pixiv_Wallpaper_WinUI
                 }
                 ShowPageInitialize();
             }
+        }
+
+        private async Task CheckLocalFolder()
+        {
+            try
+            {
+                await ApplicationData.Current.LocalFolder.GetFolderAsync("illusts");
+            }
+            catch (FileNotFoundException)
+            {
+                await ApplicationData.Current.LocalFolder.CreateFolderAsync("illusts");
+            }            
         }
 
         private async Task ShowPageInitialize()
@@ -190,7 +203,7 @@ namespace Pixiv_Wallpaper_WinUI
                 StorageFile file = null;
                 try
                 {
-                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/" + c.lastImg.imgId + '.' + c.lastImg.format));
+                    file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appdata:///local/illusts/" + c.lastImg.imgId + '.' + c.lastImg.format));
                 }
                 catch (Exception)
                 {

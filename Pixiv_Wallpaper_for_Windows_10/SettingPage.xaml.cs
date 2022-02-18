@@ -32,7 +32,7 @@ namespace Pixiv_Wallpaper_for_Windows_10
     /// </summary>
     public sealed partial class SettingPage : Page
     {
-        private StorageFolder folder = ApplicationData.Current.LocalFolder;
+        private StorageFolder folder;
         private Conf c = new Conf();
         private ResourceLoader loader = ResourceLoader.GetForCurrentView("Resources");
 
@@ -82,6 +82,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     radiobutton1.IsChecked = true;
                     break;
             }
+        }
+        protected override async void OnNavigatedTo(NavigationEventArgs args)
+        {
+            folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("illusts");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)
