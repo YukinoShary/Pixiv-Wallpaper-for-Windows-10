@@ -301,7 +301,7 @@
     <value> Pixel</value>
   </data>
   <data name="ReviewTimes.Text" xml:space="preserve">
-    <value> times review</value>
+    <value> reviews</value>
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>Save</value>
