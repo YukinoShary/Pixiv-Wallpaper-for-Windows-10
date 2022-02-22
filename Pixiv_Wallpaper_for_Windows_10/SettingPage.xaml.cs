@@ -40,7 +40,10 @@ namespace Pixiv_Wallpaper_for_Windows_10
         public SettingPage()
         {
             this.InitializeComponent();
-
+        }
+        protected override async void OnNavigatedTo(NavigationEventArgs args)
+        {
+            folder = (StorageFolder)await ApplicationData.Current.LocalFolder.TryGetItemAsync("illusts");
             //下拉框初始化   多语言适配
             timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("15Mins"), 15));
             timeSet.Items.Add(new KeyValuePair<string, int>(loader.GetString("30Mins"), 30));
@@ -82,10 +85,6 @@ namespace Pixiv_Wallpaper_for_Windows_10
                     radiobutton1.IsChecked = true;
                     break;
             }
-        }
-        protected override async void OnNavigatedTo(NavigationEventArgs args)
-        {
-            folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("illusts");
         }
 
         private async void openFilePath_Click(object sender, RoutedEventArgs e)

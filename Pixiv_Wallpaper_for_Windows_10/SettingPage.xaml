@@ -11,37 +11,37 @@
     <Grid Background="#000F0F0F">
         <ScrollViewer>
             <StackPanel x:Name="sp1" Margin="0,0,0,0" Width="460" HorizontalAlignment="Left">
-                <TextBlock x:Uid="UpdateInterval" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="UpdateIntervalExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <ComboBox Margin="30,10,0,0" Width="200" x:Name="timeSet" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="combox1_SelectionChanged" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="UpdateMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="UpdateModeExplanation" FontSize="15" TextWrapping="WrapWholeWords" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Bookmark" Checked="radiobutton1_Checked" RequestedTheme="Dark"/>
-                <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="FollowingUserUpdating" Checked="radiobutton2_Checked" RequestedTheme="Dark"/>
-                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" Checked="radiobutton3_Checked" RequestedTheme="Dark"/>
+                <TextBlock x:Uid="UpdateInterval" Margin="30,10,0,0" FontSize="20"/>
+                <TextBlock x:Uid="UpdateIntervalExplanation" FontSize="15" Margin="30,10,0,0"/>
+                <ComboBox Margin="30,10,0,0" Width="200" x:Name="timeSet" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="combox1_SelectionChanged" />
+                <TextBlock x:Uid="UpdateMode" Margin="30,10,0,0" FontSize="20" />
+                <TextBlock x:Uid="UpdateModeExplanation" FontSize="15" TextWrapping="WrapWholeWords" Margin="30,10,0,0" />
+                <RadioButton x:Name="radiobutton1" GroupName="mode" Margin="30,10,0,0" x:Uid="Bookmark" Checked="radiobutton1_Checked" />
+                <RadioButton x:Name="radiobutton2" GroupName="mode" Margin="30,0,0,0" x:Uid="FollowingUserUpdating" Checked="radiobutton2_Checked" />
+                <RadioButton x:Name="radiobutton3" GroupName="mode" Margin="30,0,0,0" x:Uid="Recommend" Checked="radiobutton3_Checked" />
                 <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-                    <RadioButton x:Name="radiobutton4" GroupName="mode" x:Uid="Ranking" Checked="radiobutton4_Checked" RequestedTheme="Dark"/>
-                    <ComboBox Margin="30,0,0,0" x:Name="rankingMode" DisplayMemberPath="Key" SelectedValuePath="Value" Width="100" SelectionChanged="rankingMode_SelectionChanged" RequestedTheme="Dark"/>
+                    <RadioButton x:Name="radiobutton4" GroupName="mode" x:Uid="Ranking" Checked="radiobutton4_Checked" />
+                    <ComboBox Margin="30,0,0,0" x:Name="rankingMode" DisplayMemberPath="Key" SelectedValuePath="Value" Width="100" SelectionChanged="rankingMode_SelectionChanged" />
                 </StackPanel>
-                <TextBlock x:Uid="LocalData" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
+                <TextBlock x:Uid="LocalData" Margin="30,10,0,0" FontSize="20" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Uid="LocalDataSize" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                    <TextBlock x:Name="cacheSize" FontSize="15" Margin="10,10,0,0" RequestedTheme="Dark"/>
+                    <TextBlock x:Uid="LocalDataSize" FontSize="15" Margin="30,10,0,0" />
+                    <TextBlock x:Name="cacheSize" FontSize="15" Margin="10,10,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="clearPicture" x:Uid="ClearIllustrations" Margin="30,10,0,0" Click="clearPicture_Click" RequestedTheme="Dark"/>
-                    <Button Name="openFilePath" x:Uid="VisitLocalFolder" Margin="30,10,0,0" Click="openFilePath_Click" RequestedTheme="Dark"/>
+                    <Button Name="clearPicture" x:Uid="ClearIllustrations" Margin="30,10,0,0" Click="clearPicture_Click" />
+                    <Button Name="openFilePath" x:Uid="VisitLocalFolder" Margin="30,10,0,0" Click="openFilePath_Click" />
                 </StackPanel>
-                <TextBlock x:Uid="BackgroundMode" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="BackgroundModeExplanation" FontSize="15" Margin="30,10,0,0" TextWrapping="WrapWholeWords" RequestedTheme="Dark"/>
-                <ComboBox Margin="30,10,0,0" Width="100" x:Name="combox2" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="combox2_SelectionChanged" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="ThemeSelect" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="ThemeSelectExplain" Margin="30,10,0,0" FontSize="15" RequestedTheme="Dark"/>
-                <ComboBox Margin="30,10,0,0" x:Name="themeSelect" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="themeSelect_SelectionChanged" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="Other" Margin="30,10,0,0" FontSize="20" RequestedTheme="Dark"/>
-                <TextBlock x:Uid="OtherOptionsExplanation" FontSize="15" Margin="30,10,0,0" RequestedTheme="Dark"/>
-                <ToggleSwitch x:Name="lock_switch" Margin="30,10,0,0" Toggled="lock_switch_Toggled" RequestedTheme="Dark"></ToggleSwitch>
-                <Button x:Name="reLogin" x:Uid="ReLogin" Click="reLogin_Click" Margin="30,10,0,0" RequestedTheme="Dark"/>
+                <TextBlock x:Uid="BackgroundMode" Margin="30,10,0,0" FontSize="20" />
+                <TextBlock x:Uid="BackgroundModeExplanation" FontSize="15" Margin="30,10,0,0" TextWrapping="WrapWholeWords" />
+                <ComboBox Margin="30,10,0,0" Width="100" x:Name="combox2" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="combox2_SelectionChanged" />
+                <TextBlock x:Uid="ThemeSelect" Margin="30,10,0,0" FontSize="20" />
+                <TextBlock x:Uid="ThemeSelectExplain" Margin="30,10,0,0" FontSize="15" />
+                <ComboBox Margin="30,10,0,0" x:Name="themeSelect" DisplayMemberPath="Key" SelectedValuePath="Value" SelectionChanged="themeSelect_SelectionChanged" />
+                <TextBlock x:Uid="Other" Margin="30,10,0,0" FontSize="20" />
+                <TextBlock x:Uid="OtherOptionsExplanation" FontSize="15" Margin="30,10,0,0" />
+                <ToggleSwitch x:Name="lock_switch" Margin="30,10,0,0" Toggled="lock_switch_Toggled" ></ToggleSwitch>
+                <Button x:Name="reLogin" x:Uid="ReLogin" Click="reLogin_Click" Margin="30,10,0,0" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
