@@ -123,11 +123,11 @@ namespace Pixiv_Wallpaper_WinUI
         {
             Frame frame = Window.Current.Content as Frame;
             
-            if (e.Kind == ActivationKind.Protocol)
+            /*if (e.Kind == ActivationKind.Protocol)
             {
                 var protocolArgs = (ProtocolActivatedEventArgs)e;
                 await WebViewLogin.GetToken(protocolArgs.Uri.ToString());
-            }
+            }*/
 
             if (e is ToastNotificationActivatedEventArgs)
             {
