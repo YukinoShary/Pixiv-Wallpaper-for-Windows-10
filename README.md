@@ -18,6 +18,10 @@
 
 `checknetisolation loopbackexempt -a -n=63929Shary.PixivWallpaperforWindows10_hzhgmpxe3vqfr`
 
+WinUI3 旁加载包版本为
+
+`checknetisolation loopbackexempt -a -n=63929Shary.PixivWallpaperWinUI3_98mah9224qs2t`
+
 由于pixiv部分url并未被完全封锁，大部分的PAC文件中并没有写入这部分url，可能会出现代理开启的情况下图片加载速度还是很慢的情况。因此在PAC代理模式下，推荐手动将pixiv图床的url “i.pximg.net”与“pixivsketch.net”添加进pac列表中以加速图片下载速度。  
 
 ## 已知问题
